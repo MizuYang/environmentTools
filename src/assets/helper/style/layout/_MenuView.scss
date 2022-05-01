@@ -1,0 +1,28 @@
+.nav-menu {
+  position: fixed;
+  text-align: center;
+  bottom: -1rem;
+  z-index: 10;
+}
+.nav-item {
+  width: 33.4%;
+}
+.border-style {
+  border-top: 1px solid $border-color;
+}
+.border-start-solid {
+  border-left: 1px solid $border-color;
+}
+.border-end-solid {
+  border-right: 1px solid $border-color;
+}
+.nav-link {
+  display: block;
+  padding: 1rem 0;
+}
+.icon-lg {
+  font-size: 2.5rem;
+}
+.active-menu-color {
+  background: $color-primary-s !important;
+}

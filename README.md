@@ -1,0 +1,7 @@
+這是作品的網站連結(建議手機觀看)：https://mizuyang.github.io/environmentTools/#/
+
+這是我的開發紀錄：https://equatorial-alloy-23b.notion.site/f6226e0c3e42458898d5cbdda240f6b6
+
+更新紀錄：<br />
+update_1 氣象、疫情查詢 2022/4/29 <br />
+https://equatorial-alloy-23b.notion.site/update_1-2022-4-29-de2a1ec9fe7a48239417005f68a6d9b3

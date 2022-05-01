@@ -1,0 +1,35 @@
+@mixin iPhoneSE {
+  @media(min-width:375px) {
+    @content;
+  }
+}
+@mixin iPhoneXR {
+  @media(min-width:414px) {
+    @content;
+  }
+}
+@mixin iPadMini {
+  @media(min-width:768px) {
+    @content;
+  }
+}
+@mixin iPadPro {
+  @media(min-width:1024px) {
+    @content;
+  }
+}
+@mixin PC {
+  @media(min-width:1200px) {
+    @content;
+  }
+}
+@mixin Legion {
+  @media(min-width:1536px) {
+    @content;
+  }
+}
+@mixin bigScreen {
+  @media(min-width:2752px) {
+    @content;
+  }
+}

@@ -1,0 +1,27 @@
+.accordion-body{
+  padding: 0;
+}
+.active-accordion-button-color {
+  color: #000 !important;
+  background-color: $color-primary-s !important;
+}
+.uv-lv1 {
+  background-color: rgba(172, 255, 47, 0.300);
+  border-bottom: 3px solid greenyellow;
+}
+.uv-lv2 {
+  background-color: rgba(255, 166, 0, 0.300);
+  border-bottom: 3px solid orange;
+}
+.uv-lv3 {
+  background-color: rgba(165, 42, 42, 0.300);
+  border-bottom: 3px solid brown;
+}
+.uv-lv4 {
+  background-color: rgba(255, 0, 0, 0.300);
+  border-bottom: 3px solid red;
+}
+.uv-lv5 {
+  background-color: rgba(128, 0, 128, 0.300);
+  border-bottom: 3px solid purple;
+}
