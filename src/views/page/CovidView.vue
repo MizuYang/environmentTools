@@ -1,5 +1,5 @@
 <template>
-<div class="container mb-10">
+<div class="container mt-3 mb-10">
   <article class="card text-white bg-color-primary mb-3">
     <header class="card-header text-center">
       <h2>新冠肺炎COVID-19</h2>

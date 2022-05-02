@@ -14,8 +14,8 @@ const routes = [
         component: () => import('@/views/page/CovidView.vue')
       },
       {
-        path: 'about',
-        component: () => import('../views/page/AboutView.vue')
+        path: 'naturalDisaster',
+        component: () => import('../views/page/NaturalDisaster.vue')
       }
     ]
   },

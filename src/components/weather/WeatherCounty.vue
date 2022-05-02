@@ -27,7 +27,6 @@
       </ul>
     </div>
   </div>
-
   <div class="card mb-2" v-for="(tomorrowInfo, tomorrowKeys) in tomorrowWeather" :key="tomorrowInfo" :class="{'bg-Night': tomorrowKeys==='晚上'}">
     <div class="card-body">
       <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s"><span>{{ getDate('tomorrow') }} {{ tomorrowKeys }}</span>

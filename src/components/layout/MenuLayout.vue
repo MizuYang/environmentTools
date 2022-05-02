@@ -3,20 +3,20 @@
     <ul class="nav-menu d-flex justify-content-between list-unstyled bg-color-primary w-100">
       <li class="nav-item border-style border-start-solid border-end-solid" :class="{ 'active-menu-color' : currentPage === '/'}">
         <router-link to="/" class="nav-link btnHover text-dark fs-3">
-          <i class="fa-solid fa-cloud-sun-rain icon-lg"></i>
+          <img src="@/assets/image/icons/menu-icons/天氣.png" height="50" alt="天氣圖片">
           <br>天氣查詢
         </router-link>
       </li>
       <li class="nav-item border-style border-start-solid border-end-solid" :class="{ 'active-menu-color' : currentPage === '/covid'}">
         <router-link to="/covid" class="nav-link btnHover text-dark fs-3">
-          <i class="fa-solid fa-virus-covid icon-lg"></i>
+          <img src="@/assets/image/icons/menu-icons/疫情.png" height="50" alt="COVID 病毒圖片">
           <br>疫情查詢
         </router-link>
       </li>
-      <li class="nav-item border-style border-start-solid border-end-solid btnHover" :class="{ 'active-menu-color' : currentPage === '/about'}">
-        <router-link to="/about" class="nav-link  text-dark fs-3">
-          <i class="fa-solid fa-address-card icon-lg"></i>
-          <br>關於我
+      <li class="nav-item border-style border-start-solid border-end-solid btnHover" :class="{ 'active-menu-color' : currentPage === '/naturalDisaster'}">
+        <router-link to="/naturalDisaster" class="nav-link  text-dark fs-3">
+          <img src="@/assets/image/icons/menu-icons/天災.png" height="50" alt="天災示意圖">
+          <br>天災
         </router-link>
       </li>
     </ul>
