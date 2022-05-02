@@ -37,6 +37,7 @@
     <ul class="px-0">
       <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ tomorrowInfo['最低溫度'].elementValue[0].value }} ~
           {{ tomorrowInfo['最高溫度'].elementValue[0].value }} {{ unitChange(tomorrowInfo['最高溫度'].elementValue[0].measures) }}
+          <img :src="temperatureWarnIcon(tomorrowInfo)" :class="{'d-none': !temperatureWarnIcon(tomorrowInfo)}" class="ms-2" alt="溫度警告" height="35">
       </li>
       <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>
         {{ tomorrowInfo['降雨率'].elementValue[0].value }} {{ unitChange(tomorrowInfo['降雨率'].elementValue[0].measures) }}
@@ -83,7 +84,7 @@ export default {
         多雲時晴: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2%E6%99%82%E6%99%B4.png?raw=true',
         高溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%AB%98%E6%BA%AB.png?raw=true',
         低溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E4%BD%8E%E6%BA%AB.png?raw=true',
-        溫度適中: '@/assets/image/icons/溫度適中.png'
+        溫度適中: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E6%BA%AB%E5%BA%A6%E9%81%A9%E4%B8%AD.png?raw=true'
       }
     }
   },
