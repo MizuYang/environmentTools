@@ -16,6 +16,10 @@ const routes = [
       {
         path: 'naturalDisaster',
         component: () => import('../views/page/NaturalDisaster.vue')
+      },
+      {
+        path: 'aboutMe',
+        component: () => import('../views/page/AboutMe.vue')
       }
     ]
   },

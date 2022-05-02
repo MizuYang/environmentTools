@@ -16,7 +16,7 @@
       <li class="nav-item border-style border-start-solid border-end-solid btnHover" :class="{ 'active-menu-color' : currentPage === '/naturalDisaster'}">
         <router-link to="/naturalDisaster" class="nav-link  text-dark fs-3">
           <img src="@/assets/image/icons/menu-icons/天災.png" height="50" alt="天災示意圖">
-          <br>天災
+          <br>天災查詢
         </router-link>
       </li>
     </ul>

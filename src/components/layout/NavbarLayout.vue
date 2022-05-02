@@ -1,11 +1,12 @@
 <template>
   <figure class="container d-flex py-1 mb-0">
+    <router-link to="/aboutMe">
     <img
       :src="logoImageSrc"
       class="logoImage"
       alt="LOGO"
       height="80"
-      width="135"/>
+      width="135"/></router-link>
     <ul class="d-flex flex-wrap justify-content-center align-items-center m-auto">
       <li>
         <a
@@ -49,7 +50,8 @@ export default {
       logoImageData: {
         '/': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/weather.png?raw=true',
         '/covid': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/covid.png?raw=true',
-        '/naturalDisaster': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/naturalDisaster.png?raw=true'
+        '/naturalDisaster': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/naturalDisaster.png?raw=true',
+        '/aboutMe': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/about.png?raw=true'
       },
       date: ['日', '一', '二', '三', '四', '五', '六']
     }
