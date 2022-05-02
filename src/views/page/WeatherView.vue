@@ -1,9 +1,13 @@
 <template>
+  <header class="header position-sticky top-0 py-2 mb-3">
+    <div class="container d-flex">
+      <button type="button" class="header-btn btnHover" @click="openSelectCountyBtn= !openSelectCountyBtn">選擇縣市</button>
+      <h2 class="m-auto">{{ isClickCountyName }}天氣</h2>
+      <button type="button" class="header-btn btnHover" @click="closeAccordion">關閉折疊</button>
+    </div>
+  </header>
   <main class="container">
-    <header>
-      <h2 class="text-center"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 天氣預報</h2>
-      <WeatherMixDescription />
-    </header>
+    <WeatherMixDescription :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
     <details class="details mb-3 text-center" open>
       <summary class="fs-3 mb-2"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 天氣資訊 </summary>
       <section>
@@ -11,13 +15,13 @@
       </section>
     </details>
     <hr>
-    <section class="mb-11">
+    <section class="mb-10">
       <h2 class="text-center"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 各地區天氣</h2>
       <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" />
     </section>
 
   </main>
-  <aside class="aside text-center bg-color-primary-s">
+  <aside class="aside text-center bg-color-primary-s" :class="{'d-none': openSelectCountyBtn}">
       <button
         type="button"
         class="btn btn-style hover-btn active-btn fs-5 mt-2 m-1"
@@ -30,7 +34,6 @@
         {{ keys }}
       </button>
   </aside>
-  <button type="button" class="closeAccordion" @click="closeAccordion">關閉折疊</button>
   <IsLoading v-model:active="isLoading">
     <div class="cssload-battery">
       <div class="cssload-liquid"></div>
@@ -61,9 +64,10 @@ export default {
       allCountyWeatherData: [],
       isClickCountyName: '新北市', //* 使用者選擇縣市
       isClickCountyWeatherData: [], //* 選擇縣市的data
-      isShowDescriptionName: ['12小時降雨機率', '最低溫度', '最高溫度', '紫外線指數'],
+      isShowDescriptionName: ['12小時降雨機率', '最低溫度', '最高溫度', '天氣現象', '紫外線指數'],
       mixReportData: [], //* 綜合天氣報告
       areaApiNum: '',
+      openSelectCountyBtn: false,
       countyAPINumData: {
         基隆市: 'F-D0047-049',
         臺北市: 'F-D0047-061',
@@ -108,9 +112,9 @@ export default {
     //* 只取出自己要的氣象資訊
     isShowDescription (isClickCountyWeatherData) {
       this.isShowDescriptionName.forEach(descriptionName => {
-        const allDescriptionName = isClickCountyWeatherData
-        const isShowDescriptionNameIndex = allDescriptionName.findIndex(allDescriptionName => {
-          return allDescriptionName.description === descriptionName
+        const allWeatherData = isClickCountyWeatherData
+        const isShowDescriptionNameIndex = allWeatherData.findIndex(allWeatherData => {
+          return allWeatherData.description === descriptionName
         })
         this.isClickCountyWeatherData.push(isClickCountyWeatherData[isShowDescriptionNameIndex])
         //* 只留近兩天的資料
@@ -137,7 +141,12 @@ export default {
     getMixReport (isClickCountyWeatherData) {
       const mixReport = isClickCountyWeatherData[10].time
       this.mixReportData = mixReport
-      emitter.emit('getTodayMixReport', this.mixReportData) //* WeatherMixDescription 頁面 .on
+      // const weatherData = {
+      //   mixReportData: this.mixReportData,
+      //   isClickCountyWeatherData: this.isClickCountyWeatherData
+      // }
+      // emitter.emit('getTodayMixReport', weatherData) //* WeatherMixDescription 頁面 .on
+      // emitter.emit('getTodayMixReport', this.mixReportData) //* WeatherMixDescription 頁面 .on
     },
     //* 關閉所有手風琴
     closeAccordion () {

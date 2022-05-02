@@ -3,7 +3,7 @@
 }
 .aside {
   position: fixed;
-  bottom: 6.9rem;
+  bottom: 5rem;
   width: 100vw;
   height: 4rem;
   left: 0;
@@ -12,19 +12,18 @@
   white-space: nowrap;
   vertical-align: middle;
   @include Legion {
-    height: 70vh;
+    height: 65vh;
     width: 7.4%;
     left: -.2rem;
-    bottom: 8.8rem;
+    bottom: 7.5rem;
     overflow-y: auto;
     white-space: normal;
   }
   @include bigScreen {
     left: 20%;
     width: 5%;
-    height: 75vh;
-    bottom: 8.5rem;
-    
+    height: 72vh;
+    bottom: 6.8rem;
   }
 }
 .btn-style {
@@ -42,18 +41,13 @@
 .active-btn:active {
   transform: scale(1.05);
 }
-.closeAccordion{
-  position: fixed;
-  left: 1px;
-  bottom: 11rem;
+.header {
+  background-color: $color-primary;
+  border: 1px solid  $color-primary-m;
   z-index: 5;
-  background-color: gray;
-  color: $color-primary;
-  @include Legion {
-    left: 93%;
-    bottom: 8rem;
-  }
-  @include bigScreen {
-    left: 75%;
-  }
+}
+.header-btn{
+  background-color: $color-primary;
+  color: $color-primary-m;
+  border: 1px solid  $color-primary-m;
 }

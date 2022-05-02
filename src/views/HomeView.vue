@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-color-primary-s mb-3">
+  <header class="bg-color-primary-s">
     <NavbarLayout />
   </header>
   <MenuView />

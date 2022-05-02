@@ -1,12 +1,12 @@
 <template>
-  <figure class="container d-flex py-1">
+  <figure class="container d-flex py-1 mb-0">
     <img
       :src="logoImageSrc"
       class="logoImage"
       alt="LOGO"
       height="80"
       width="135"/>
-    <ul class="d-flex m-auto">
+    <ul class="d-flex flex-wrap justify-content-center align-items-center m-auto">
       <li>
         <a
           href="https://github.com/MizuYang"
@@ -32,6 +32,9 @@
           ><i class="bi bi-envelope icon"></i>
         </a>
       </li>
+      <time class="ms-md-4">
+        {{ getToday() }}
+      </time>
     </ul>
   </figure>
 </template>
@@ -47,7 +50,8 @@ export default {
         '/': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/weather.png?raw=true',
         '/covid': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/covid.png?raw=true',
         '/about': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/about.png?raw=true'
-      }
+      },
+      date: ['日', '一', '二', '三', '四', '五', '六']
     }
   },
 
@@ -55,6 +59,13 @@ export default {
     $route (to) {
       const currentPage = to.path
       this.logoImageSrc = this.logoImageData[currentPage]
+    }
+  },
+
+  methods: {
+    getToday () {
+      const date = new Date()
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} (${this.date[date.getDay()]})`
     }
   },
 

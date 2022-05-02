@@ -27,7 +27,7 @@ $border-color: #000;
 @import '@/assets/helper/style/utils/_loading.scss';
 
 //* page scss
-@import '@/assets/helper/style/layout/_MenuView.scss';
+@import '@/assets/helper/style/layout/_MenuLayout.scss';
 @import '@/assets/helper/style/weather/_WeatherView.scss';
 @import '@/assets/helper/style/weather/_WeatherHeader.scss';
 @import '@/assets/helper/style/weather/_WeatherCounty.scss';
@@ -56,6 +56,9 @@ ul{
   }
   .hover-color:hover {
     background-color: $color-primary;
+  }
+  .hover-color-s:hover {
+    background-color: $color-primary-s;
   }
   //* icons hover 效果
   .bi-facebook:hover::before, .bi-envelope:hover::before, .bi-github:hover::before {
