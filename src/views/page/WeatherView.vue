@@ -1,19 +1,15 @@
 <template>
   <header class="header position-sticky top-0 py-2 mb-3">
     <div class="container d-flex">
-      <button type="button" class="header-btn btnHover" @click="openSelectCountyBtn= !openSelectCountyBtn">選擇縣市</button>
+      <button type="button" class="header-btn btnHover" @click="openSelectCountyBtn= !openSelectCountyBtn">換縣市</button>
       <h2 class="m-auto">{{ isClickCountyName }}天氣</h2>
-      <button type="button" class="header-btn btnHover" @click="closeAccordion">關閉折疊</button>
+      <button type="button" class="header-btn btnHover" @click="closeAccordion">關折疊</button>
     </div>
   </header>
   <main class="container">
-    <WeatherMixDescription :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
-    <details class="details mb-3 text-center" open>
-      <summary class="fs-3 mb-2"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 天氣資訊 </summary>
-      <section>
-        <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" />
-      </section>
-    </details>
+    <section>
+      <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
+    </section>
     <hr>
     <section class="mb-10">
       <h2 class="text-center"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 各地區天氣</h2>
@@ -42,13 +38,11 @@
 </template>
 
 <script>
-import WeatherMixDescription from '@/components/weather/WeatherMixDescription.vue'
 import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
 import emitter from '@/methods/emitter.js'
 export default {
   components: {
-    WeatherMixDescription,
     WeatherCounty,
     WeatherArea
   },
@@ -141,12 +135,6 @@ export default {
     getMixReport (isClickCountyWeatherData) {
       const mixReport = isClickCountyWeatherData[10].time
       this.mixReportData = mixReport
-      // const weatherData = {
-      //   mixReportData: this.mixReportData,
-      //   isClickCountyWeatherData: this.isClickCountyWeatherData
-      // }
-      // emitter.emit('getTodayMixReport', weatherData) //* WeatherMixDescription 頁面 .on
-      // emitter.emit('getTodayMixReport', this.mixReportData) //* WeatherMixDescription 頁面 .on
     },
     //* 關閉所有手風琴
     closeAccordion () {
