@@ -1,7 +1,7 @@
 <template>
 <div class="card mb-2" v-for="(todayInfo, todayKeys) in todayWeather" :key="todayInfo" :class="{'bg-Night': todayKeys==='晚上'}">
   <div class="card-body">
-    <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s">{{ getDate() }} {{ todayKeys }}
+    <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s"><span>{{ getDate() }} {{ todayKeys }}</span>
       <span class="ms-auto p-1">{{ todayInfo['天氣現象'].elementValue[0].value }}</span>
       <img :src="weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value)"
         :alt="todayInfo['天氣現象'].elementValue[0].value" height="35">
@@ -9,6 +9,7 @@
     <ul class="px-0">
       <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ todayInfo['最低溫度'].elementValue[0].value }} ~
           {{ todayInfo['最高溫度'].elementValue[0].value }} {{ unitChange(todayInfo['最高溫度'].elementValue[0].measures) }}
+          <img :src="temperatureWarnIcon(todayInfo)" :class="{'d-none': !temperatureWarnIcon(todayInfo)}" class="ms-2" alt="溫度警告" height="35">
       </li>
       <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>
         {{ todayInfo['降雨率'].elementValue[0].value }} {{ unitChange(todayInfo['降雨率'].elementValue[0].measures) }}
@@ -29,7 +30,7 @@
 
 <div class="card mb-2" v-for="(tomorrowInfo, tomorrowKeys) in tomorrowWeather" :key="tomorrowInfo" :class="{'bg-Night': tomorrowKeys==='晚上'}">
   <div class="card-body">
-    <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s">{{ getDate('tomorrow') }} {{ tomorrowKeys }}
+    <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s"><span>{{ getDate('tomorrow') }} {{ tomorrowKeys }}</span>
       <span class="ms-auto p-1">{{ tomorrowInfo['天氣現象'].elementValue[0].value }}</span>
       <img :src="weatherIconsStatus(tomorrowInfo['天氣現象'].elementValue[0].value)" :alt="tomorrowInfo['天氣現象'].elementValue[0].value" height="35">
     </h5>
@@ -79,9 +80,10 @@ export default {
         晴天: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E6%99%B4%E5%A4%A9.png?raw=true',
         陰天: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%99%B0%E5%A4%A9.png?raw=true',
         多雲: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2.png?raw=true',
+        多雲時晴: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2%E6%99%82%E6%99%B4.png?raw=true',
         高溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%AB%98%E6%BA%AB.png?raw=true',
         低溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E4%BD%8E%E6%BA%AB.png?raw=true',
-        多雲時晴: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2%E6%99%82%E6%99%B4.png?raw=true'
+        溫度適中: '@/assets/image/icons/溫度適中.png'
       }
     }
   },
@@ -177,7 +179,6 @@ export default {
     },
     //* 天氣 icons 轉換
     weatherIconsStatus (weather) {
-      console.log(weather)
       let src = ''
       if (weather === '多雲時晴' || weather === '晴時多雲') {
         src = '多雲時晴'
@@ -193,6 +194,23 @@ export default {
         src = '陰天'
       }
       return this.weatherIconsData[src]
+    },
+    //* 高溫、低溫 icons
+    temperatureWarnIcon (temperature) {
+      let temperatureTotal = ''
+      if (temperature) {
+        temperatureTotal = (parseInt(temperature['最低溫度'].elementValue[0].value) + parseInt(temperature['最高溫度'].elementValue[0].value)) / 2
+        console.log(temperatureTotal)
+        if (temperatureTotal <= 15) {
+          return this.weatherIconsData['低溫']
+        } else if (temperatureTotal >= 30) {
+          return this.weatherIconsData['高溫']
+        } else if (temperatureTotal < 30 && temperatureTotal > 15) {
+          return this.weatherIconsData['溫度適中']
+        } else {
+          return false
+        }
+      }
     }
   }
 

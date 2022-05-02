@@ -58,7 +58,9 @@ ul{
     background-color: $color-primary;
   }
   .hover-color-s:hover {
-    background-color: $color-primary-s;
+    @include Legion {
+      background-color: $color-primary-s;
+    }
   }
   //* icons hover 效果
   .bi-facebook:hover::before, .bi-envelope:hover::before, .bi-github:hover::before {
