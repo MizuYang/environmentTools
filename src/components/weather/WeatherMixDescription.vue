@@ -3,10 +3,8 @@
   <div class="card-body">
     <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s">{{ getDate() }} {{ todayKeys }}
       <span class="ms-auto p-1">{{ todayInfo['天氣現象'].elementValue[0].value }}</span>
-      <!-- <img :src="`@/assets/image/icons/${weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value)}.png`" -->
-      <img :scr="weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value)"
-      :class="weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value)" alt="天氣圖" height="35">
-<!-- {{ weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value) }} -->
+      <img :src="weatherIconsStatus(todayInfo['天氣現象'].elementValue[0].value)"
+        :alt="todayInfo['天氣現象'].elementValue[0].value" height="35">
     </h5>
     <ul class="px-0">
       <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ todayInfo['最低溫度'].elementValue[0].value }} ~
@@ -33,7 +31,7 @@
   <div class="card-body">
     <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s">{{ getDate('tomorrow') }} {{ tomorrowKeys }}
       <span class="ms-auto p-1">{{ tomorrowInfo['天氣現象'].elementValue[0].value }}</span>
-      <img src="@/assets/image/icons/多雲.png" :class="tomorrowInfo['天氣現象'].elementValue[0].value" alt="天氣圖" height="35">
+      <img :src="weatherIconsStatus(tomorrowInfo['天氣現象'].elementValue[0].value)" :alt="tomorrowInfo['天氣現象'].elementValue[0].value" height="35">
     </h5>
     <ul class="px-0">
       <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ tomorrowInfo['最低溫度'].elementValue[0].value }} ~
@@ -55,49 +53,10 @@
     </ul>
   </div>
 </div>
-<!-- <div class="card mb-5">
-  <div class="card-body">
-    <h5 class="card-title d-flex justify-content-between align-items-center">{{ getDate('tomorrow') }}
-      <img src="@/assets/image/icons/clouds.png" alt="" height="35">
-      <span class="bg-color-primary p-1">多雲時陰短暫陣雨</span>
-    </h5>
-    <ul>
-      <h6>白天</h6>
-      <li class="text-color-primary-m"></li>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </ul>
-  </div>
-</div> -->
-
-  <!-- <div class="card border-primary mb-3">
-    <div class="card-header mb-1 text-center">
-      <h5 class="card-title">天氣預報綜合描述</h5>
-      <time class="fst-italic">{{ todayDate }}</time>
-    </div>
-    <div class="card-body text-primary text-center d-Legion-flex">
-      <article class="card-text w-100 mb-2" v-for="mixReport in todayMixReportData" :key="mixReport">
-        <div v-for="content in mixReport.elementValue[0]" :key="content" :class="{'d-none': content === 'NA'}">
-          <div class="card" >
-            <details class="card-body details px-0">
-              <summary class="card-title fs-3">
-                <time class="bg-color-primary">
-                  {{ sortDate(mixReport.startTime) }} ~ {{ sortDate(mixReport.endTime) }}
-                </time>
-              </summary>
-              <p class="card-text">{{ content }}</p>
-            </details>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div> -->
 </template>
 
 <script>
 export default {
-  // inject: ['emitter'],
 
   props: ['isClickCountyWeatherData', 'mixReportData'],
 
@@ -115,29 +74,15 @@ export default {
         紫外線: ''
       },
       weatherIconsData: {
-        雨天: '@/assets/image/icons/雨天.png',
-        晴天: '@/assets/image/icons/晴天.png',
-        陰天: '@/assets/image/icons/陰天.png',
-        多雲: '@/assets/image/icons/多雲.png',
-        高溫: '@/assets/image/icons/高溫.png',
-        低溫: '@/assets/image/icons/低溫.png',
-        多雲時晴: '@/assets/image/icons/多雲時晴.png'
+        雨天: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%9B%A8%E5%A4%A9.png?raw=true',
+        雷雨: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%9B%B7%E9%9B%A8.png?raw=true',
+        晴天: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E6%99%B4%E5%A4%A9.png?raw=true',
+        陰天: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%99%B0%E5%A4%A9.png?raw=true',
+        多雲: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2.png?raw=true',
+        高溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E9%AB%98%E6%BA%AB.png?raw=true',
+        低溫: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E4%BD%8E%E6%BA%AB.png?raw=true',
+        多雲時晴: 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/%E5%A4%9A%E9%9B%B2%E6%99%82%E6%99%B4.png?raw=true'
       }
-      // weatherIconSrc: ''
-      // weatherIcons: {
-      //   陰: '',
-      //   晴: '',
-      //   陰天: '',
-      //   陣雨: '',
-      //   多雲: '',
-      //   陰陣雨: '',
-      //   短暫雨: '',
-      //   短暫陣雨: '',
-      //   陰時多雲: '',
-      //   多雲時陰: '',
-      //   陰短暫陣雨: '',
-      //   陰時多雲陣雨: ''
-      // }
     }
   },
 
@@ -233,67 +178,23 @@ export default {
     //* 天氣 icons 轉換
     weatherIconsStatus (weather) {
       console.log(weather)
-      console.log(weather.indexOf('陰'))
-
-      // if (weather.indexOf('雨') !== -1) {
-      //   this.weatherIconsSrc('雨天')
-      //   return '陰天'
-      // } else if (weather.indexOf('陰') !== -1) {
-      //   this.weatherIconsSrc('陰天')
-      //   return '陰天'
-      // }
-      return '@/assets/image/icons/晴天.png'
-
-      // this.$nextTick(() => {
-      //   const icons = document.querySelectorAll('.icon-陰陣雨')
-      //   console.log(icons)
-      // })
-      // if (weather.indexOf('陰')) {
-      //   const icons = document.querySelectorAll('.icon')
-      //   console.log(icons)
-      // }
-
-      //       weatherIconsData: {
-      //   雨天: '@/assets/image/icons/雨天.png',
-      //   晴天: '@/assets/image/icons/晴天.png',
-      //   陰天: '@/assets/image/icons/陰天.png',
-      //   多雲: '@/assets/image/icons/多雲.png',
-      //   高溫: '@/assets/image/icons/高溫.png',
-      //   低溫: '@/assets/image/icons/低溫.png',
-      //   多雲時晴: '@/assets/image/icons/多雲時晴.png'
-
-      // }
-    },
-    weatherIconsSrc (weatherStatus) {
-      console.log(weatherStatus)
-      this.$nextTick(() => {
-        const icons = document.querySelectorAll(`.${weatherStatus}`)
-        console.log(icons)
-      })
+      let src = ''
+      if (weather === '多雲時晴' || weather === '晴時多雲') {
+        src = '多雲時晴'
+      } else if (weather === '多雲') {
+        src = '多雲'
+      } else if (weather.indexOf('雷雨') !== -1) {
+        src = '雷雨'
+      } else if (weather.indexOf('雨') !== -1) {
+        src = '雨天'
+      } else if (weather.indexOf('晴') !== -1) {
+        src = '晴天'
+      } else if (weather.indexOf('陰') !== -1) {
+        src = '陰天'
+      }
+      return this.weatherIconsData[src]
     }
-  },
-
-  mounted () {
-    // setTimeout(() => {
-    //   this.getTodayMixReport()
-    // }, 2000)
-
-    // this.$nextTick(() => {
-    //   this.getTodayMixReport()
-    // })
-    // this.emitter.on('getTodayMixReport', (weatherData) => { //* WeatherView 頁面 emitter
-    //   console.log(weatherData)
-    //   // this.weatherData = weatherData
-    //   this.getTodayMixReport(weatherData)
-    //   // this.todayWeather = weatherData
-    //   // this.$nextTick(() => {
-    //   //   this.getTodayMixReport(weatherData)
-    //   // })
-    // })
   }
 
-  // unmounted () {
-  //   this.emitter.off('getTodayMixReport')
-  // }
 }
 </script>

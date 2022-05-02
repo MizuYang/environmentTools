@@ -67,7 +67,7 @@ export default {
       isShowDescriptionName: ['12小時降雨機率', '最低溫度', '最高溫度', '天氣現象', '紫外線指數'],
       mixReportData: [], //* 綜合天氣報告
       areaApiNum: '',
-      openSelectCountyBtn: false,
+      openSelectCountyBtn: true,
       countyAPINumData: {
         基隆市: 'F-D0047-049',
         臺北市: 'F-D0047-061',
