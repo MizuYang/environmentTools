@@ -15,8 +15,9 @@
   <article class="accordion" id="accordionPanelsStayOpenExample">
     <div class="accordion-item" v-for="typhoon in typhoonData" :key="typhoon">
       <h2 class="accordion-header" :id="`typhoon${typhoon.cwbTyphoonName}`">
-        <button class="accordion-button bg-color-primary btnHover text-dark" type="button" :class="{'active-accordion-button-color': accordionButtonClickColor[typhoon.cwbTyphoonName] === typhoon.cwbTyphoonName}"
-            data-bs-toggle="collapse" :data-bs-target="`#typhoonItem${typhoon.cwbTyphoonName}`" aria-expanded="true" :aria-controls="`typhoonItem${typhoon.cwbTyphoonName}`"  @click="$openAccordionColor(typhoon.cwbTyphoonName)">
+        <button class="accordion-button bg-color-primary btnHover text-dark" type="button" @click="$openAccordionColor(typhoon.cwbTyphoonName)"
+            :class="{'active-accordion-button-color': accordionButtonClickColor[typhoon.cwbTyphoonName] === typhoon.cwbTyphoonName}"
+            data-bs-toggle="collapse" :data-bs-target="`#typhoonItem${typhoon.cwbTyphoonName}`" aria-expanded="true" :aria-controls="`typhoonItem${typhoon.cwbTyphoonName}`">
             <time class="mx-auto">{{ getDate(typhoon.analysisData.fix[0].fixTime) }}</time> <span class="fs-5">{{ typhoon.cwbTyphoonName }}颱風</span>
         </button>
       </h2>
@@ -69,9 +70,6 @@ export default {
       },
       apiPath: ''
     }
-  },
-
-  watch: {
   },
 
   methods: {

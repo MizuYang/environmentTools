@@ -9,7 +9,8 @@
   <div class="accordion mb-10" id="accordionPanelsStayOpenExample">
     <div class="accordion-item mb-2 " v-for="earthquake in earthquakeData" :key="earthquake.earthquakeNo">
       <h2 class="accordion-header" :id="`${earthquake.earthquakeNo}`">
-        <button class="accordion-button bg-color-primary btnHover text-dark" type="button" data-bs-toggle="collapse" :data-bs-target="`#earthquake${earthquake.earthquakeNo}`" aria-expanded="true" :aria-controls="`earthquake${earthquake.earthquakeNo}`">
+        <button class="accordion-button bg-color-primary btnHover text-dark" type="button" data-bs-toggle="collapse"
+          :data-bs-target="`#earthquake${earthquake.earthquakeNo}`" aria-expanded="true" :aria-controls="`earthquake${earthquake.earthquakeNo}`">
           <time class="mx-auto">{{ getDate(earthquake.earthquakeInfo.originTime) }}</time> {{ earthquake.earthquakeInfo.magnitude.magnitudeType }} {{ earthquake.earthquakeInfo.magnitude.magnitudeValue }}
         </button>
       </h2>
@@ -56,6 +57,7 @@ export default {
       this.isLoading = true
       this.$http.get(this.apiPath)
         .then(res => {
+          console.log(res)
           this.isLoading = false
           this.earthquakeData = res.data.records.earthquake
         })
