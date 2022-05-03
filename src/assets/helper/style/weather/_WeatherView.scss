@@ -2,31 +2,26 @@
   color: #000;
 }
 .aside {
-  position: fixed;
-  bottom: 5.8rem;
-  width: 100vw;
   height: 4rem;
-  left: 0;
-  z-index: 5;
+  margin-top: 0.5rem;
   overflow-x: auto;
   white-space: nowrap;
   vertical-align: middle;
-  @include iPadMini {
-    bottom: 6rem;
-  }
   @include Legion {
+    position: fixed;
     height: 65vh;
     width: 7.4%;
-    left: -.2rem;
+    left: -0.2rem;
     bottom: 7.5rem;
     overflow-y: auto;
     white-space: normal;
+    display: flex;
+    flex-direction: column;
   }
   @include bigScreen {
-    left: 20%;
+    left: 19%;
     width: 5%;
-    height: 72vh;
-    bottom: 7rem;
+    height: 70vh;
   }
 }
 .btn-style {
@@ -46,10 +41,43 @@
 }
 .header {
   background-color: $color-primary;
-  // border: 1px solid  $color-primary-m;
 }
-.header-btn{
+.header-link {
   background-color: $color-primary;
   color: $color-primary-m;
-  border: 1px solid  $color-primary-m;
+  border: 1px solid #b7d2fa;
+  box-shadow: 3px 3px 1px rgba(102, 102, 102, 0.49);
+}
+.header-link:active {
+  box-shadow: 4px 4px 2px rgba(102, 102, 102, 0.49);
+  transform: scale(0.97);
+}
+.menu {
+  position: fixed;
+  background-color: #b7d2fa;
+  transform: translateX(-7rem);
+  transition: transform 0.5s;
+  top: 13rem;
+  z-index: 10;
+  @include bigScreen {
+    transform: translateX(0rem);
+    transform: translateY(-17rem);
+    top: 8.6rem;
+    left: 14%;
+  }
+}
+.menu-link {
+  color: $color-primary;
+  background-color: $color-primary-m;
+  border: 1px solid $color-primary-m;
+}
+.menu-link-hover:hover {
+  transition: transform .5s;
+  transform:translateX(.5rem);
+  background-color: #fab7b7ad;
+  color: $color-primary-m;
+}
+.show {
+  transition: transform 0.5s;
+  transform: translateX(0rem);
 }

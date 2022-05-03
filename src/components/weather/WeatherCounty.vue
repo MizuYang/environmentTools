@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-2" v-for="(todayInfo, todayKeys) in todayWeather" :key="todayInfo" :class="{'bg-Night': todayKeys==='晚上'}">
+  <div class="card mb-2" id="countyCard" v-for="(todayInfo, todayKeys) in todayWeather" :key="todayInfo" :class="{'bg-Night': todayKeys==='晚上'}">
     <div class="card-body">
       <h5 class="card-title d-flex justify-content-end align-items-center hover-color-s"><span>{{ $getDate() }} {{ todayKeys }}</span>
         <span class="ms-auto p-1">{{ todayInfo['天氣現象'].elementValue[0].value }}</span>

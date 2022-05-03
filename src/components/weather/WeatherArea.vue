@@ -1,6 +1,6 @@
 <template>
 <!-- 今天氣象 -->
-<div class="accordion" id="accordionExample">
+<div class="accordion mt-4" id="areaAccordion">
   <div class="accordion-item mb-1" v-for="(areaWeather, keys) in renderAreaWeatherData" :key="keys" >
     <h2 class="accordion-header" :id="`areaWeather${keys}`">
       <button class="accordion-button btnHover text-dark fs-5" :class="{'active-accordion-button-color': accordionButtonClickColor[keys] === keys}" type="button" data-bs-toggle="collapse" :data-bs-target="`#area${keys}`" aria-expanded="true" :aria-controls="`area${keys}`" @click="$openAccordionColor(keys)">

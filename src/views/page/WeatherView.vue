@@ -1,25 +1,19 @@
 <template>
   <header class="header position-sticky top-0 z-index-1 border-primary-m py-2 mb-3">
     <div class="container d-flex">
-      <button type="button" class="header-btn btnHover" @click="openSelectCountyBtn= !openSelectCountyBtn">換縣市</button>
-      <h2 class="m-auto">{{ isClickCountyName }}天氣</h2>
-      <button type="button" class="header-btn btnHover" @click="closeAccordion">關折疊</button>
+      <button type="button" class="header-link btnHover" data-tools="menu" @click="menuShow = !menuShow">
+        <img src="@/assets/image/icons/weather-icons/設定.png" data-tools="menu" alt="設定工具的圖示" height="35">
+      </button>
+      <h2 class="m-auto">
+        <a href="#" class="d-block" @click.prevent="$goToPosition('countyCard')">
+          <span class="h2">{{ isClickCountyName }}天氣</span>
+        </a>
+      </h2>
     </div>
-  </header>
-  <main class="container">
-    <section>
-      <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
-    </section>
-    <hr>
-    <section class="mb-10">
-      <h2 class="text-center"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 各地區天氣</h2>
-      <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" />
-    </section>
-  </main>
-  <aside class="aside text-center bg-color-primary-s" :class="{'d-none': openSelectCountyBtn}">
+    <aside class="aside text-center bg-color-primary-s d-flex" :class="{'d-none': openSelectCountyBtn}">
       <button
         type="button"
-        class="btn btn-style hover-btn active-btn fs-5 mt-2 m-1"
+        class="btn btn-style hover-btn active-btn fs-5 m-1"
         :class="{'active-county-color': keys === isClickCountyName}"
         v-for="(county, keys) in countyAPINumData"
         :key="keys"
@@ -28,6 +22,28 @@
       >
         {{ keys }}
       </button>
+  </aside>
+  </header>
+  <main class="container">
+    <section>
+      <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
+    </section>
+    <hr>
+    <h2 class=" position-sticky bottom-m text-center bg-color-primary border-primary-m py-2">
+      <a href="#" class="d-block" @click.prevent="$goToPosition('areaAccordion')">
+        <span class="h2">{{ isClickCountyName }}各地區天氣</span>
+      </a>
+    </h2>
+    <section class="mb-10">
+      <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" />
+    </section>
+  </main>
+  <aside>
+    <ul class="menu ps-1 p-2" data-tools="menu" :class="{'show': menuShow}">
+      <li><button type="button" class="menu-link menu-link-hover mb-2" data-tools="menu" @click="openSelectCountyBtn= !openSelectCountyBtn">更換縣市</button></li>
+      <li><button type="button" class="menu-link menu-link-hover mb-2" data-tools="menu">收藏地區</button></li>
+      <li><button type="button" class="menu-link menu-link-hover" data-tools="menu" @click="closeAccordion">關閉折疊</button></li>
+    </ul>
   </aside>
   <IsLoading v-model:active="isLoading">
     <div class="cssload-battery">
@@ -87,7 +103,8 @@ export default {
       },
       apiPath: '', //* API 網址
       apiKey: '', //* 驗證碼,
-      isLoading: false
+      isLoading: false,
+      menuShow: false
     }
   },
 
@@ -156,6 +173,14 @@ export default {
     this.apiPath = process.env.VUE_APP_WEATHER_API
     this.apiKey = process.env.VUE_APP_WEATHER_KEY
     this.getAllCountyWeather()
+    //* 如果不是點 menu 的話，就自動收合 menu / 如果點了 menu 上的按鈕也會收合
+    window.addEventListener('click', (e) => {
+      if (e.target.dataset.tools !== 'menu') {
+        this.menuShow = false
+      } else if (e.target.type === 'button') {
+        this.menuShow = false
+      }
+    })
   }
 }
 </script>

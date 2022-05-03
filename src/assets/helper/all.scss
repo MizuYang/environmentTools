@@ -28,11 +28,12 @@ $border-color: #000;
 
 //* page scss
 @import "@/assets/helper/style/layout/_MenuLayout.scss";
-@import "@/assets/helper/style/weather/_WeatherView.scss";
 @import "@/assets/helper/style/layout/_NavbarLayout.scss";
+@import "@/assets/helper/style/weather/_WeatherView.scss";
 @import "@/assets/helper/style/weather/_WeatherCounty.scss";
 @import "@/assets/helper/style/weather/_WeatherArea.scss";
 @import "@/assets/helper/style/covid/_CovidView.scss";
+@import "@/assets/helper/style/naturalDisaster/_EarthquakeView.scss";
 
 a {
   text-decoration: none;
@@ -75,4 +76,10 @@ ul {
 }
 .border-primary-m {
   border: 1px solid  $color-primary-m;
+}
+.bottom-m {
+  bottom: 6.2rem;
+  @include iPadPro {
+    bottom: 6.5rem;
+  }
 }

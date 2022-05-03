@@ -1,0 +1,17 @@
+.earthquakeReportImage {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  @include iPhoneXR {
+    height: 30vh;
+  }
+  @include iPadMini {
+    height: 50vh;
+  }
+  @include Legion {
+    height: 80vh;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+}

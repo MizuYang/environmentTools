@@ -10,7 +10,7 @@
     </h2>
     <details class="card-body" open>
       <summary><i class="text-danger">依照該國家公告時間更新</i></summary>
-      <ul class="card-list ">
+      <ul class="card-list">
         <li class="mb-1 border-bottom"><span class="fw-bold">公告的日期</span>：{{ postDate(postCovidInfo.公告日期) }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">今日確診數</span>：{{ postCovidInfo.今日確診數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">今日死亡數</span>：{{ postCovidInfo.今日死亡數 }}</li>
