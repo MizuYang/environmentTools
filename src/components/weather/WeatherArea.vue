@@ -15,10 +15,15 @@
             <h6 class="card-subtitle mb-2 text-muted d-flex justify-content-end align-items-center">
               <span>白天</span>
               <p class="ms-auto my-auto">{{ areaWeather.today.白天.天氣現象.elementValue[0].value }}</p>
-              <img :src="$weatherIconsStatus(areaWeather.today.白天.天氣現象.elementValue[0].value)" class="ms-2" alt="" height="35">
+              <img :src="$weatherIconsStatus(areaWeather.today.白天.天氣現象.elementValue[0].value)" class="ms-2" alt="天氣示意圖" height="35">
             </h6>
             <ul class="px-0">
-              <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ areaWeather.today.白天.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.today.白天.溫度.elementValue[0].measures) }}</li>
+              <li class="hover-color-s mb-2">
+                <span class="fw-bold">溫度：</span>
+                {{ areaWeather.today.白天.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.today.白天.溫度.elementValue[0].measures) }}
+                <img :src="temperatureWarnIcon(areaWeather.today.白天.溫度.elementValue[0].value)"
+                    :class="{'d-none': !temperatureWarnIcon(areaWeather.today.白天.溫度.elementValue[0].value)}" class="ms-2" alt="溫度警告" height="35">
+              </li>
               <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>{{ areaWeather.today.白天.降雨率.elementValue[0].value }} {{ $unitChange(areaWeather.today.白天.降雨率.elementValue[0].measures) }}</li>
               <li class="hover-color-s mb-2">
                 <details>
@@ -34,10 +39,15 @@
             <h6 class="card-subtitle mb-2 text-muted d-flex justify-content-end align-items-center">
               <span>晚上</span>
               <p class="ms-auto my-auto">{{ areaWeather.today.晚上.天氣現象.elementValue[0].value }}</p>
-              <img :src="$weatherIconsStatus(areaWeather.today.晚上.天氣現象.elementValue[0].value)" class="ms-2" alt="" height="35">
+              <img :src="$weatherIconsStatus(areaWeather.today.晚上.天氣現象.elementValue[0].value)" class="ms-2" alt="天氣示意圖" height="35">
             </h6>
             <ul class="px-0">
-              <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ areaWeather.today.晚上.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.today.晚上.溫度.elementValue[0].measures) }}</li>
+              <li class="hover-color-s mb-2">
+                <span class="fw-bold">溫度：</span>
+                {{ areaWeather.today.晚上.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.today.晚上.溫度.elementValue[0].measures) }}
+                <img :src="temperatureWarnIcon(areaWeather.today.晚上.溫度.elementValue[0].value)"
+                    :class="{'d-none': !temperatureWarnIcon(areaWeather.today.晚上.溫度.elementValue[0].value)}" class="ms-2" alt="溫度警告" height="35">
+              </li>
               <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>{{ areaWeather.today.晚上.降雨率.elementValue[0].value }} {{ $unitChange(areaWeather.today.晚上.降雨率.elementValue[0].measures) }}</li>
               <li class="hover-color-s mb-2">
                 <details>
@@ -59,10 +69,15 @@
             <h6 class="card-subtitle mb-2 text-muted d-flex justify-content-end align-items-center">
               <span>白天</span>
               <p class="ms-auto my-auto">{{ areaWeather.tomorrow.白天.天氣現象.elementValue[0].value }}</p>
-              <img :src="$weatherIconsStatus(areaWeather.tomorrow.白天.天氣現象.elementValue[0].value)" class="ms-2" alt="" height="35">
+              <img :src="$weatherIconsStatus(areaWeather.tomorrow.白天.天氣現象.elementValue[0].value)" class="ms-2" alt="天氣示意圖" height="35">
             </h6>
             <ul class="px-0">
-              <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ areaWeather.tomorrow.白天.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.白天.溫度.elementValue[0].measures) }}</li>
+              <li class="hover-color-s mb-2">
+                <span class="fw-bold">溫度：</span>
+                {{ areaWeather.tomorrow.白天.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.白天.溫度.elementValue[0].measures) }}
+                <img :src="temperatureWarnIcon(areaWeather.tomorrow.白天.溫度.elementValue[0].value)"
+                    :class="{'d-none': !temperatureWarnIcon(areaWeather.tomorrow.白天.溫度.elementValue[0].value)}" class="ms-2" alt="溫度警告" height="35">
+              </li>
               <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>{{ areaWeather.tomorrow.白天.降雨率.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.白天.降雨率.elementValue[0].measures) }}</li>
               <li class="hover-color-s mb-2">
                 <details>
@@ -78,10 +93,15 @@
             <h6 class="card-subtitle mb-2 text-muted d-flex justify-content-end align-items-center">
               <span>晚上</span>
               <p class="ms-auto my-auto">{{ areaWeather.tomorrow.晚上.天氣現象.elementValue[0].value }}</p>
-              <img :src="$weatherIconsStatus(areaWeather.tomorrow.晚上.天氣現象.elementValue[0].value)" class="ms-2" alt="" height="35">
+              <img :src="$weatherIconsStatus(areaWeather.tomorrow.晚上.天氣現象.elementValue[0].value)" class="ms-2" alt="天氣示意圖" height="35">
             </h6>
             <ul class="px-0">
-              <li class="hover-color-s mb-2"><span class="fw-bold">溫度：</span>{{ areaWeather.tomorrow.晚上.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.晚上.溫度.elementValue[0].measures) }}</li>
+              <li class="hover-color-s mb-2">
+                <span class="fw-bold">溫度：</span>
+                {{ areaWeather.tomorrow.晚上.溫度.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.晚上.溫度.elementValue[0].measures) }}
+                <img :src="temperatureWarnIcon(areaWeather.tomorrow.晚上.溫度.elementValue[0].value)"
+                    :class="{'d-none': !temperatureWarnIcon(areaWeather.tomorrow.晚上.溫度.elementValue[0].value)}" class="ms-2" alt="溫度警告" height="35">
+              </li>
               <li class="hover-color-s mb-2"><span class="fw-bold">降雨率：</span>{{ areaWeather.tomorrow.晚上.降雨率.elementValue[0].value }} {{ $unitChange(areaWeather.tomorrow.晚上.降雨率.elementValue[0].measures) }}</li>
               <li class="hover-color-s mb-2">
                 <details>
@@ -202,6 +222,18 @@ export default {
       if (date) {
         const splitDate = date.split('')
         return `${splitDate[5]}${splitDate[6]}/${splitDate[8]}${splitDate[9]}  -  ${splitDate[11]}${splitDate[12]}:${splitDate[17]}${splitDate[18]}`
+      }
+    },
+    //* 高溫、低溫 icons
+    temperatureWarnIcon (temperature) {
+      if (temperature <= 15) {
+        return this.weatherIconsData['低溫']
+      } else if (temperature >= 30) {
+        return this.weatherIconsData['高溫']
+      } else if (temperature < 30 && temperature > 15) {
+        return this.weatherIconsData['溫度適中']
+      } else {
+        return false
       }
     }
   },

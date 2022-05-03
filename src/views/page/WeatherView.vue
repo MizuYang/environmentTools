@@ -1,5 +1,5 @@
 <template>
-  <header class="header position-sticky top-0 py-2 mb-3">
+  <header class="header position-sticky top-0 z-index-1 border-primary-m py-2 mb-3">
     <div class="container d-flex">
       <button type="button" class="header-btn btnHover" @click="openSelectCountyBtn= !openSelectCountyBtn">換縣市</button>
       <h2 class="m-auto">{{ isClickCountyName }}天氣</h2>

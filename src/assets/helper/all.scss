@@ -2,42 +2,42 @@ $color-primary: #e7f1ff;
 $color-primary-s: #b7d2fabd;
 $color-primary-m: #0c63e4;
 $border-color: #000;
-@import '~bootstrap/scss/_functions.scss';
-@import '@/assets/helper/style/_variables.scss'; 
-@import '~bootstrap/scss/_mixins';
-@import '~bootstrap/scss/_utilities';
+@import "~bootstrap/scss/_functions.scss";
+@import "@/assets/helper/style/_variables.scss";
+@import "~bootstrap/scss/_mixins";
+@import "~bootstrap/scss/_utilities";
 
-@import '~bootstrap/scss/_root';
-@import '~bootstrap/scss/_reboot';
-@import '~bootstrap/scss/_type';
-@import '~bootstrap/scss/_containers';
-@import '~bootstrap/scss/_grid';
-@import '~bootstrap/scss/_buttons';
-@import '~bootstrap/scss/_accordion';
-@import '~bootstrap/scss/_transitions';
+@import "~bootstrap/scss/_root";
+@import "~bootstrap/scss/_reboot";
+@import "~bootstrap/scss/_type";
+@import "~bootstrap/scss/_containers";
+@import "~bootstrap/scss/_grid";
+@import "~bootstrap/scss/_buttons";
+@import "~bootstrap/scss/_accordion";
+@import "~bootstrap/scss/_transitions";
 @import "~bootstrap/scss/_card";
 @import "~bootstrap/scss/_forms";
 
-@import '~bootstrap/scss/_helpers';
+@import "~bootstrap/scss/_helpers";
 
-@import '~bootstrap/scss/utilities/_api.scss';
+@import "~bootstrap/scss/utilities/_api.scss";
 
 //* utils
-@import '@/assets/helper/style/utils/_rwdMixins.scss';
-@import '@/assets/helper/style/utils/_loading.scss';
+@import "@/assets/helper/style/utils/_rwdMixins.scss";
+@import "@/assets/helper/style/utils/_loading.scss";
 
 //* page scss
-@import '@/assets/helper/style/layout/_MenuLayout.scss';
-@import '@/assets/helper/style/weather/_WeatherView.scss';
-@import '@/assets/helper/style/layout/_NavbarLayout.scss';
-@import '@/assets/helper/style/weather/_WeatherCounty.scss';
-@import '@/assets/helper/style/weather/_WeatherArea.scss';
-@import '@/assets/helper/style/covid/_CovidView.scss';
+@import "@/assets/helper/style/layout/_MenuLayout.scss";
+@import "@/assets/helper/style/weather/_WeatherView.scss";
+@import "@/assets/helper/style/layout/_NavbarLayout.scss";
+@import "@/assets/helper/style/weather/_WeatherCounty.scss";
+@import "@/assets/helper/style/weather/_WeatherArea.scss";
+@import "@/assets/helper/style/covid/_CovidView.scss";
 
 a {
   text-decoration: none;
 }
-ul{
+ul {
   list-style: none;
 }
 * {
@@ -46,25 +46,33 @@ ul{
 .btnHover:hover {
   @include Legion {
     background-color: $color-primary-s;
-    transform: translateY(-.1rem);
-    transition:all .3s;
+    transform: translateY(-0.1rem);
+    transition: all 0.3s;
   }
 }
 //* 隱藏滾動條
 ::-webkit-scrollbar {
   display: none;
+}
+.hover-color:hover {
+  background-color: $color-primary;
+}
+.hover-color-s:hover {
+  @include Legion {
+    background-color: $color-primary-s;
   }
-  .hover-color:hover {
-    background-color: $color-primary;
-  }
-  .hover-color-s:hover {
-    @include Legion {
-      background-color: $color-primary-s;
-    }
-  }
-  //* icons hover 效果
-  .bi-facebook:hover::before, .bi-envelope:hover::before, .bi-github:hover::before {
-    transform: translateY(-.2rem);
-    transition: all .5;
-    color: $color-primary-m;
-  }
+}
+//* icons hover 效果
+.bi-facebook:hover::before,
+.bi-envelope:hover::before,
+.bi-github:hover::before {
+  transform: translateY(-0.2rem);
+  transition: all 0.5;
+  color: $color-primary-m;
+}
+.z-index-1 {
+  z-index: 5;
+}
+.border-primary-m {
+  border: 1px solid  $color-primary-m;
+}
