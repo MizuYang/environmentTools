@@ -2,7 +2,7 @@
 <h2 class="position-sticky top-0 z-index-1 border-primary-m">
   <a href="#" class="d-block w-100 bg-color-primary text-center text-dark h2 mb-0 py-2" @click.prevent="goToPosition('typhoon')">颱風</a>
 </h2>
-<div class="container">
+<div class="container mb-10">
   <small class="text-center w-100 d-inline-block py-2 px-2">
     西北太平洋地區及南海
     <br class="d-lg-none">
