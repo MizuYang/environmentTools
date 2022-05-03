@@ -57,7 +57,6 @@ export default {
       this.isLoading = true
       this.$http.get(this.apiPath)
         .then(res => {
-          console.log(res)
           this.isLoading = false
           this.earthquakeData = res.data.records.earthquake
         })
