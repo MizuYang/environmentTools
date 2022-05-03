@@ -15,7 +15,6 @@
       <h2 class="text-center"><span class="h2 border-bottom">{{ isClickCountyName }}</span> 各地區天氣</h2>
       <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" />
     </section>
-
   </main>
   <aside class="aside text-center bg-color-primary-s" :class="{'d-none': openSelectCountyBtn}">
       <button

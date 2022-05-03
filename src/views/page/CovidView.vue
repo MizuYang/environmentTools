@@ -25,7 +25,7 @@
   <footer class="text-center">
     <h2 class="mb-4">查詢其他國家疫情狀況</h2>
     <div class="mb-5">
-      <select name="" id="" class="form-select" @change="getCovidData(postCovidInfo.currentCounty)" v-model="postCovidInfo.currentCounty">
+      <select name="" id="" class="form-select bg-color-primary" @change="getCovidData(postCovidInfo.currentCounty)" v-model="postCovidInfo.currentCounty">
         <option :value="keys" v-for="(countyName, keys) in countyNameEnToZhTw" :key="keys">
           {{ countyName }}
           {{ keys }}
@@ -33,7 +33,7 @@
       </select>
     </div>
     <div class="d-flex mb-3">
-      <input type="search" class="form-control bg-color-primary text-color-primary-m  border" v-model="postCovidInfo.currentCounty" placeholder="輸入國家'英文'名稱">
+      <input type="search" class="form-control bg-color-primary border" v-model="postCovidInfo.currentCounty" placeholder="輸入國家'英文'名稱">
       <button type="button" class="form-control w-25 text-color-primary bg-color-primary-m btnHover border" @click="getCovidData(postCovidInfo.currentCounty)">查詢</button>
     </div>
       <span v-if="showSearchErrorNull"><i class="text-danger fw-bold">*您未輸入國家名稱，或輸入錯誤! <br> *請輸入國家名稱的"英文"(不分大小寫)</i></span>
