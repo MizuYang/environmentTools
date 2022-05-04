@@ -2,6 +2,7 @@
   color: #000;
 }
 .aside {
+  display: none !important;
   height: 2.5rem;
   margin-top: 0.5rem;
   overflow-x: auto;
@@ -45,8 +46,6 @@
 .header-link {
   background-color: $color-primary;
   color: $color-primary-m;
-  border: 1px solid #b7d2fa;
-  box-shadow: 3px 3px 1px rgba(102, 102, 102, 0.49);
 }
 .header-link:active {
   box-shadow: 4px 4px 2px rgba(102, 102, 102, 0.49);
@@ -91,9 +90,12 @@
   transition: transform 0.5s;
   height: 40vh;
   overflow-y: scroll;
+  @media (max-width: 400px) {
+    transform: translate(6.7rem, -6.8rem);
+  }
 }
 .menu-county-show {
-  display: block;
+  display: block !important;
 }
 .menu-area {
   position: fixed;
@@ -104,8 +106,12 @@
   background-color: #b7d2fa;
   transition: transform 0.5s;
   width: 6.5rem;
-  height: 55vh;
+  height: 40vh;
   overflow-y: scroll;
+  @media (max-width: 400px) {
+    transform: translate(11.2rem, -6.8rem);
+    width: 8rem;
+  }
 }
 .menu-area-show {
   display: block;
@@ -119,8 +125,12 @@
   background-color: #b7d2fa;
   transition: transform 0.5s;
   width: 10rem;
-  height: 45vh;
+  height: 40vh;
   overflow-y: scroll;
+  @media (max-width: 400px) {
+    transform: translate(7.7rem, -4.4rem);
+    width: 13rem;
+  }
 }
 .menu-collectArea-show {
   display: block;

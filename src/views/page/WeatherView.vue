@@ -1,16 +1,16 @@
 <template>
   <header class="header position-sticky top-0 z-index-1 border-primary-m py-2 mb-3">
     <div class="container d-flex">
-      <a href="#" class="header-link btnHover d-block p-1" data-menu="menu" @click.prevent="menuShow = !menuShow">
+      <a href="#" class="header-link shadowStyle btnHover d-block p-1" data-menu="menu" @click.prevent="menuShow = !menuShow">
         <img src="@/assets/image/icons/weather-icons/設定.png" data-menu="menu" alt="設定工具的圖示" height="35">
       </a>
       <h2 class="m-auto">
-        <a href="#" class="d-block" @click.prevent="$goToPosition('countyCard')">
-          <span class="h2">{{ isClickCountyName }}天氣</span>
+        <a href="#" @click.prevent="$goToPosition('countyCard')">
+          <span class="h2 p-1 shadowStyle">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>
-    <aside class="aside text-center bg-color-primary-s d-flex align-items-center" :class="{'d-none': openSelectCountyBtn}">
+    <aside class="aside text-center bg-color-primary-s d-flex align-items-center" :class="{'menu-county-show': selectCountyBtnShow}">
       <button
         type="button"
         class="border-primary-m btn-style hover-btn active-btn fs-5 m-1"
@@ -38,19 +38,20 @@
       <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" @getAllAreaName="getAllAreaName" />
     </section>
   </main>
+  <!-- 設定工具 -->
   <aside>
     <ul class="menu ps-1 p-2" data-menu="menu" :class="{'show': menuShow}">
       <li class="border-bottom-m mb-2">
         <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
-        @click="openSelectCountyBtn= !openSelectCountyBtn">更換縣市</button>
+        @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
       </li>
       <li class="border-bottom-m mb-2">
         <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
           @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
-        <ul class="menu-collectArea text-center px-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
+        <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
           <li class="border-bottom-m" data-menu="collectArea">收藏地區</li>
-          <li class="border-bottom-m bg-color-primary p-2" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
-            <button type="button" class="border-primary-m btn-style text-dark py-1" @click="getSelectCountyWeather($event,countyName,areaName)">
+          <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
+            <button type="button" class="border-primary-m btn-style text-dark w-100 py-2" @click="getSelectCountyWeather($event,countyName,areaName)">
               {{ countyName }} {{ areaName }}
             </button>
           </li>
@@ -122,7 +123,7 @@ export default {
       isShowDescriptionName: ['12小時降雨機率', '最低溫度', '最高溫度', '天氣現象', '紫外線指數'],
       mixReportData: [], //* 綜合天氣報告
       areaApiNum: '',
-      openSelectCountyBtn: true,
+      selectCountyBtnShow: false,
       countyAPINumData: {
         基隆市: 'F-D0047-049',
         臺北市: 'F-D0047-061',
@@ -303,6 +304,7 @@ export default {
           this.menuShow = true
           this.menuAreaShow = true
           this.menuCountyShow = true
+          this.selectCountyBtnShow = false
           //* 點收藏地區 設定收藏 就會消失 / 點設定收藏 收藏地區就會消失
           if (target === 'collectArea') {
             this.menuAreaShow = false
@@ -314,6 +316,10 @@ export default {
             this.menuCollectAreaShow = false
           }
         }
+      }
+      //* 如果縣市按鈕列表開啟時，按菜單的話，按鈕列表就會自動收合
+      if (this.selectCountyBtnShow === true && target === 'menu') {
+        this.selectCountyBtnShow = false
       }
     })
   }
