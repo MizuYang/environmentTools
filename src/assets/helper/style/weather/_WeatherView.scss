@@ -2,7 +2,7 @@
   color: #000;
 }
 .aside {
-  height: 4rem;
+  height: 2.5rem;
   margin-top: 0.5rem;
   overflow-x: auto;
   white-space: nowrap;
@@ -53,16 +53,17 @@
   transform: scale(0.97);
 }
 .menu {
+  border: 1px solid #000;
   position: fixed;
   background-color: #b7d2fa;
-  transform: translateX(-10rem);
+  transform: translateX(-20rem);
   transition: transform 0.5s;
-  top: 13rem;
+  top: 12.5rem;
   z-index: 10;
   @include bigScreen {
     transform: translateX(0rem);
-    transform: translateY(-17rem);
-    top: 8.6rem;
+    transform: translateY(-100rem);
+    top: 8.8rem;
     left: 14%;
   }
 }
@@ -70,14 +71,68 @@
   color: $color-primary;
   background-color: $color-primary-m;
   border: 1px solid $color-primary-m;
+  border-bottom: 1px solid #000;
 }
 .menu-link-hover:hover {
-  transition: transform .5s;
-  transform:translateX(.5rem);
+  transition: transform 0.5s;
   background-color: #fab7b7ad;
   color: $color-primary-m;
 }
 .show {
   transition: transform 0.5s;
   transform: translateX(0rem);
+}
+.menu-county {
+  position: fixed;
+  display: none;
+  border: 1px solid #000;
+  transform: translate(5.4rem, -7.2rem);
+  background-color: #b7d2fa;
+  transition: transform 0.5s;
+  height: 40vh;
+  overflow-y: scroll;
+}
+.menu-county-show {
+  display: block;
+}
+.menu-area {
+  position: fixed;
+  display: none;
+  z-index: 6;
+  transform: translate(9.9rem, -7.2rem);
+  border: 1px solid #000;
+  background-color: #b7d2fa;
+  transition: transform 0.5s;
+  width: 6.5rem;
+  height: 55vh;
+  overflow-y: scroll;
+}
+.menu-area-show {
+  display: block;
+}
+.menu-collectArea {
+  position: fixed;
+  display: none;
+  z-index: 6;
+  transform: translate(5.8rem, -4.9rem);
+  border: 1px solid #000;
+  background-color: #b7d2fa;
+  transition: transform 0.5s;
+  width: 10rem;
+  height: 45vh;
+  overflow-y: scroll;
+}
+.menu-collectArea-show {
+  display: block;
+}
+.border-bottom-m {
+  border-bottom: 1px solid #000;
+}
+.btnActive {
+  background: #fab7b7ad !important;
+  color: $color-primary-m !important;
+}
+.collectAreaCheckbox {
+  width: 1.5rem;
+  height: 1.5rem;
 }

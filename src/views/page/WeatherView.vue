@@ -1,19 +1,19 @@
 <template>
   <header class="header position-sticky top-0 z-index-1 border-primary-m py-2 mb-3">
     <div class="container d-flex">
-      <button type="button" class="header-link btnHover" data-tools="menu" @click="menuShow = !menuShow">
-        <img src="@/assets/image/icons/weather-icons/設定.png" data-tools="menu" alt="設定工具的圖示" height="35">
-      </button>
+      <a href="#" class="header-link btnHover d-block p-1" data-menu="menu" @click.prevent="menuShow = !menuShow">
+        <img src="@/assets/image/icons/weather-icons/設定.png" data-menu="menu" alt="設定工具的圖示" height="35">
+      </a>
       <h2 class="m-auto">
         <a href="#" class="d-block" @click.prevent="$goToPosition('countyCard')">
           <span class="h2">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>
-    <aside class="aside text-center bg-color-primary-s d-flex" :class="{'d-none': openSelectCountyBtn}">
+    <aside class="aside text-center bg-color-primary-s d-flex align-items-center" :class="{'d-none': openSelectCountyBtn}">
       <button
         type="button"
-        class="btn btn-style hover-btn active-btn fs-5 m-1"
+        class="border-primary-m btn-style hover-btn active-btn fs-5 m-1"
         :class="{'active-county-color': keys === isClickCountyName}"
         v-for="(county, keys) in countyAPINumData"
         :key="keys"
@@ -22,7 +22,7 @@
       >
         {{ keys }}
       </button>
-  </aside>
+    </aside>
   </header>
   <main class="container">
     <section>
@@ -35,14 +35,59 @@
       </a>
     </h2>
     <section class="mb-10">
-      <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" />
+      <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" @getAllAreaName="getAllAreaName" />
     </section>
   </main>
   <aside>
-    <ul class="menu ps-1 p-2" data-tools="menu" :class="{'show': menuShow}">
-      <li><button type="button" class="menu-link menu-link-hover mb-2" data-tools="menu" @click="openSelectCountyBtn= !openSelectCountyBtn">更換縣市</button></li>
-      <li><button type="button" class="menu-link menu-link-hover mb-2" data-tools="menu">收藏地區</button></li>
-      <li><button type="button" class="menu-link menu-link-hover" data-tools="menu" @click="closeAccordion">關閉折疊</button></li>
+    <ul class="menu ps-1 p-2" data-menu="menu" :class="{'show': menuShow}">
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
+        @click="openSelectCountyBtn= !openSelectCountyBtn">更換縣市</button>
+      </li>
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
+          @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
+        <ul class="menu-collectArea text-center px-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
+          <li class="border-bottom-m" data-menu="collectArea">收藏地區</li>
+          <li class="border-bottom-m bg-color-primary p-2" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
+            <button type="button" class="border-primary-m btn-style text-dark py-1" @click="getSelectCountyWeather($event,countyName,areaName)">
+              {{ countyName }} {{ areaName }}
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" :class="{'btnActive': menuCountyShow}" data-menu="setCollect"
+          @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">
+          設定收藏
+          <ul class="menu-county px-0" :class="{'menu-county-show': menuCountyShow}" data-menu="selectArea">
+            <li class="border-bottom-m" data-menu="selectArea">縣市</li>
+            <li class="border-bottom-m bg-color-primary p-1" v-for="(county, keys) in countyAPINumData" :key="keys" data-menu="selectArea">
+              <a href="#" class="d-block text-dark fs-5 py-1" data-menu="selectArea" :data-api-num="county"
+                :class="{'btnActive': keys === isClickCountyName}"
+                @click.prevent="getSelectCountyWeather">{{ keys }}</a>
+            </li>
+          </ul>
+          <ul class="menu-area px-0" :class="{'menu-area-show': menuAreaShow}" data-menu="selectArea">
+            <li class="border-bottom-m" data-menu="selectArea">地區</li>
+            <li class="border-bottom-m d-flex justify-content-between align-items-center p-1 bg-color-primary"
+              v-for="(area, areaIndex) in allAreaName" :key="area" data-menu="selectArea">
+              <label :for="`area${area}${areaIndex}`" class="d-block text-dark fs-5 py-1" data-menu="selectArea"
+              :class="{'btnActive': true === collectArea[area]}">
+                {{ area }}
+              </label>
+              <input :id="`area${area}${areaIndex}`" type="checkbox" class="collectAreaCheckbox" data-menu="selectArea"
+                v-model="collectArea[area]" @click="addCollectArea(area)">
+            </li>
+          </ul>
+        </button>
+      </li>
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAccordion">關閉折疊</button>
+      </li>
+      <li>
+        <button type="button" class="menu-link menu-link-hover" @click="clearCollectData">清除收藏</button>
+      </li>
     </ul>
   </aside>
   <IsLoading v-model:active="isLoading">
@@ -71,6 +116,7 @@ export default {
   data () {
     return {
       allCountyWeatherData: [],
+      allAreaName: [],
       isClickCountyName: '新北市', //* 使用者選擇縣市
       isClickCountyWeatherData: [], //* 選擇縣市的data
       isShowDescriptionName: ['12小時降雨機率', '最低溫度', '最高溫度', '天氣現象', '紫外線指數'],
@@ -104,20 +150,42 @@ export default {
       apiPath: '', //* API 網址
       apiKey: '', //* 驗證碼,
       isLoading: false,
-      menuShow: false
+      collectArea: {},
+      menuShow: false,
+      menuCountyShow: false,
+      menuAreaShow: false,
+      menuCollectAreaShow: false,
+      localStorageAreaData: JSON.parse(localStorage.getItem('collectArea')) || [],
+      renderCollectData: {}
     }
   },
 
   methods: {
     //* 取得選取的縣市天氣
-    getSelectCountyWeather (e) {
-      this.isClickCountyName = e.target.textContent
+    getSelectCountyWeather (e, countyName, areaName) {
+      if (countyName) {
+        this.isClickCountyName = countyName
+        this.areaApiNum = this.countyAPINumData[countyName]
+        this.menuShow = false
+        this.menuCollectAreaShow = false
+        this.menuCountyShow = false
+        this.menuAreaShow = false
+        setTimeout(() => {
+          const elData = document.querySelectorAll(`#area${areaName}`)
+          elData.forEach((el) => el.classList.add('show')) //* 展開內容
+          const areaNameEl = document.querySelector(`#${areaName}`)
+          areaNameEl.classList.add('btnActive')//* 背景色高亮
+          this.$goToPosition(areaName)
+        }, 1000)
+      } else {
+        this.isClickCountyName = e.target.textContent
+        this.areaApiNum = e.target.dataset.apiNum
+      }
       const isClickCountyWeatherData = this.allCountyWeatherData.filter(county => {
         return county.locationName === this.isClickCountyName
       })
       this.isClickCountyWeatherData = []
       this.isShowDescription(isClickCountyWeatherData[0].weatherElement)
-      this.areaApiNum = e.target.dataset.apiNum
     },
     //* 只取出自己要的氣象資訊
     isShowDescription (isClickCountyWeatherData) {
@@ -166,6 +234,52 @@ export default {
       allOpenAccordionColor.forEach(el => {
         el.classList.remove('active-accordion-button-color')
       })
+    },
+    getAllAreaName (allAreaName) {
+      this.allAreaName = allAreaName
+    },
+    //* 新增收藏地區 打勾盒子綁定 地名:true
+    addCollectArea (area) {
+      //* 如果收藏 data 是 地名:true，就變成false
+      //! 刪除 localStorage
+      if (this.collectArea[area] === true) {
+        this.collectArea[area] = false
+        //* 把 false 的地名做篩選 取出所有不是變成 false 地名的資料
+        const tempArr = this.localStorageAreaData.filter(item => {
+          return Object.keys(item)[0] !== area
+        })
+        //* 重新賦予 localStorage 的 data 就可以做到刪除的功能
+        this.localStorageAreaData = tempArr
+        localStorage.setItem('collectArea', JSON.stringify(this.localStorageAreaData))
+      } else { //! 新增 localStorage
+        //* 如果不是 地名:true ，就新增為 true 再推到 localStorage (新增功能)
+        const obj = {}
+        obj[area] = this.isClickCountyName
+        this.collectArea[area] = true
+        this.localStorageAreaData.push(obj)
+        localStorage.setItem('collectArea', JSON.stringify(this.localStorageAreaData))
+      }
+      this.getRenderCollectData()
+    },
+    //* 渲染 localStorage 的收藏的地區，打勾狀態
+    getCollectAreaCheckbox () {
+      this.collectArea = {} //* 初始化
+      this.localStorageAreaData.forEach(el => {
+        this.collectArea[Object.keys(el)[0]] = true
+      })
+    },
+    //* 渲染收藏的地點
+    getRenderCollectData () {
+      this.renderCollectData = {} //* 要先初始化，不然刪除地名，就得不會被刪掉
+      this.localStorageAreaData.forEach(el => {
+        this.renderCollectData[Object.keys(el)[0]] = Object.values(el)[0]
+      })
+    },
+    clearCollectData () {
+      this.localStorageAreaData = []
+      localStorage.setItem('collectArea', JSON.stringify(this.localStorageAreaData))
+      this.getRenderCollectData()
+      this.getCollectAreaCheckbox()
     }
   },
 
@@ -173,12 +287,33 @@ export default {
     this.apiPath = process.env.VUE_APP_WEATHER_API
     this.apiKey = process.env.VUE_APP_WEATHER_KEY
     this.getAllCountyWeather()
-    //* 如果不是點 menu 的話，就自動收合 menu / 如果點了 menu 上的按鈕也會收合
+    this.getCollectAreaCheckbox()
+    this.getRenderCollectData()
+
     window.addEventListener('click', (e) => {
-      if (e.target.dataset.tools !== 'menu') {
+      const target = e.target.dataset.menu
+      //* 不是點 menu 的話就自動收合
+      if (e.target.dataset.menu !== 'menu') {
         this.menuShow = false
-      } else if (e.target.type === 'button') {
-        this.menuShow = false
+        this.menuCountyShow = false
+        this.menuAreaShow = false
+        this.menuCollectAreaShow = false
+        //* 點 menu 、收藏地區、設定地區 選單不會消失
+        if (target === 'menu' || target === 'collectArea' || target === 'selectArea' || target === 'setCollect') {
+          this.menuShow = true
+          this.menuAreaShow = true
+          this.menuCountyShow = true
+          //* 點收藏地區 設定收藏 就會消失 / 點設定收藏 收藏地區就會消失
+          if (target === 'collectArea') {
+            this.menuAreaShow = false
+            this.menuCountyShow = false
+            this.menuCollectAreaShow = true
+          } else if (target === 'setCollect') {
+            this.menuAreaShow = true
+            this.menuCountyShow = true
+            this.menuCollectAreaShow = false
+          }
+        }
       }
     })
   }
