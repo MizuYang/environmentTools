@@ -2,7 +2,7 @@
 <div class="container mt-3 mb-10">
   <article class="card text-white bg-color-primary mb-3">
     <header class="card-header text-center">
-      <h2>新冠肺炎COVID-19</h2>
+      <h2 class="mb-0">新冠肺炎COVID-19</h2>
     </header>
     <h2 class="mx-auto mt-3">
       <figure class="img-fluid countyImage" :style="{backgroundImage: `url(${postCovidInfo.countyImage})`}"></figure>

@@ -1,7 +1,8 @@
 <template>
 <header class="position-sticky top-0 z-index-1 border-primary-m">
-  <a href="#" class="bg-color-primary text-dark d-flex justify-content-center align-items-center h2 mb-0 py-2" @click.prevent="$goToPosition('typhoon')">颱風
-    <img src="@/assets/image/icons/naturalDisaster-icons/颱風.png" class="ms-2" alt="颱風圖片" height="35">
+  <a href="#" class="bg-color-primary text-dark d-flex justify-content-center align-items-center h2 mb-0 py-2"
+    @click.prevent="$goToPosition('typhoon')">颱風
+    <img src="@/assets/image/icons/naturalDisaster-icons/颱風.png" class="shadowStyle ms-2" alt="颱風圖片" height="35">
   </a>
 </header>
 <div class="container mb-8" id="typhoon">

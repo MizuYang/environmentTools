@@ -6,7 +6,7 @@
       </a>
       <h2 class="m-auto">
         <a href="#" @click.prevent="$goToPosition('countyCard')">
-          <span class="h2 p-1 shadowStyle">{{ isClickCountyName }}天氣</span>
+          <span class="h2 shadowStyle p-1">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>
@@ -30,8 +30,8 @@
     </section>
     <hr>
     <h2 class=" position-sticky bottom-m text-center bg-color-primary border-primary-m py-2">
-      <a href="#" class="d-block" @click.prevent="$goToPosition('areaAccordion')">
-        <span class="h2">{{ isClickCountyName }}各地區天氣</span>
+      <a href="#" class="d-block p-1" @click.prevent="$goToPosition('areaAccordion')">
+        <span class="h2 shadowStyle">{{ isClickCountyName }}各地區天氣</span>
       </a>
     </h2>
     <section class="mb-10">
@@ -73,7 +73,7 @@
             <li class="border-bottom-m" data-menu="selectArea">地區</li>
             <li class="border-bottom-m d-flex justify-content-between align-items-center p-1 bg-color-primary"
               v-for="(area, areaIndex) in allAreaName" :key="area" data-menu="selectArea">
-              <label :for="`area${area}${areaIndex}`" class="d-block text-dark fs-5 py-1" data-menu="selectArea"
+              <label :for="`area${area}${areaIndex}`" class="d-block mx-auto text-dark fs-5 py-1" data-menu="selectArea"
               :class="{'btnActive': true === collectArea[area]}">
                 {{ area }}
               </label>

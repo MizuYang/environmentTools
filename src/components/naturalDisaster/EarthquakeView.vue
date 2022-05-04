@@ -1,7 +1,7 @@
 <template>
 <header class="position-sticky bottom-m border-primary-m">
   <a href="#" class="bg-color-primary text-dark d-flex justify-content-center align-items-center h2 mb-0 py-2" @click.prevent="$goToPosition('earthquake')">地震
-    <img src="@/assets/image/icons/naturalDisaster-icons/地震.png" class="ms-2" alt="地震圖片" height="35">
+    <img src="@/assets/image/icons/naturalDisaster-icons/地震.png" class="shadowStyle ms-2" alt="地震圖片" height="35">
   </a>
 </header>
 <div class="container" id="earthquake">
