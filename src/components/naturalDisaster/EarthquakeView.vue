@@ -30,22 +30,22 @@
           </ul>
           <h3 class="text-center">影響地區</h3>
           <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item mb-2" v-for="area in earthquake.intensity.shakingArea" :key="area.areaName" :class="{'d-none': area.areaName.length > 6}">
-              <h2 class="accordion-header" :id="`${area.areaName}`">
-                <button class="accordion-button bg-color-primary btnHover text-dark" type="button" data-bs-toggle="collapse" :data-bs-target="`#${area.areaName}Earthquake`" aria-expanded="true"
-                  :aria-controls="`${area.areaName}Earthquake`">
+            <div class="accordion-item mb-2" v-for="(area, index) in earthquake.intensity.shakingArea" :key="area.areaName" :class="{'d-none': area.areaName.length > 6}">
+              <h2 class="accordion-header" :id="`${area.areaName}${index}`">
+                <button class="accordion-button bg-color-primary btnHover text-dark" type="button" data-bs-toggle="collapse" :data-bs-target="`#${area.areaName}Earthquake${index}`" aria-expanded="true"
+                  :aria-controls="`${area.areaName}Earthquake${index}`">
                   <span class="ms-auto fs-5 me-auto">{{ area.areaName }}</span> <span>震度{{ area.areaIntensity.value }}{{ area.areaIntensity.unit }}</span>
                 </button>
               </h2>
-              <div :id="`${area.areaName}Earthquake`" class="accordion-collapse collapse" :aria-labelledby="`${area.areaName}`">
+              <div :id="`${area.areaName}Earthquake${index}`" class="accordion-collapse collapse" :aria-labelledby="`${area.areaName}${index}`">
                 <div class="accordion-body">
                   <ul class="card-body">
                     <li class="border-bottom text-center mb-2"><h3>{{ area.areaDesc }}</h3></li>
                     <article>
                       <p class="text-center mb-2" :class="{'d-none': area.eqStation.length == 0}">測量站觀測紀錄</p>
-                      <details class="mb-3" v-for="station in area.eqStation" :key="station.stationName">
+                      <details class="mb-3" v-for="station in area.eqStation" :key="station.stationName" :class="{'d-none': station.waveImageURI === undefined}">
                         <summary><span class="fw-bold">{{ station.stationName }}</span> 距離：{{ station.distance.value }}{{ station.distance.unit }}</summary>
-                        <div :style="{ backgroundImage: `url(${station.waveImageURI})`}" class="stationViewEarthquakeViewImg" v-if="station.waveImageURI !== undefined"></div>
+                        <div :style="{ backgroundImage: `url(${station.waveImageURI})`}" class="stationViewEarthquakeViewImg"></div>
                       </details>
                     </article>
                   </ul>

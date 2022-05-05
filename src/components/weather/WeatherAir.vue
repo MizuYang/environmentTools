@@ -16,7 +16,7 @@
               <ul class="px-0">
                 <li class="border-bottom-m mb-2"><span class="fw-bold">AQI 空氣品質指標：</span>{{ area.AQI }}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">狀態：</span>{{ area.Status }}
-                  <span class="ms-1 rounded-circle" :style="`background-color: ${aqiStatusColor[area.Status]}`" style="padding:0.5px 15px;"></span>
+                  <span class="ms-1 rounded-circle border" :style="`background-color: ${aqiStatusColor[area.Status]}`" style="padding:0.5px 15px;"></span>
                 </li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">空氣污染指標物：</span>{{ area.Pollutant===' ' ?  area.Pollutant : '無'}}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">CO 一氧化碳：</span>{{ area.CO }}</li>
@@ -42,6 +42,14 @@
     </div>
   </div>
 </div>
+<h3 class="text-center" v-if="aqiData.length === 0">
+  資料若沒顯示，
+  <br>
+  代表環保署正在更新資料，
+  <br>
+  稍後一下資料就會出現了。
+</h3>
+
 </template>
 
 <script>
