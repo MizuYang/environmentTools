@@ -82,17 +82,22 @@
               <div class="goToAreaImgToggle"></div>
             </button>
           </li>
+          <li class="bg-color-primary mt-5" v-if="Object.values(renderCollectData).length > 0">
+            <button type="button" class="menu-link menu-link-hover w-100" @click="clearCollectData" data-menu="collectArea">清除收藏</button>
+          </li>
+          <li data-menu="collectArea" v-if="Object.values(renderCollectData).length === 0">
+            <p class="p-2 mb-0" data-menu="collectArea">目前沒有收藏地區</p>
+            <button type="button" class="border-bottom-m bg-color-primary " @click="menuCountyShow = true; menuAreaShow = true"
+              data-menu="selectArea">點我選擇地區</button>
+          </li>
         </ul>
       </li>
       <li class="border-bottom-m mb-2">
         <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
         @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
       </li>
-      <li class="border-bottom-m mb-2">
+      <li class="border-bottom-m">
         <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAccordion">關閉折疊</button>
-      </li>
-      <li>
-        <button type="button" class="menu-link menu-link-hover" @click="clearCollectData">清除收藏</button>
       </li>
     </ul>
   </aside>
