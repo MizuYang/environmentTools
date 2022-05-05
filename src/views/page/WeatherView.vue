@@ -1,5 +1,5 @@
 <template>
-  <header class="header position-sticky top-0 z-index-1 border-primary-m py-2 mb-3">
+  <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
     <div class="container d-flex">
       <a href="#" class="header-link shadowStyle btnHover d-block p-1" data-menu="menu" @click.prevent="menuShow = !menuShow">
         <img src="@/assets/image/icons/weather-icons/設定.png" data-menu="menu" alt="設定工具的圖示" height="35">
@@ -10,7 +10,7 @@
         </a>
       </h2>
     </div>
-    <aside class="aside text-center bg-color-primary-s d-flex align-items-center" :class="{'menu-county-show': selectCountyBtnShow}" data-menu="selectAreaList">
+    <aside class="countyBtnList text-center bg-color-primary-s d-flex align-items-center" :class="{'menu-county-show': selectCountyBtnShow}" data-menu="selectAreaList">
       <button
         type="button"
         class="border-primary-m btn-style hover-btn active-btn fs-5 m-1"
@@ -30,13 +30,23 @@
       <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
     </section>
     <hr>
-    <h2 class=" position-sticky bottom-m text-center bg-color-primary border-primary-m py-2">
+    <h2 class=" position-sticky z-index-1 bottom-m text-center bg-color-primary border-primary-m py-2">
       <a href="#" class="d-block p-1" @click.prevent="$goToPosition('areaAccordion')">
         <span class="h2 shadowStyle">{{ isClickCountyName }}各地區天氣</span>
       </a>
     </h2>
-    <section class="mb-10">
+    <section>
       <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" @getAllAreaName="getAllAreaName" />
+    </section>
+    <hr class="my-5">
+    <h2 class=" position-sticky bottom-m text-center bg-color-primary border-primary-m py-2 mb-3">
+      <a href="#" class="d-block p-1" @click.prevent="$goToPosition('air')">
+        <span class="h2 shadowStyle">{{ isClickCountyName }}空氣汙染檢測</span>
+      </a>
+    </h2>
+
+    <section class="mb-10">
+      <WeatherAir :isClickCountyName="isClickCountyName" />
     </section>
   </main>
   <!-- 設定工具 -->
@@ -97,7 +107,7 @@
         @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
       </li>
       <li class="border-bottom-m">
-        <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAccordion">關閉折疊</button>
+        <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAllAccordion">關閉折疊</button>
       </li>
     </ul>
   </aside>
@@ -111,11 +121,13 @@
 <script>
 import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
+import WeatherAir from '@/components/weather/WeatherAir.vue'
 import emitter from '@/methods/emitter.js'
 export default {
   components: {
     WeatherCounty,
-    WeatherArea
+    WeatherArea,
+    WeatherAir
   },
 
   provide () {
@@ -168,6 +180,7 @@ export default {
       menuCollectAreaShow: false,
       localStorageAreaData: JSON.parse(localStorage.getItem('collectArea')) || [],
       renderCollectData: {}
+
     }
   },
 
@@ -203,14 +216,10 @@ export default {
     isShowDescription (isClickCountyWeatherData) {
       this.isShowDescriptionName.forEach(descriptionName => {
         const allWeatherData = isClickCountyWeatherData
-        const isShowDescriptionNameIndex = allWeatherData.findIndex(allWeatherData => {
-          return allWeatherData.description === descriptionName
-        })
+        const isShowDescriptionNameIndex = allWeatherData.findIndex(allWeatherData => allWeatherData.description === descriptionName)
         this.isClickCountyWeatherData.push(isClickCountyWeatherData[isShowDescriptionNameIndex])
         //* 只留近兩天的資料
-        this.isClickCountyWeatherData.forEach(item => {
-          item.time.splice(7, 100)
-        })
+        this.isClickCountyWeatherData.forEach(item => item.time.splice(7, 100))
       })
       this.getMixReport(isClickCountyWeatherData)
     },
@@ -233,7 +242,7 @@ export default {
       this.mixReportData = mixReport
     },
     //* 關閉所有手風琴
-    closeAccordion () {
+    closeAllAccordion () {
       const allDetails = document.querySelectorAll('.details')
       allDetails.forEach(el => {
         el.removeAttribute('open')
@@ -257,10 +266,8 @@ export default {
       if (this.collectArea[area] === true) {
         this.collectArea[area] = false
         //* 把 false 的地名做篩選 取出所有不是變成 false 地名的資料
-        const tempArr = this.localStorageAreaData.filter(item => {
-          return Object.keys(item)[0] !== area
-        })
         //* 重新賦予 localStorage 的 data 就可以做到刪除的功能
+        const tempArr = this.localStorageAreaData.filter(item => Object.keys(item)[0] !== area)
         this.localStorageAreaData = tempArr
         localStorage.setItem('collectArea', JSON.stringify(this.localStorageAreaData))
       } else { //! 新增 localStorage
@@ -329,12 +336,8 @@ export default {
       }
       //* 如果縣市按鈕列表開啟時
       if (this.selectCountyBtnShow === true) {
-        if (target === 'menu') { //* 按選單的話，按鈕列表就會自動收合
-          this.selectCountyBtnShow = false
-        }
-        if (target !== 'selectCounty') { //* 不是點列表就自動收合 (點旁邊就自動關閉的意思)
-          this.selectCountyBtnShow = false
-        }
+        if (target === 'menu') this.selectCountyBtnShow = false //* 按選單的話，按鈕列表就會自動收合
+        if (target !== 'selectCounty') this.selectCountyBtnShow = false //* 不是點列表就自動收合 (點旁邊就自動關閉的意思)
       }
     })
   }

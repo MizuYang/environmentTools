@@ -1,12 +1,12 @@
 <template>
 <!-- 今天氣象 -->
 <div class="accordion mt-4" id="areaAccordion">
-  <div class="accordion-item mb-1" v-for="(areaWeather, keys) in renderAreaWeatherData" :key="keys">
+  <div class="accordion-item mb-2" v-for="(areaWeather, keys) in renderAreaWeatherData" :key="keys">
     <h2 class="accordion-header" :id="`areaWeather${keys}`">
-      <button class="accordion-button btnHover text-dark fs-5" :class="{'active-accordion-button-color': accordionButtonClickColor[keys] === keys}"
+      <button class="accordion-button btnHover text-dark" :class="{'active-accordion-button-color': accordionButtonClickColor[keys] === keys}"
         type="button" data-bs-toggle="collapse" :data-bs-target="`#area${keys}`" aria-expanded="true" :aria-controls="`area${keys}`"
         @click="$openAccordionColor(keys)" :id="keys">
-        {{ keys }}
+        <span class="ms-auto fs-5">{{ keys }}</span>
       </button>
     </h2>
     <article :id="`area${keys}`" class="accordion-collapse collapse" :aria-labelledby="`areaWeather${keys}`">
@@ -154,7 +154,7 @@ export default {
   },
 
   methods: {
-    getAllAreaWeather (apiNum = 'F-D0047-069') {
+    getAllAreaWeather (apiNum = 'F-D0047-069') { //* 預設縣市新北市
       this.isLoading = true
       const apiStr = `${this.apiPath}${apiNum}${this.apiKey}`
       this.$http.get(apiStr)

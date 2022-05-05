@@ -1,7 +1,7 @@
 * {
   color: #000;
 }
-.aside {
+.countyBtnList {
   display: none !important;
   height: 2.5rem;
   margin-top: 0.5rem;
@@ -102,7 +102,7 @@
   height: 40vh;
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
-  @media (max-width: 400px) {
+  @media (max-width: 576px) {
     transform: translate(6.5rem, -2.2rem);
   }
 }
@@ -121,7 +121,7 @@
   height: 40vh;
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
-  @media (max-width: 400px) {
+  @media (max-width: 576px) {
     transform: translate(11rem, -2.2rem);
     width: 9rem;
   }
@@ -141,7 +141,7 @@
   height: 40vh;
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
-  @media (max-width: 400px) {
+  @media (max-width: 576px) {
     transform: translate(7.7rem, -4.5rem);
     width: 13rem;
   }
