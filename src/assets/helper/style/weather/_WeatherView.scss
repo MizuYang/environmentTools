@@ -90,8 +90,9 @@
   transition: transform 0.5s;
   height: 40vh;
   overflow-y: scroll;
+  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版
   @media (max-width: 400px) {
-    transform: translate(6.7rem, -6.8rem);
+    transform: translate(6.4rem, -6.8rem);
   }
 }
 .menu-county-show {
@@ -108,9 +109,10 @@
   width: 6.5rem;
   height: 40vh;
   overflow-y: scroll;
+  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版
   @media (max-width: 400px) {
-    transform: translate(11.2rem, -6.8rem);
-    width: 8rem;
+    transform: translate(10.85rem, -6.8rem);
+    width: 9rem;
   }
 }
 .menu-area-show {
@@ -127,6 +129,7 @@
   width: 10rem;
   height: 40vh;
   overflow-y: scroll;
+  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版
   @media (max-width: 400px) {
     transform: translate(7.7rem, -4.4rem);
     width: 13rem;

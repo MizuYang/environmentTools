@@ -42,25 +42,9 @@
   <aside>
     <ul class="menu ps-1 p-2" data-menu="menu" :class="{'show': menuShow}">
       <li class="border-bottom-m mb-2">
-        <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
-        @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
-      </li>
-      <li class="border-bottom-m mb-2">
-        <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
-          @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
-        <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
-          <li class="border-bottom-m" data-menu="collectArea">收藏地區</li>
-          <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
-            <button type="button" class="border-primary-m btn-style text-dark w-100 py-2" @click="getSelectCountyWeather($event,countyName,areaName)">
-              {{ countyName }} {{ areaName }}
-            </button>
-          </li>
-        </ul>
-      </li>
-      <li class="border-bottom-m mb-2">
         <button type="button" class="menu-link menu-link-hover" :class="{'btnActive': menuCountyShow}" data-menu="setCollect"
           @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">
-          設定收藏
+          選擇地區
           <ul class="menu-county px-0" :class="{'menu-county-show': menuCountyShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">縣市</li>
             <li class="border-bottom-m bg-color-primary p-1" v-for="(county, keys) in countyAPINumData" :key="keys" data-menu="selectArea">
@@ -77,11 +61,30 @@
               :class="{'btnActive': true === collectArea[area]}">
                 {{ area }}
               </label>
-              <input :id="`area${area}${areaIndex}`" type="checkbox" class="collectAreaCheckbox" data-menu="selectArea"
+              <input :id="`area${area}${areaIndex}`" type="checkbox" class="collectAreaCheckbox me-2" data-menu="selectArea"
                 v-model="collectArea[area]" @click="addCollectArea(area)">
+                <a href="#">
+                  <img src="@/assets/image/icons/weather-icons/GO.png" @click.prevent="getSelectCountyWeather($event,isClickCountyName,area)" alt="移動到地區的圖標" height="35">
+                </a>
             </li>
           </ul>
         </button>
+      </li>
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
+          @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
+        <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
+          <li class="border-bottom-m" data-menu="collectArea">收藏地區</li>
+          <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
+            <button type="button" class="border-primary-m btn-style text-dark w-100 py-2" @click="getSelectCountyWeather($event,countyName,areaName)">
+              {{ countyName }} {{ areaName }}
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="border-bottom-m mb-2">
+        <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
+        @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
       </li>
       <li class="border-bottom-m mb-2">
         <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAccordion">關閉折疊</button>
