@@ -75,7 +75,7 @@
         <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
           @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
         <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
-          <li class="border-bottom-m" data-menu="collectArea">收藏地區</li>
+          <li class="border-bottom-m" data-menu="collectArea">已收藏地區</li>
           <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
             <button type="button" class="d-flex justify-content-between align-items-center border-primary-m btn-style text-dark w-100 py-2" @click="getSelectCountyWeather($event,countyName,areaName)">
               <span class="mx-auto">{{ countyName }} {{ areaName }}</span>

@@ -21,7 +21,7 @@ import {
 } from '@/methods/weatherMethods.js'
 
 //* 天災方法
-import { $goToPosition } from '@/methods/naturalDisasterMethods.js'
+import { $goToPosition } from '@/methods/methods.js'
 
 const app = createApp(App)
 
