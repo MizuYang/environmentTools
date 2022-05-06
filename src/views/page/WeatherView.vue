@@ -43,7 +43,7 @@
         <button type="button" class="menu-link menu-link-hover tipClickMeColorBtn py-1" :class="{'btnActive': menuCountyShow}" data-menu="selectAreaBtn"
                 @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">選擇地區
           <a href="#" class="btnHover d-block" data-menu="menu" @click.prevent="menuShow = !menuShow">
-            <div class="clickIcon" data-menu="menu" :class="{'menu-item-show': clickIconShow}"></div>
+            <div class="mouseClick" data-menu="menu" :class="{'menu-item-show': clickIconShow}"></div>
           </a>
           <ul class="menu-county px-0" :class="{'menu-item-show': menuCountyShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">縣市</li>
@@ -69,12 +69,12 @@
             </li>
           </ul>
         </button>
-        <a href="#" class="header-link d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
-          <img src="@/assets/image/icons/weather-icons/選單.png" data-menu="menu" alt="開啟選單的圖示" height="35">
+        <a href="#" class="openMenuArrow d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
+          <img src="@/assets/image/icons/weather-icons/openMenuArrow.png" data-menu="menu" alt="開啟選單的圖示" height="40">
         </a>
       </li>
       <!-- 收藏地區 -->
-      <li class="border-bottom-m pb-4 mb-3">
+      <li class="border-bottom-m pb-3 mb-3" data-menu="menu">
         <button type="button" class="menu-link menu-link-hover py-1" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
           @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
         <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
@@ -99,9 +99,10 @@
         </ul>
       </li>
       <!-- 錨點 -->
-      <li class="border-bottom-m mb-2"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('countyCard')">縣市天氣</button></li>
-      <li class="border-bottom-m mb-2"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('areaAccordion')">地區天氣</button></li>
-      <li class="border-bottom-m"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('air')">空氣品質</button></li>
+      <li class="border-bottom-m mb-2" data-menu="menu"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('countyCard')">縣市天氣</button></li>
+      <li class="border-bottom-m mb-2" data-menu="menu"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('areaAccordion')">地區天氣</button></li>
+      <li class="border-bottom-m mb-3 pb-3 border-bottom" data-menu="menu"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('air')">空氣品質</button></li>
+      <li class="border-bottom-m mb-2 d-bigScreen-none"><button type="button" class="menu-link bg-secondary w-100">X</button></li>
     </ul>
   </aside>
   <IsLoading v-model:active="isLoading">
