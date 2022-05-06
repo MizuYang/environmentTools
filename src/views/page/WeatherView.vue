@@ -70,7 +70,8 @@
           </ul>
         </button>
         <a href="#" class="openMenuArrow d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
-          <img src="@/assets/image/icons/weather-icons/openMenuArrow.png" data-menu="menu" alt="開啟選單的圖示" height="40">
+          <!-- <img src="@/assets/image/icons/weather-icons/openMenuArrow.png" data-menu="menu" alt="開啟選單的圖示" height="40"> -->
+          <div data-menu="menu" class="openMenuArrowImg"></div>
         </a>
       </li>
       <!-- 收藏地區 -->
