@@ -28,14 +28,15 @@
   background-image: url('https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/weather-icons/openMenuArrow.png?raw=true');
   background-size: contain;
   height: 40px;
+  width: 40px;
 }
 .menu {
   border: 1px solid #000;
   position: fixed;
   background-color: #b7d2fa;
-  // transform: translateX(-5.5rem);
+  transform: translateX(-5.5rem);
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
-  transform: translateX(-7.1rem);
+  // transform: translateX(-7.1rem);
   transition: transform 0.5s;
   top: 10.5rem;
   z-index: 10;
@@ -110,7 +111,7 @@
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
-    transform: translate(7.7rem, -5.3rem);
+    transform: translate(7.7rem, -5.5rem);
     width: 13rem;
   }
 }
