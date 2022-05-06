@@ -28,9 +28,10 @@
   border: 1px solid #000;
   position: fixed;
   background-color: #b7d2fa;
-  transform: translateX(-6.7rem);
+  // transform: translateX(-7.8rem);
+  transform: translateX(-5rem);
   transition: transform 0.5s;
-  top: 12.5rem;
+  top: 10.5rem;
   z-index: 10;
   @include bigScreen {
     transform: translateX(0rem);
@@ -64,7 +65,7 @@
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
-    transform: translate(6.5rem, -2.2rem);
+    transform: translate(6.5rem, -2.4rem);
   }
 }
 .menu-item-show {
@@ -74,7 +75,7 @@
   position: fixed;
   display: none;
   z-index: 6;
-  transform: translate(9.9rem, -2.3rem);
+  transform: translate(9.9rem, -2.4rem);
   border: 1px solid #000;
   background-color: #b7d2fa;
   transition: transform 0.5s;
@@ -83,7 +84,7 @@
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
-    transform: translate(11rem, -2.2rem);
+    transform: translate(11rem, -2.4rem);
     width: 9rem;
   }
 }
@@ -103,7 +104,7 @@
   overflow-y: scroll;
   //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
-    transform: translate(7.7rem, -4.5rem);
+    transform: translate(7.7rem, -5.2rem);
     width: 13rem;
   }
 }
@@ -150,7 +151,7 @@
   left: 3rem;
   height: 35px;
   width: 35px;
-  animation: mouseClick .3s;
+  animation: mouseClick .4s;
   animation-iteration-count: 1;
 }
 @keyframes tipClickMeColor {
