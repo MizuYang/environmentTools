@@ -20,7 +20,7 @@
           </span>
         </li>
         <li class="hover-color-s mb-2">
-          <details class="details">
+          <details>
             <summary class="fw-bold"> 綜合報告</summary>{{ todayInfo['綜合報告'].elementValue[0].value }}
           </details>
         </li>
@@ -47,7 +47,7 @@
           </span>
         </li>
         <li class="hover-color-s mb-2">
-          <details class="details">
+          <details>
             <summary class="fw-bold"> 綜合報告</summary>{{ tomorrowInfo['綜合報告'].elementValue[0].value }}
           </details>
         </li>

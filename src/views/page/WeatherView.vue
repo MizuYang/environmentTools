@@ -1,36 +1,22 @@
 <template>
   <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
-    <div class="container d-flex">
-      <a href="#" class="header-link shadowStyle btnHover d-block p-1" data-menu="menu" @click.prevent="menuShow = !menuShow">
-        <img src="@/assets/image/icons/weather-icons/設定.png" data-menu="menu" alt="設定工具的圖示" height="35">
-      </a>
+    <div class="container d-flex justify-content-center">
+      <button type="button" class="d-block" @click="tipOpen" data-menu="menu" :disabled="tipDisAbled">
+        <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="燈泡圖片" height="35" data-menu="menu">
+      </button>
       <h2 class="m-auto">
         <a href="#" @click.prevent="$goToPosition('countyCard')">
           <span class="h2 shadowStyle p-1">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>
-    <aside class="countyBtnList text-center bg-color-primary-s d-flex align-items-center" :class="{'menu-county-show': selectCountyBtnShow}" data-menu="selectAreaList">
-      <button
-        type="button"
-        class="border-primary-m btn-style hover-btn active-btn fs-5 m-1"
-        :class="{'active-county-color': keys === isClickCountyName}"
-        v-for="(county, keys) in countyAPINumData"
-        :key="keys"
-        :data-api-num="county"
-        @click="getSelectCountyWeather($event)"
-        data-menu="selectAreaList"
-      >
-        {{ keys }}
-      </button>
-    </aside>
   </header>
   <main class="container">
     <section>
       <WeatherCounty :isClickCountyWeatherData="isClickCountyWeatherData" :mixReportData="mixReportData" />
     </section>
     <hr>
-    <h2 class=" position-sticky z-index-1 bottom-m text-center bg-color-primary border-primary-m py-2">
+    <h2 class="position-sticky z-index-1 bottom-m text-center bg-color-primary border-primary-m py-2">
       <a href="#" class="d-block p-1" @click.prevent="$goToPosition('areaAccordion')">
         <span class="h2 shadowStyle">{{ isClickCountyName }}各地區天氣</span>
       </a>
@@ -39,7 +25,7 @@
       <WeatherArea :areaApiNum="areaApiNum" :apiPath="apiPath" :apiKey="apiKey" @getAllAreaName="getAllAreaName" />
     </section>
     <hr class="my-5">
-    <h2 class=" position-sticky bottom-m text-center bg-color-primary border-primary-m py-2 mb-3">
+    <h2 class=" position-sticky z-index bottom-m text-center bg-color-primary border-primary-m py-2 mb-3">
       <a href="#" class="d-block p-1" @click.prevent="$goToPosition('air')">
         <span class="h2 shadowStyle">{{ isClickCountyName }}空氣汙染檢測</span>
       </a>
@@ -52,11 +38,14 @@
   <!-- 設定工具 -->
   <aside>
     <ul class="menu ps-1 p-2" data-menu="menu" :class="{'show': menuShow}">
+      <!-- 選擇地區 -->
       <li class="border-bottom-m mb-2">
-        <button type="button" class="menu-link menu-link-hover" :class="{'btnActive': menuCountyShow}" data-menu="selectAreaBtn"
-          @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">
-          選擇地區
-          <ul class="menu-county px-0" :class="{'menu-county-show': menuCountyShow}" data-menu="selectArea">
+        <button type="button" class="menu-link menu-link-hover tipClickMeColorBtn py-1" :class="{'btnActive': menuCountyShow}" data-menu="selectAreaBtn"
+                @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">選擇地區
+          <a href="#" class="btnHover d-block" data-menu="menu" @click.prevent="menuShow = !menuShow">
+            <div class="clickIcon" data-menu="menu" :class="{'menu-item-show': clickIconShow}"></div>
+          </a>
+          <ul class="menu-county px-0" :class="{'menu-item-show': menuCountyShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">縣市</li>
             <li class="border-bottom-m bg-color-primary p-1" v-for="(county, keys) in countyAPINumData" :key="keys" data-menu="selectArea">
               <a href="#" class="d-block text-dark fs-5 py-1" data-menu="selectArea" :data-api-num="county"
@@ -67,34 +56,41 @@
           <ul class="menu-area px-0" :class="{'menu-area-show': menuAreaShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">地區</li>
             <li class="border-bottom-m d-flex justify-content-between align-items-center p-1 bg-color-primary"
-              v-for="(area, areaIndex) in allAreaName" :key="area" data-menu="selectArea">
+                v-for="(area, areaIndex) in allAreaName" :key="area" data-menu="selectArea">
               <label :for="`area${area}${areaIndex}`" class="d-block mx-auto text-dark fs-5 py-1" data-menu="selectArea"
-              :class="{'btnActive': true === collectArea[area]}">
+                    :class="{'btnActive': true === collectArea[area]}">
                 {{ area }}
               </label>
               <input :id="`area${area}${areaIndex}`" type="checkbox" class="collectAreaCheckbox me-2" data-menu="selectArea"
-                v-model="collectArea[area]" @click="addCollectArea(area)">
-                <a href="#">
-                  <div class="goToAreaImgToggle" @click.prevent="getSelectCountyWeather($event,isClickCountyName,area)"></div>
-                </a>
+                    v-model="collectArea[area]" @click="addCollectArea(area)">
+              <a href="#">
+                <div class="goToAreaImgToggle" @click.prevent="getSelectCountyWeather($event,isClickCountyName,area)"></div>
+              </a>
             </li>
           </ul>
         </button>
+        <a href="#" class="header-link d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
+          <img src="@/assets/image/icons/weather-icons/選單.png" data-menu="menu" alt="開啟選單的圖示" height="35">
+        </a>
       </li>
-      <li class="border-bottom-m mb-2">
-        <button type="button" class="menu-link menu-link-hover" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
+      <!-- 收藏地區 -->
+      <li class="border-bottom-m pb-4 mb-3">
+        <button type="button" class="menu-link menu-link-hover py-1" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
           @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
         <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
           <li class="border-bottom-m" data-menu="collectArea">已收藏地區</li>
           <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
-            <button type="button" class="d-flex justify-content-between align-items-center border-primary-m btn-style text-dark w-100 py-2" @click="getSelectCountyWeather($event,countyName,areaName)">
+            <button type="button" class="d-flex justify-content-between align-items-center border-primary-m btn-style text-dark w-100 py-2"
+                  @click="getSelectCountyWeather($event,countyName,areaName)">
               <span class="mx-auto">{{ countyName }} {{ areaName }}</span>
               <div class="goToAreaImgToggle"></div>
             </button>
           </li>
+          <!-- 清除收藏 -->
           <li class="bg-color-primary mt-5" v-if="Object.values(renderCollectData).length > 0">
             <button type="button" class="menu-link menu-link-hover w-100" @click="clearCollectData" data-menu="collectArea">清除收藏</button>
           </li>
+          <!-- 沒有收藏時的提示 -->
           <li data-menu="collectArea" v-if="Object.values(renderCollectData).length === 0">
             <p class="p-2 mb-0" data-menu="collectArea">目前沒有收藏地區</p>
             <button type="button" class="border-bottom-m bg-color-primary " @click="menuCountyShow = true; menuAreaShow = true"
@@ -102,13 +98,10 @@
           </li>
         </ul>
       </li>
-      <li class="border-bottom-m mb-2">
-        <button type="button" class="menu-link menu-link-hover" data-menu="selectCounty"
-        @click="selectCountyBtnShow= !selectCountyBtnShow">更換縣市</button>
-      </li>
-      <li class="border-bottom-m">
-        <button type="button" class="menu-link menu-link-hover" data-menu="menu" @click="closeAllAccordion">關閉折疊</button>
-      </li>
+      <!-- 錨點 -->
+      <li class="border-bottom-m mb-2"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('countyCard')">縣市天氣</button></li>
+      <li class="border-bottom-m mb-2"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('areaAccordion')">地區天氣</button></li>
+      <li class="border-bottom-m"><button type="button" class="menu-link menu-link-hover py-1" @click="$goToPosition('air')">空氣品質</button></li>
     </ul>
   </aside>
   <IsLoading v-model:active="isLoading">
@@ -173,11 +166,12 @@ export default {
       apiKey: '', //* 驗證碼,
       isLoading: false,
       collectArea: {},
-      selectCountyBtnShow: false,
       menuShow: false,
       menuCountyShow: false,
       menuAreaShow: false,
       menuCollectAreaShow: false,
+      clickIconShow: false,
+      tipDisAbled: false,
       localStorageAreaData: JSON.parse(localStorage.getItem('collectArea')) || [],
       renderCollectData: {}
 
@@ -204,7 +198,6 @@ export default {
       } else {
         this.isClickCountyName = e.target.textContent
         this.areaApiNum = e.target.dataset.apiNum
-        this.selectCountyBtnShow = false
       }
       const isClickCountyWeatherData = this.allCountyWeatherData.filter(county => {
         return county.locationName === this.isClickCountyName
@@ -240,21 +233,6 @@ export default {
     getMixReport (isClickCountyWeatherData) {
       const mixReport = isClickCountyWeatherData[10].time
       this.mixReportData = mixReport
-    },
-    //* 關閉所有手風琴
-    closeAllAccordion () {
-      const allDetails = document.querySelectorAll('.details')
-      allDetails.forEach(el => {
-        el.removeAttribute('open')
-      })
-      const allOpenAccordion = document.querySelectorAll('.show')
-      allOpenAccordion.forEach(el => {
-        el.classList.remove('show')
-      })
-      const allOpenAccordionColor = document.querySelectorAll('.active-accordion-button-color')
-      allOpenAccordionColor.forEach(el => {
-        el.classList.remove('active-accordion-button-color')
-      })
     },
     getAllAreaName (allAreaName) {
       this.allAreaName = allAreaName
@@ -299,6 +277,26 @@ export default {
       localStorage.setItem('collectArea', JSON.stringify(this.localStorageAreaData))
       this.getRenderCollectData()
       this.getCollectAreaCheckbox()
+    },
+    tipOpen () {
+      this.tipDisAbled = true
+      this.menuCollectAreaShow = false
+      this.menuCountyShow = false
+      this.menuAreaShow = false
+      this.menuShow = true
+      setTimeout(() => {
+        document.querySelector('.tipClickMeColorBtn').classList.add('tipClickMeColor')
+      }, 500)
+      setTimeout(() => {
+        this.clickIconShow = true
+      }, 2000)
+      setTimeout(() => {
+        this.menuCollectAreaShow = false
+        this.menuCountyShow = true
+        this.menuAreaShow = true
+        this.clickIconShow = false
+        this.tipDisAbled = false
+      }, 2500)
     }
   },
 
@@ -333,11 +331,6 @@ export default {
             this.menuCollectAreaShow = false
           }
         }
-      }
-      //* 如果縣市按鈕列表開啟時
-      if (this.selectCountyBtnShow === true) {
-        if (target === 'menu') this.selectCountyBtnShow = false //* 按選單的話，按鈕列表就會自動收合
-        if (target !== 'selectCounty') this.selectCountyBtnShow = false //* 不是點列表就自動收合 (點旁邊就自動關閉的意思)
       }
     })
   }
