@@ -18,7 +18,7 @@
                 <li class="border-bottom-m mb-2"><span class="fw-bold">狀態：</span>{{ area.Status }}
                   <span class="ms-1 rounded-circle border" :style="`background-color: ${aqiStatusColor[area.Status]}`" style="padding:0.5px 15px;"></span>
                 </li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">空氣污染指標物：</span>{{ area.Pollutant===' ' ?  area.Pollutant : '無'}}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">空氣污染指標物：</span>{{ area.Pollutant==='' ?   '無' : area.Pollutant }}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">CO 一氧化碳：</span>{{ area.CO }}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">CO 一氧化碳8小時移動平均：</span>{{ area.CO_8hr }}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">NO 一氧化氮：</span>{{ area.NO }}</li>
