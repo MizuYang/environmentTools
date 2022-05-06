@@ -28,8 +28,8 @@
   border: 1px solid #000;
   position: fixed;
   background-color: #b7d2fa;
-  // transform: translateX(-7.8rem);
-  transform: translateX(-5rem);
+  transform: translateX(-7.8rem);
+  // transform: translateX(-5rem);
   transition: transform 0.5s;
   top: 10.5rem;
   z-index: 10;
@@ -138,7 +138,7 @@
 
 @keyframes mouseClick {
   100% {
-    transform: rotate(-15deg);
+    transform: rotate(-20deg);
   }
 }
 .mouseClick {
