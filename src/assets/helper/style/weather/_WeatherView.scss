@@ -147,8 +147,11 @@
   0% {
     transform: rotate(0deg);
   }
-  100% {
+  50% {
     transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 .mouseClickImg {
@@ -160,7 +163,8 @@
   width: 35px;
 }
 .mouseClick {
-  animation: mouseClick .4s;
+  animation: mouseClick .6s;
+  // animation: mouseClick .4s;
   animation-iteration-count: 1;
 }
 @keyframes tipClickMeColor {
