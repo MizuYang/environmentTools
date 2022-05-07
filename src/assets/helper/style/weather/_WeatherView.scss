@@ -144,14 +144,14 @@
 }
 
 @keyframes mouseClick {
+  50% {
+    transform: rotate(0deg);
+  }
   100% {
     transform: rotate(-20deg);
   }
 }
 .mouseClick {
-  background-image: url("https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/weather-icons/456.png?raw=true");
-  background-size: contain;
-  background-repeat: no-repeat;
   position: absolute;
   display: none;
   top: 1.6rem;

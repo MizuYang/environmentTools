@@ -2,7 +2,7 @@
   <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
     <div class="container d-flex justify-content-center">
       <button type="button" class="d-block" @click="tipOpen" data-menu="menu" :disabled="tipDisAbled">
-        <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="燈泡圖片" height="35" data-menu="menu">
+        <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35" data-menu="menu">
       </button>
       <h2 class="m-auto">
         <a href="#" @click.prevent="$goToPosition('countyCard')">
@@ -43,7 +43,8 @@
         <button type="button" class="menu-link menu-link-hover tipClickMeColorBtn py-1" :class="{'btnActive': menuCountyShow}" data-menu="selectAreaBtn"
                 @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">選擇地區
           <a href="#" class="btnHover d-block" data-menu="menu" @click.prevent="menuShow = !menuShow">
-            <div class="mouseClick" data-menu="menu" :class="{'menu-item-show': clickIconShow}"></div>
+            <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/weather-icons/456.png?raw=true"
+              class="mouseClick" data-menu="menu" :class="{'menu-item-show': clickIconShow}">
           </a>
           <ul class="menu-county px-0" :class="{'menu-item-show': menuCountyShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">縣市</li>
@@ -69,8 +70,8 @@
             </li>
           </ul>
         </button>
+        <!-- 開啟選單的箭頭 -->
         <a href="#" class="openMenuArrow d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
-          <!-- <img src="@/assets/image/icons/weather-icons/openMenuArrow.png" data-menu="menu" alt="開啟選單的圖示" height="40"> -->
           <div data-menu="menu" class="openMenuArrowImg"></div>
         </a>
       </li>
