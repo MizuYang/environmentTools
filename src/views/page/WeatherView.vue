@@ -44,7 +44,7 @@
                 @click="menuCountyShow = !menuCountyShow; menuAreaShow = !menuAreaShow">選擇地區
           <a href="#" class="btnHover d-block" data-menu="menu" @click.prevent="menuShow = !menuShow">
             <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/icons/weather-icons/456.png?raw=true"
-              class="mouseClick" data-menu="menu" :class="{'menu-item-show': clickIconShow}">
+              class="mouseClickImg" data-menu="menu" :class="{'menu-item-show': clickIconShow}">
           </a>
           <ul class="menu-county px-0" :class="{'menu-item-show': menuCountyShow}" data-menu="selectArea">
             <li class="border-bottom-m" data-menu="selectArea">縣市</li>
@@ -292,6 +292,9 @@ export default {
       }, 500)
       setTimeout(() => {
         this.clickIconShow = true
+        this.$nextTick(() => {
+          document.querySelector('.mouseClickImg').classList.add('mouseClick')
+        })
       }, 2000)
       setTimeout(() => {
         this.menuCollectAreaShow = false
