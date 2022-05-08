@@ -1,11 +1,11 @@
 <template>
 <div class="container mt-3 mb-10">
   <article class="card text-white bg-color-primary mb-3">
-    <header class="card-header position-sticky top-0 z-index-2 d-flex align-items-center justify-content-center bg-color-primary text-center">
-      <button type="button" class="position-absolute start-0 d-block" @click="openTipModal">
+    <header class="card-header position-sticky top-0 z-index-2 d-flex align-items-center justify-content-between bg-color-primary text-center">
+      <button type="button" class="position-absolute start-0  d-block" @click="openTipModal">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35">
       </button>
-      <h2 class="mb-0">新冠肺炎COVID-19</h2>
+      <h2 class="mb-0 mx-auto">COVID-19</h2>
     </header>
     <h2 class="mx-auto mt-3">
       <figure class="img-fluid countyImage" :style="{backgroundImage: `url(${postCovidInfo.countyImage})`}"></figure>
