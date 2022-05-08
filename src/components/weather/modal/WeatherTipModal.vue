@@ -22,7 +22,7 @@
               <p class="mb-2">
                 點擊縣市名稱，切換縣市查看天氣。
               </p>
-              <img src="@/assets/image/tip/weather/選擇縣市.png" alt="開啟選擇縣市教學圖片" height="300">
+              <img src="@/assets/image/tip/weather/選擇縣市.png" alt="開啟選擇縣市教學圖片" style="width:100%">
             </details>
           </li>
           <li class="border ps-2 pt-2 mb-3">
@@ -33,7 +33,7 @@
                 <br>
                 就會跳轉到該地區的天氣資訊。
               </p>
-              <img src="@/assets/image/tip/weather/選擇地區.gif" alt="查看地區天氣教學圖" height="550" style="width:100%">
+              <img src="@/assets/image/tip/weather/選擇地區.gif" alt="查看地區天氣教學圖" style="width:100%">
             </details>
           </li>
           <li class="border ps-2 pt-2 mb-3">
