@@ -1,12 +1,12 @@
 <template>
   <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
     <div class="container d-flex justify-content-between align-items-center">
-      <button type="button" class="d-block" @click="openTipModal" data-menu="menu" :disabled="tipDisAbled">
+      <button type="button" class="position-absolute d-block" @click="openTipModal" data-menu="menu" :disabled="tipDisAbled">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35" data-menu="menu">
       </button>
       <h2 class="m-auto w-100">
         <a href="#" class="d-block text-center" @click.prevent="$goToPosition('countyCard')">
-          <span class="h2 p-1">{{ isClickCountyName }}天氣</span>
+          <span class="h2">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>

@@ -38,17 +38,29 @@
           </li>
           <li class="border ps-2 pt-2 mb-3">
             <details>
-              <summary class="h4">透過選單查詢其他國家</summary>
-              <img src="@/assets/image/tip/weather/收藏功能.gif" alt="選單查詢教學圖片" style="width:100%">
+              <summary class="h4">收藏地區</summary>
+              <ul>
+                <li class="fw-bold">加入收藏</li>
+                <li class="mb-2">在選擇地區中，將常搜尋的地區勾選，即加入收藏</li>
+                <li class="fw-bold">使用方法</li>
+                <li>點收藏地區按鈕，即可查看已收藏的地區，點擊後等待一秒，即可跳轉到該地區天氣</li>
+                <li class="fw-bold">移除收藏</li>
+                <li>可在選擇地區中取消勾選即可</li>
+                <li class="mb-3">在收藏地區中點擊清除收藏，刪除"所有"收藏地區</li>
+                <img src="@/assets/image/tip/weather/收藏功能.gif" alt="選單查詢教學圖片" style="width:100%">
+              </ul>
             </details>
           </li>
         </ul>
 
         <!-- COVID -->
-        <ul class="px-0"  v-if="pages === 'covid'">
+        <ul class="px-0" v-if="pages === 'covid'">
           <li>
-            <p>此資料以該國家發佈時間來更新</p>
-            <p>如果該國家的死亡人數顯示為 0 ，可能代表該國尚未更新資料</p>
+            <p>此資料以該國家發佈時間來更新
+              <br>
+              若該國家的今日確診數顯示為 0
+              <br>
+              可能代表該國尚未更新資料</p>
           </li>
           <li class="border ps-2 pt-2 mb-3">
             <details>
@@ -68,7 +80,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary mx-auto w-75" data-bs-dismiss="modal" @click="$emit('tipOpen')"
           v-if="pages === 'weather'">開啟選擇地區</button>
-        <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">關閉</button>
+        <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal" v-if="pages === 'weather'">關閉</button>
+        <button type="button" class="btn btn-secondary mx-auto w-100" data-bs-dismiss="modal" v-if="pages === 'covid'">關閉</button>
       </div>
     </div>
   </div>
