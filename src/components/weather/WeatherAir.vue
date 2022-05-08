@@ -55,8 +55,6 @@
 <script>
 
 export default {
-  components: {
-  },
 
   props: ['isClickCountyName'],
 

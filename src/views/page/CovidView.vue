@@ -1,7 +1,10 @@
 <template>
 <div class="container mt-3 mb-10">
   <article class="card text-white bg-color-primary mb-3">
-    <header class="card-header text-center">
+    <header class="card-header position-sticky top-0 z-index-2 d-flex align-items-center justify-content-center bg-color-primary text-center">
+      <button type="button" class="position-absolute start-0 d-block" @click="openTipModal">
+        <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35">
+      </button>
       <h2 class="mb-0">新冠肺炎COVID-19</h2>
     </header>
     <h2 class="mx-auto mt-3">
@@ -39,6 +42,7 @@
       <span v-if="showSearchErrorNull"><i class="text-danger fw-bold">*您未輸入國家名稱，或輸入錯誤! <br> *請輸入國家名稱的"英文"(不分大小寫)</i></span>
   </footer>
 </div>
+<WeatherTipModal />
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
     <div class="cssload-liquid"></div>
@@ -48,7 +52,19 @@
 </template>
 
 <script>
+import WeatherTipModal from '@/components/weather/modal/WeatherTipModal.vue'
+import emitter from '@/methods/emitter.js'
 export default {
+
+  components: {
+    WeatherTipModal
+  },
+
+  provide () {
+    return {
+      emitter
+    }
+  },
 
   data () {
     return {
@@ -119,6 +135,9 @@ export default {
     getToday () {
       const date = new Date()
       this.today = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`
+    },
+    openTipModal () {
+      emitter.emit('openTipModal', 'covid')
     }
   },
 

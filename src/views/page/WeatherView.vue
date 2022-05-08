@@ -1,12 +1,12 @@
 <template>
   <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
-    <div class="container d-flex justify-content-center">
-      <button type="button" class="position-absolute start-0 d-block" @click="tipOpen" data-menu="menu" :disabled="tipDisAbled">
+    <div class="container d-flex justify-content-center align-items-center">
+      <button type="button" class="position-absolute start-0 d-block" @click="openTipModal" data-menu="menu" :disabled="tipDisAbled">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35" data-menu="menu">
       </button>
-      <h2 class="m-auto">
-        <a href="#" @click.prevent="$goToPosition('countyCard')">
-          <span class="h2 shadowStyle p-1">{{ isClickCountyName }}天氣</span>
+      <h2 class="m-auto w-100">
+        <a href="#" class="d-block text-center w-100" @click.prevent="$goToPosition('countyCard')">
+          <span class="h2 p-1">{{ isClickCountyName }}天氣</span>
         </a>
       </h2>
     </div>
@@ -18,7 +18,7 @@
     <hr>
     <h2 class="position-sticky z-index-1 bottom-m text-center bg-color-primary border-primary-m py-2">
       <a href="#" class="d-block p-1" @click.prevent="$goToPosition('areaAccordion')">
-        <span class="h2 shadowStyle">{{ isClickCountyName }}各地區天氣</span>
+        <span class="h2">{{ isClickCountyName }}各地區天氣</span>
       </a>
     </h2>
     <section>
@@ -27,7 +27,7 @@
     <hr class="my-5">
     <h2 class=" position-sticky z-index bottom-m text-center bg-color-primary border-primary-m py-2 mb-3">
       <a href="#" class="d-block p-1" @click.prevent="$goToPosition('air')">
-        <span class="h2 shadowStyle">{{ isClickCountyName }}空氣汙染檢測</span>
+        <span class="h2">{{ isClickCountyName }}空氣汙染檢測</span>
       </a>
     </h2>
 
@@ -107,6 +107,7 @@
       <li class="border-bottom-m mb-2 d-bigScreen-none"><button type="button" class="menu-link bg-secondary w-100">X</button></li>
     </ul>
   </aside>
+  <WeatherTipModal @tipOpen="tipOpen" />
   <IsLoading v-model:active="isLoading">
     <div class="cssload-battery">
       <div class="cssload-liquid"></div>
@@ -118,12 +119,14 @@
 import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
 import WeatherAir from '@/components/weather/WeatherAir.vue'
+import WeatherTipModal from '@/components/weather/modal/WeatherTipModal.vue'
 import emitter from '@/methods/emitter.js'
 export default {
   components: {
     WeatherCounty,
     WeatherArea,
-    WeatherAir
+    WeatherAir,
+    WeatherTipModal
   },
 
   provide () {
@@ -281,28 +284,33 @@ export default {
       this.getRenderCollectData()
       this.getCollectAreaCheckbox()
     },
+    openTipModal () {
+      emitter.emit('openTipModal', 'weather')
+    },
     tipOpen () {
-      this.tipDisAbled = true
-      this.menuCollectAreaShow = false
-      this.menuCountyShow = false
-      this.menuAreaShow = false
-      this.menuShow = true
       setTimeout(() => {
-        document.querySelector('.tipClickMeColorBtn').classList.add('tipClickMeColor')
-      }, 500)
-      setTimeout(() => {
-        this.clickIconShow = true
-        this.$nextTick(() => {
-          document.querySelector('.mouseClickImg').classList.add('mouseClick')
-        })
-      }, 2000)
-      setTimeout(() => {
+        this.tipDisAbled = true
         this.menuCollectAreaShow = false
-        this.menuCountyShow = true
-        this.menuAreaShow = true
-        this.clickIconShow = false
-        this.tipDisAbled = false
-      }, 2500)
+        this.menuCountyShow = false
+        this.menuAreaShow = false
+        this.menuShow = true
+        setTimeout(() => {
+          document.querySelector('.tipClickMeColorBtn').classList.add('tipClickMeColor')
+        }, 500)
+        setTimeout(() => {
+          this.clickIconShow = true
+          this.$nextTick(() => {
+            document.querySelector('.mouseClickImg').classList.add('mouseClick')
+          })
+        }, 2000)
+        setTimeout(() => {
+          this.menuCollectAreaShow = false
+          this.menuCountyShow = true
+          this.menuAreaShow = true
+          this.clickIconShow = false
+          this.tipDisAbled = false
+        }, 2500)
+      }, 1000)
     }
   },
 
