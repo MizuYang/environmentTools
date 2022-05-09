@@ -1,6 +1,7 @@
 <template>
-  <header class="header position-sticky top-0 z-index-2 border-primary-m py-2 mb-3">
-    <div class="container d-flex justify-content-between align-items-center">
+  <header class="header position-sticky top-0 z-index-2 mb-3">
+  <WeatherWarning />
+    <div class="container d-flex justify-content-between align-items-center border-primary-m py-2">
       <button type="button" class="position-absolute d-block" @click="openTipModal" data-menu="menu" :disabled="tipDisAbled">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35" data-menu="menu">
       </button>
@@ -120,12 +121,14 @@ import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
 import WeatherAir from '@/components/weather/WeatherAir.vue'
 import WeatherTipModal from '@/components/weather/modal/WeatherTipModal.vue'
+import WeatherWarning from '@/components/weatherWarning/WeatherWarning.vue'
 import emitter from '@/methods/emitter.js'
 export default {
   components: {
     WeatherCounty,
     WeatherArea,
     WeatherAir,
+    WeatherWarning,
     WeatherTipModal
   },
 

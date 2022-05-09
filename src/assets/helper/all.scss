@@ -27,12 +27,15 @@ $border-color: #000;
 @import "@/assets/helper/style/utils/_rwdMixins.scss";
 @import "@/assets/helper/style/utils/_loading.scss";
 
-//* page scss
+//* 元件
 @import "@/assets/helper/style/layout/_MenuLayout.scss";
 @import "@/assets/helper/style/layout/_NavbarLayout.scss";
-@import "@/assets/helper/style/weather/_WeatherView.scss";
 @import "@/assets/helper/style/weather/_WeatherCounty.scss";
 @import "@/assets/helper/style/weather/_WeatherArea.scss";
+@import "@/assets/helper/style/weather/_WeatherWarning.scss";
+
+//* page scss
+@import "@/assets/helper/style/weather/_WeatherView.scss";
 @import "@/assets/helper/style/covid/_CovidView.scss";
 @import "@/assets/helper/style/naturalDisaster/_EarthquakeView.scss";
 
