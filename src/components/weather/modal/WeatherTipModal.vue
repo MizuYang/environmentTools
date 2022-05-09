@@ -10,13 +10,13 @@
       <div class="modal-body">
         <!-- 天氣教學 -->
         <ul class="px-0" v-if="pages === 'weather'">
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4">開啟左側選單</summary>
             <img src="@/assets/image/tip/weather/開啟選單.gif" alt="開啟選單教學圖片" style="width:100%">
             </details>
           </li>
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4">查看縣市天氣</summary>
               <p class="mb-2">
@@ -25,7 +25,7 @@
               <img src="@/assets/image/tip/weather/選擇縣市.png" alt="開啟選擇縣市教學圖片" style="width:100%">
             </details>
           </li>
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4">查看地區天氣</summary>
               <p class="mb-2">
@@ -36,7 +36,7 @@
               <img src="@/assets/image/tip/weather/選擇地區.gif" alt="查看地區天氣教學圖" style="width:100%">
             </details>
           </li>
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4">收藏地區</summary>
               <ul>
@@ -62,13 +62,13 @@
               <br>
               可能代表該國尚未更新資料</p>
           </li>
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4">選單查詢</summary>
               <img src="@/assets/image/tip/covid/選單.gif" alt="選單查詢教學影片" style="width:100%">
             </details>
           </li>
-          <li class="border ps-2 pt-2 mb-3">
+          <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4 mb-2">關鍵字查詢 (不分大小寫)</summary>
               <p class=" mb-2">輸入國家的英文名稱即可搜尋，<br>即使是選單上沒有的國家，只要名稱輸入正確都可以搜尋的到。</p>
