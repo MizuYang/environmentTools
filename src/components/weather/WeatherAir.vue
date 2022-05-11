@@ -81,7 +81,6 @@ export default {
     getAllAqiData () {
       this.$http.get(`${this.apiPath}${this.apiKey}${this.apiQuery}`)
         .then(res => {
-          console.log(res)
           this.aqiData = res.data.records
           this.getAreaAiqData()
         })
