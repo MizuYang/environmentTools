@@ -7,16 +7,24 @@
       </button>
       <h2 class="mb-0 mx-auto">COVID-19</h2>
     </header>
-    <h2 class="mx-auto mt-3">
+    <h2 class="mx-auto my-3">
       <figure class="img-fluid countyImage" :style="{backgroundImage: `url(${postCovidInfo.countyImage})`}"></figure>
       <figcaption><span class="fw-bold"> {{ countyNameEnToZhTw[postCovidInfo.currentCounty] || postCovidInfo.currentCounty }} </span> {{ today }}</figcaption>
     </h2>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="bg-color-primary" :class="{'bg-color-primary-m': activeBtn===2, 'text-color-primary': activeBtn===2}"
+              @click="getCovidData(postCovidInfo.currentCounty, 2)">前天</button>
+      <button type="button" class="bg-color-primary mx-4" :class="{'bg-color-primary-m': activeBtn===1, 'text-color-primary': activeBtn===1}"
+              @click="getCovidData(postCovidInfo.currentCounty, 1)">昨天</button>
+      <button type="button" class="bg-color-primary" :class="{'bg-color-primary-m': activeBtn===0, 'text-color-primary': activeBtn===0}"
+              @click="getCovidData(postCovidInfo.currentCounty, 0)">今天</button>
+    </div>
     <details class="card-body" open>
       <summary><i class="text-danger">依照該國家公告時間更新</i></summary>
       <ul class="card-list">
         <li class="mb-1 border-bottom"><span class="fw-bold">公告的日期</span>：{{ postDate(postCovidInfo.公告日期) }}</li>
-        <li class="mb-1 border-bottom"><span class="fw-bold">今日確診數</span>：{{ postCovidInfo.今日確診數 }}</li>
-        <li class="mb-1 border-bottom"><span class="fw-bold">今日死亡數</span>：{{ postCovidInfo.今日死亡數 }}</li>
+        <li class="mb-1 border-bottom"><span class="fw-bold">今日確診數</span>：{{ postCovidInfo.確診人數 }}</li>
+        <li class="mb-1 border-bottom"><span class="fw-bold">今日死亡數</span>：{{ postCovidInfo.死亡人數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">累計確診數</span>：{{ postCovidInfo.累計確診數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">累計死亡數</span>：{{ postCovidInfo.累計死亡數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">康復個案數</span>：{{ postCovidInfo.康復個案數 }}</li>
@@ -74,8 +82,8 @@ export default {
         currentCounty: 'taiwan',
         countyImage: '',
         公告日期: '該國家尚未更新資料',
-        今日確診數: '該國家尚未更新資料',
-        今日死亡數: '該國家尚未更新資料',
+        確診人數: '該國家尚未更新資料',
+        死亡人數: '該國家尚未更新資料',
         累計確診數: '該國家尚未更新資料',
         累計死亡數: '該國家尚未更新資料',
         康復個案數: '該國家尚未更新資料',
@@ -94,27 +102,31 @@ export default {
         china: '中國'
       },
       showSearchErrorNull: false,
-      isLoading: false
+      isLoading: false,
+      activeBtn: '',
+      dayData: ['', '?yesterday=true', '?twoDaysAgo=true']
     }
   },
 
   methods: {
-    getCovidData (country = 'taiwan') {
+    getCovidData (country = 'taiwan', day = 0) { //* day：今天是 0、昨天是 1、前天是 2
       this.isLoading = true
+      this.activeBtn = day
       if (!this.postCovidInfo.currentCounty) {
         this.showSearchErrorNull = true
         this.isLoading = false
         return
       }
       this.postCovidInfo.currentCounty = this.postCovidInfo.currentCounty.toLowerCase()
-      const api = `${this.apiPath}${country}`
+      const api = `${this.apiPath}${country}${this.dayData[day]}`
+      const oneDay = 86400 //* 一天的秒數
       this.$http.get(api)
         .then(res => {
           this.isLoading = false
           this.covidInfoData = res.data
-          this.postCovidInfo['公告日期'] = res.data.updated
-          this.postCovidInfo['今日確診數'] = res.data.todayCases
-          this.postCovidInfo['今日死亡數'] = res.data.todayDeaths
+          this.postCovidInfo['公告日期'] = res.data.updated - oneDay * day * 1000
+          this.postCovidInfo['確診人數'] = res.data.todayCases
+          this.postCovidInfo['死亡人數'] = res.data.todayDeaths
           this.postCovidInfo['累計確診數'] = res.data.cases
           this.postCovidInfo['累計死亡數'] = res.data.deaths
           this.postCovidInfo['康復個案數'] = res.data.recovered
