@@ -14,7 +14,7 @@
             <div class="card-body">
               <h5 class="card-title"><span class="fw-bold">更新時間：</span><time>{{ getTime(area.ImportDate) }}</time></h5>
               <ul class="px-0">
-                <li class="border-bottom-m mb-2"><span class="fw-bold">AQI 空氣品質指標：</span>{{ area.AQI }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">空氣品質指標 <small>AQI</small>：</span>{{ area.AQI }}</li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">狀態：</span>{{ area.Status }}
                   <span class="ms-1 rounded-circle border" :style="`background-color: ${aqiStatusColor[area.Status]}`" style="padding:0.5px 15px;"></span>
                 </li>
