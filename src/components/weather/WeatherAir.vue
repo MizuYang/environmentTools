@@ -19,21 +19,16 @@
                   <span class="ms-1 rounded-circle border" :style="`background-color: ${aqiStatusColor[area.Status]}`" style="padding:0.5px 15px;"></span>
                 </li>
                 <li class="border-bottom-m mb-2"><span class="fw-bold">空氣污染指標物：</span>{{ area.Pollutant==='' ?   '無' : area.Pollutant }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">CO 一氧化碳：</span>{{ area.CO }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">CO 一氧化碳8小時移動平均：</span>{{ area.CO_8hr }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">NO 一氧化氮：</span>{{ area.NO }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">NO2 二氧化氮：</span>{{ area.NO2 }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">NOx 氮氧化物：</span>{{ area.NOx }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">O3 臭氧：</span>{{ area.O3 }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">O3 臭氧8小時移動平均：</span>{{ area.O3_8hr }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">PM2.5 細懸浮微粒：</span>{{ area['PM2.5'] }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">PM2.5 細懸浮微粒移動平均：</span>{{ area['PM2.5_AVG'] }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">PM10 懸浮微粒：</span>{{ area.PM10 }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">PM10 懸浮微粒移動平均值：</span>{{ area.PM10_AVG }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">SO2 二氧化硫：</span>{{ area.SO2 }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">SO2 二氧化硫移動平均值：</span>{{ area.SO2_AVG }}</li>
-                <li class="border-bottom-m mb-2"><span class="fw-bold">風向：</span>{{ area.WIND_DIREC }}</li>
-                <li><span class="fw-bold">風速：</span>{{ area.WIND_SPEED }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">一氧化碳 <small>CO(ppm)</small>：</span>{{ area.CO }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">一氧化氮 <small>NO(ppb)</small>：</span>{{ area.NO }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">二氧化氮 <small>NO2(ppb)</small>：</span>{{ area.NO2 }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">氮氧化物 <small>NOx(ppb)</small>：</span>{{ area.NOx }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">臭氧 <small>O3(ppb)</small>：</span>{{ area.O3 }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">細懸浮微粒 <small>PM2.5(μg/m3)</small>：</span>{{ area['PM2.5'] }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">懸浮微粒平均 <small>PM10(μg/m3)</small>：</span>{{ area.PM10_AVG }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">二氧化硫 <small>SO2(ppb)</small>：</span>{{ area.SO2 }}</li>
+                <li class="border-bottom-m mb-2"><span class="fw-bold">風向：</span>{{ area.WIND_DIREC ? area.WIND_DIREC: '-' }}</li>
+                <li><span class="fw-bold">風速：</span>{{ area.WIND_SPEED ? area.WIND_SPEED: '-' }}</li>
               </ul>
             </div>
           </div>
@@ -86,6 +81,7 @@ export default {
     getAllAqiData () {
       this.$http.get(`${this.apiPath}${this.apiKey}${this.apiQuery}`)
         .then(res => {
+          console.log(res)
           this.aqiData = res.data.records
           this.getAreaAiqData()
         })
