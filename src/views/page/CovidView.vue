@@ -22,9 +22,9 @@
     <details class="card-body" open>
       <summary><i class="text-danger">依照該國家公告時間更新</i></summary>
       <ul class="card-list">
-        <li class="mb-1 border-bottom"><span class="fw-bold">公告的日期</span>：{{ postDate(postCovidInfo.公告日期) }}</li>
-        <li class="mb-1 border-bottom"><span class="fw-bold">今日確診數</span>：{{ postCovidInfo.確診人數 }}</li>
-        <li class="mb-1 border-bottom"><span class="fw-bold">今日死亡數</span>：{{ postCovidInfo.死亡人數 }}</li>
+        <li class="mb-1 border-bottom"><span class="fw-bold">公告的日期</span>：{{ postDate(postCovidInfo.公告的日期) }}</li>
+        <li class="mb-1 border-bottom"><span class="fw-bold">今日確診數</span>：{{ postCovidInfo.今日確診數 }}</li>
+        <li class="mb-1 border-bottom"><span class="fw-bold">今日死亡數</span>：{{ postCovidInfo.今日死亡數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">累計確診數</span>：{{ postCovidInfo.累計確診數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">累計死亡數</span>：{{ postCovidInfo.累計死亡數 }}</li>
         <li class="mb-1 border-bottom"><span class="fw-bold">康復個案數</span>：{{ postCovidInfo.康復個案數 }}</li>
@@ -81,9 +81,9 @@ export default {
       postCovidInfo: {
         currentCounty: 'taiwan',
         countyImage: '',
-        公告日期: '該國家尚未更新資料',
-        確診人數: '該國家尚未更新資料',
-        死亡人數: '該國家尚未更新資料',
+        公告的日期: '該國家尚未更新資料',
+        今日確診數: '該國家尚未更新資料',
+        今日死亡數: '該國家尚未更新資料',
         累計確診數: '該國家尚未更新資料',
         累計死亡數: '該國家尚未更新資料',
         康復個案數: '該國家尚未更新資料',
@@ -124,9 +124,9 @@ export default {
         .then(res => {
           this.isLoading = false
           this.covidInfoData = res.data
-          this.postCovidInfo['公告日期'] = res.data.updated - oneDay * day * 1000
-          this.postCovidInfo['確診人數'] = res.data.todayCases
-          this.postCovidInfo['死亡人數'] = res.data.todayDeaths
+          this.postCovidInfo['公告的日期'] = res.data.updated - oneDay * day * 1000
+          this.postCovidInfo['今日確診數'] = res.data.todayCases
+          this.postCovidInfo['今日死亡數'] = res.data.todayDeaths
           this.postCovidInfo['累計確診數'] = res.data.cases
           this.postCovidInfo['累計死亡數'] = res.data.deaths
           this.postCovidInfo['康復個案數'] = res.data.recovered
