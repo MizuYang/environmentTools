@@ -64,6 +64,12 @@
           </li>
           <li class="ps-2 pt-2 mb-3">
             <details>
+              <summary class="h4">查看近日疫情</summary>
+              <img src="@/assets/image/tip/covid/查看近日疫情.gif" alt="查看近日疫情教學影片" style="width:100%">
+            </details>
+          </li>
+          <li class="ps-2 pt-2 mb-3">
+            <details>
               <summary class="h4">選單查詢</summary>
               <img src="@/assets/image/tip/covid/選單.gif" alt="選單查詢教學影片" style="width:100%">
             </details>
