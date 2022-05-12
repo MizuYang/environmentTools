@@ -3,9 +3,13 @@
 這是我的開發紀錄：https://equatorial-alloy-23b.notion.site/f6226e0c3e42458898d5cbdda240f6b6
 
 更新紀錄：<br />
+update_9 氣象、疫情查詢 2022/5/12
+<br />
+https://equatorial-alloy-23b.notion.site/update_9-2022-5-12-11aafc424bca47fcbe21fbecde751b52
+
 update_8 氣象、疫情查詢 2022/5/11
 <br />
-https://equatorial-alloy-23b.notion.site/update_7-2022-5-9-8ab45df4871947c38fac32fcacb84e35
+https://equatorial-alloy-23b.notion.site/update_8-2022-5-11-f8deeb2583f74b4a85caea8d2df7e985
 
 update_7 氣象、疫情查詢 2022/5/9
 <br />
