@@ -123,7 +123,6 @@ export default {
       this.$http.get(api)
         .then(res => {
           this.isLoading = false
-          this.covidInfoData = res.data
           this.postCovidInfo['公告的日期'] = res.data.updated - oneDay * day * 1000
           this.postCovidInfo['今日確診數'] = res.data.todayCases
           this.postCovidInfo['今日死亡數'] = res.data.todayDeaths
