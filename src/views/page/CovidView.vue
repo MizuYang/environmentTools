@@ -50,7 +50,7 @@
       <span v-if="showSearchErrorNull"><i class="text-danger fw-bold">*您未輸入國家名稱，或輸入錯誤! <br> *請輸入國家名稱的"英文"(不分大小寫)</i></span>
   </footer>
 </div>
-<WeatherTipModal />
+<TipModal />
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
     <div class="cssload-liquid"></div>
@@ -60,12 +60,12 @@
 </template>
 
 <script>
-import WeatherTipModal from '@/components/weather/modal/WeatherTipModal.vue'
+import TipModal from '@/components/weather/modal/TipModal.vue'
 import emitter from '@/methods/emitter.js'
 export default {
 
   components: {
-    WeatherTipModal
+    TipModal
   },
 
   provide () {

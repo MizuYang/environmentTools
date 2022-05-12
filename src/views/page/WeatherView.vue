@@ -108,7 +108,7 @@
       <li class="border-bottom-m mb-2 d-bigScreen-none"><button type="button" class="menu-link bg-secondary w-100">X</button></li>
     </ul>
   </aside>
-  <WeatherTipModal @tipOpen="tipOpen" />
+  <TipModal @tipOpen="tipOpen" />
   <IsLoading v-model:active="isLoading">
     <div class="cssload-battery">
       <div class="cssload-liquid"></div>
@@ -120,7 +120,7 @@
 import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
 import WeatherAir from '@/components/weather/WeatherAir.vue'
-import WeatherTipModal from '@/components/weather/modal/WeatherTipModal.vue'
+import TipModal from '@/components/weather/modal/TipModal.vue'
 import WeatherWarning from '@/components/weatherWarning/WeatherWarning.vue'
 import emitter from '@/methods/emitter.js'
 export default {
@@ -129,7 +129,7 @@ export default {
     WeatherArea,
     WeatherAir,
     WeatherWarning,
-    WeatherTipModal
+    TipModal
   },
 
   provide () {
