@@ -1,10 +1,6 @@
 <header>
-  <h1>
-    <a href="https://mizuyang.github.io/environmentTools/#/">作品連結 (建議手機觀看)</a>
-  </h1>
-  <h2>
-    <a href="https://equatorial-alloy-23b.notion.site/f6226e0c3e42458898d5cbdda240f6b6">完整開發紀錄</a>
-  <h2>
+  <h1><a href="https://mizuyang.github.io/environmentTools/#/">作品連結 (建議手機觀看)</a></h1>
+  <h2><a href="https://equatorial-alloy-23b.notion.site/f6226e0c3e42458898d5cbdda240f6b6">完整開發紀錄</a><h2>
 <header>
 <article>
   <h3>更新紀錄</h3>
