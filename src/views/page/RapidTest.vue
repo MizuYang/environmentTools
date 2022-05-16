@@ -7,13 +7,13 @@
 <header class="py-4 px-2 text-center" id="rapidTest">
   <h4 class="bg-gary mb-4 p-2">可購買的身份證尾數：<span class="text-danger fs-3 fw-bold">{{canBuyRapidTestId}}</span></h4>
   <label for="countySelector" class="h3">選擇縣市：</label>
-  <select name="" id="countySelector" class="bg-color-primary mb-4" @change="searchAreaPharmacy('county',$event)">
+  <select name="" id="countySelector" class="bg-color-primary mb-4" @change="searchAreaPharmacy('county',$event)" ref="countySelector">
     <option value="請選擇縣市" disabled selected>請選擇縣市</option>
     <option :value="county" v-for="(area, county) in countyPharmacyNameData" :key="county">{{ county }}</option>
   </select>
   <br />
   <label for="areaSelector" class="h3">選擇地區：</label>
-  <select name="" id="areaSelector" class="areaSelect bg-color-primary mb-4" @change="searchAreaPharmacy('area',$event)">
+  <select name="" id="areaSelector" class="areaSelect bg-color-primary mb-4" @change="searchAreaPharmacy('area',$event)" ref="areaSelector">
     <option value="請選擇地區" disabled selected>請選擇地區</option>
     <option :value="areaName" v-for="(areaName,index) in areaName" :key="index">{{ areaName }}</option>
   </select>
@@ -810,6 +810,9 @@ export default {
         this.searchText = ''
       } else if (active === 'search') {
         searchArea = this.searchText
+        this.$refs.countySelector.value = '請選擇縣市'
+        this.$refs.areaSelector.value = '請選擇地區'
+        this.areaName = []
       }
       this.rapidTestTempData.forEach(item => {
         if (item[2]?.includes(searchArea)) {
@@ -830,9 +833,8 @@ export default {
             })
             this.getPharmacyName()
           })
-          .catch(err => {
+          .catch(() => {
             this.isLoading = false
-            console.log(err)
           })
       }
     },
