@@ -23,7 +23,9 @@
     <option :value="areaName" v-for="(areaName,index) in areaName" :key="index">{{ areaName }}</option>
   </select>
   <br />
-  <input type="search" class="bg-color-primary mb-3" id="search" placeholder="輸入片段關鍵字" v-model.trim="searchText">
+  <label for="search" class="h3">請輸入片段地址</label>
+  <br>
+  <input type="search" class="bg-color-primary mb-3" id="search" placeholder="例：台北、板橋、五股" v-model.trim="searchText">
   <button type="button" class="bg-color-primary-m text-color-primary" @click="getRapidTestData('search',$event)" v-if="searchText">查詢</button>
   <small class="d-block mb-2">更新頻率: 每1~2分鐘更新一次</small>
   <i class="d-block text-danger mb-2">注意！請查看更新時間是否為最新！</i>
