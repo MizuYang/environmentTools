@@ -55,10 +55,6 @@ ul {
     transition: all 0.3s;
   }
 }
-//* 隱藏滾動條
-::-webkit-scrollbar {
-  display: none;
-}
 .hover-color:hover {
   background-color: $color-primary;
 }
@@ -96,4 +92,7 @@ ul {
 .shadowStyle {
   border: 1px solid #b7d2fa;
   box-shadow: 3px 3px 1px rgba(102, 102, 102, 0.49);
+}
+.bg-gary {
+  background-color: rgba(221, 221, 221, 0.667);
 }

@@ -49,6 +49,7 @@ export default {
       logoImageData: {
         '/': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/weather.png?raw=true',
         '/covid': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/covid.png?raw=true',
+        '/rapidTest': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/covid.png?raw=true',
         '/naturalDisaster': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/naturalDisaster.png?raw=true',
         '/aboutMe': 'https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/about.png?raw=true'
       },

@@ -14,6 +14,10 @@ const routes = [
         component: () => import('@/views/page/CovidView.vue')
       },
       {
+        path: 'rapidTest',
+        component: () => import('@/views/page/RapidTest.vue')
+      },
+      {
         path: 'naturalDisaster',
         component: () => import('../views/page/NaturalDisaster.vue')
       },
