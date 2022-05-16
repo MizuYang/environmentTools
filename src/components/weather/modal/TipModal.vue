@@ -30,7 +30,7 @@
               <summary class="h4">查看地區天氣</summary>
               <p class="mb-2">
                 點擊地區名稱右邊的 GO ，
-                <br>
+                <br />
                 就會跳轉到該地區的天氣資訊。
               </p>
               <img src="@/assets/image/tip/weather/選擇地區.gif" alt="查看地區天氣教學圖" style="width:100%">
@@ -57,9 +57,9 @@
         <ul class="px-0" v-if="pages === 'covid'">
           <li>
             <p>此資料以該國家發佈時間來更新
-              <br>
+              <br />
               若該國家的今日確診數顯示為 0
-              <br>
+              <br />
               可能代表該國尚未更新資料</p>
           </li>
           <li class="ps-2 pt-2 mb-3">
@@ -77,11 +77,41 @@
           <li class="ps-2 pt-2 mb-3">
             <details>
               <summary class="h4 mb-2">關鍵字查詢 (不分大小寫)</summary>
-              <p class=" mb-2">輸入國家的英文名稱即可搜尋，<br>即使是選單上沒有的國家，只要名稱輸入正確都可以搜尋的到。</p>
+              <p class=" mb-2">輸入國家的英文名稱即可搜尋，<br />即使是選單上沒有的國家，只要名稱輸入正確都可以搜尋的到。</p>
               <img src="@/assets/image/tip/covid/關鍵字搜尋.gif" alt="關鍵字查詢教學影片" style="width:100%">
             </details>
           </li>
         </ul>
+
+        <!-- 快篩 -->
+        <ul class="px-0" v-if="pages === 'rapidTest'">
+          <li><i class="d-block text-danger mb-2">注意！請查看更新時間是否為最新！</i></li>
+          <li class="ps-2 pt-2 mb-3">
+            <details>
+              <summary class="h4">選單查詢</summary>
+              <p>點選縣市，預設顯示該縣市所有藥局
+                <br />
+                選擇地區，能篩選出更接近的結果
+              </p>
+              <img src="@/assets/image/tip/rapidTest/選單查詢.gif" alt="選單查詢教學影片" style="width:100%">
+            </details>
+          </li>
+          <li class="ps-2 pt-2 mb-3">
+            <details>
+              <summary class="h4">文字查詢</summary>
+              <p>可以輸入地址相關資訊 <br />例：地名、縣市</p>
+              <img src="@/assets/image/tip/rapidTest/文字查詢.gif" alt="文字查詢教學影片" style="width:100%">
+            </details>
+          </li>
+          <li class="ps-2 pt-2 mb-3">
+            <details>
+              <summary class="h4 mb-2">回到最上方</summary>
+              <p class=" mb-2">在捲動到一定位置後，點選左側向上圖示，就會將畫面捲動至最上方。</p>
+              <img src="@/assets/image/tip/rapidTest/回到最上方.gif" alt="回到最上方教學影片" style="width:100%">
+            </details>
+          </li>
+        </ul>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary mx-auto w-75" data-bs-dismiss="modal" @click="$emit('tipOpen')"

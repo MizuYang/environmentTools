@@ -1,3 +1,5 @@
+import emitter from '@/methods/emitter.js'
+
 export function $goToPosition (id) {
   const el = document.getElementById(`${id}`)
   //* chrome
@@ -6,4 +8,7 @@ export function $goToPosition (id) {
   document.documentElement.scrollTop = el.offsetTop
   //* safari
   window.pageYOffset = el.offsetTop
+}
+export function $openTipModal (pages) {
+  emitter.emit('openTipModal', pages)
 }

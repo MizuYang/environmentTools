@@ -20,8 +20,8 @@ import {
   $openAccordionColor
 } from '@/methods/weatherMethods.js'
 
-//* 天災方法
-import { $goToPosition } from '@/methods/methods.js'
+//* 通用方法
+import { $goToPosition, $openTipModal } from '@/methods/methods.js'
 
 const app = createApp(App)
 
@@ -33,8 +33,9 @@ app.config.globalProperties.$weatherIconsStatus = $weatherIconsStatus
 app.config.globalProperties.$getDate = $getDate
 app.config.globalProperties.$openAccordionColor = $openAccordionColor
 
-//* 天災方法
+//* 通用方法
 app.config.globalProperties.$goToPosition = $goToPosition
+app.config.globalProperties.$openTipModal = $openTipModal
 
 app.component('IsLoading', VueLoading)
 

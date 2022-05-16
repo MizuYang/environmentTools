@@ -1,8 +1,13 @@
 <template>
-<h2 class="position-sticky z-index-1 top-0 bottom-m text-center bg-color-primary border-primary-m py-2 mb-0">
-  <a href="#" class="d-block p-1" @click.prevent="$goToPosition('rapidTest')">
-    <span class="h2">家用快篩剩餘數量查詢</span>
-  </a>
+<h2 class="position-sticky z-index-1 top-0 bottom-m text-center bg-color-primary border-primary-m mb-0">
+  <div class="container d-flex align-items-center">
+    <button type="button" class="position-absolute d-block" @click="$openTipModal('rapidTest')">
+      <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35">
+    </button>
+    <a href="#" class="d-block mx-auto w-100 p-2" @click.prevent="$goToPosition('rapidTest')">
+      <span class="h2">快篩剩餘數量查詢</span>
+    </a>
+  </div>
 </h2>
 <header class="border-bottom text-center py-3 px-2 mb-3" id="rapidTest">
   <h4 class="bg-gary mb-4 p-2">可購買的身份證尾數：<span class="text-danger fs-3 fw-bold">{{canBuyRapidTestId}}</span></h4>
@@ -46,6 +51,7 @@
 <a href="#" class="position-sticky z-index-2 left-1 bottom-1" @click.prevent="$goToPosition('rapidTest')" :class="{'d-none': topScrollBtnHide}">
   <img src="@/assets/image/icons/rapidTest-icons/向上.png" alt="箭頭向上的圖片" height="50">
 </a>
+<TipModal />
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
     <div class="cssload-liquid"></div>
@@ -54,8 +60,18 @@
 </template>
 
 <script>
-
+import TipModal from '@/components/weather/modal/TipModal.vue'
+import emitter from '@/methods/emitter.js'
 export default {
+  components: {
+    TipModal
+  },
+
+  provide () {
+    return {
+      emitter
+    }
+  },
 
   data () {
     return {
@@ -859,7 +875,7 @@ export default {
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY
-      if (scrollY >= 1300) {
+      if (scrollY >= 1000) {
         this.topScrollBtnHide = false
       } else if (scrollY <= 300) {
         this.topScrollBtnHide = true

@@ -2,7 +2,7 @@
 <div class="container mt-3 mb-10">
   <article class="card text-white bg-color-primary mb-3">
     <header class="card-header d-flex align-items-center justify-content-between bg-color-primary text-center">
-      <button type="button" class="position-absolute d-block" @click="openTipModal">
+      <button type="button" class="position-absolute d-block" @click="$openTipModal('covid')">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35">
       </button>
       <h2 class="mb-0 mx-auto">COVID-19</h2>
@@ -146,9 +146,6 @@ export default {
     getToday () {
       const date = new Date()
       this.today = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`
-    },
-    openTipModal () {
-      emitter.emit('openTipModal', 'covid')
     }
   },
 
