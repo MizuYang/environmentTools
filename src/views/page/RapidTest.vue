@@ -43,6 +43,9 @@
     </div>
   </section>
 </div>
+<a href="#" class="position-sticky z-index-2 left-1 bottom-1" @click.prevent="$goToPosition('rapidTest')" :class="{'d-none': topScrollBtnHide}">
+  <img src="@/assets/image/icons/rapidTest-icons/向上.png" alt="箭頭向上的圖片" height="50">
+</a>
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
     <div class="cssload-liquid"></div>
@@ -63,6 +66,7 @@ export default {
       areaName: [],
       canBuyRapidTestId: '',
       searchText: '',
+      topScrollBtnHide: true,
       isLoading: false,
       countyPharmacyNameData: {},
       countyPharmacyNameNoSortData: [
@@ -828,7 +832,7 @@ export default {
           data.forEach(item => {
             this.rapidTestTempData.push(item.split(','))
           })
-          this.getPharmacyName()
+          if (this.areaName.length === 0) this.getPharmacyName()
           this.searchAreaPharmacy(active, e)
         })
         .catch(() => {
@@ -852,6 +856,15 @@ export default {
     this.apiPath = process.env.VUE_APP_RAPIDTEST_API
     this.getToday()
     this.getRapidTestData()
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY
+      if (scrollY >= 1300) {
+        this.topScrollBtnHide = false
+      } else if (scrollY <= 300) {
+        this.topScrollBtnHide = true
+      }
+    })
   }
 
 }
