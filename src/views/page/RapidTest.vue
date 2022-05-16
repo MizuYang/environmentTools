@@ -1,9 +1,9 @@
 <template>
 <h2 class="position-sticky z-index-1 top-0 bottom-m text-center bg-color-primary border-primary-m mb-0">
   <div class="container d-flex align-items-center">
-    <button type="button" class="position-absolute d-block" @click="$openTipModal('rapidTest')">
+    <a href="#" class="position-absolute d-block" @click.prevent="$openTipModal('rapidTest')">
       <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35">
-    </button>
+    </a>
     <a href="#" class="d-block mx-auto w-100 p-2" @click.prevent="$goToPosition('rapidTest')">
       <span class="h2">快篩剩餘數量查詢</span>
     </a>

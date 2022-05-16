@@ -2,9 +2,9 @@
   <header class="header position-sticky top-0 z-index-2 mb-3">
   <WeatherWarning />
     <div class="container d-flex justify-content-between align-items-center border-primary-m py-2">
-      <button type="button" class="position-absolute d-block" @click="$openTipModal('weather')" data-menu="menu" :disabled="tipDisAbled">
+      <a href="#" class="position-absolute d-block" @click.prevent="$openTipModal('weather')" data-menu="menu" :disabled="tipDisAbled">
         <img src="@/assets/image/icons/weather-icons/燈泡.png" alt="功能提示的燈泡圖片" height="35" data-menu="menu">
-      </button>
+      </a>
       <h2 class="m-auto w-100">
         <a href="#" class="d-block text-center" @click.prevent="$goToPosition('countyCard')">
           <span class="h2">{{ isClickCountyName }}天氣</span>
