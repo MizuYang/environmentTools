@@ -1,31 +1,32 @@
 <template>
-<h2 class="position-sticky z-index-1 top-0 bottom-m text-center bg-color-primary border-primary-m py-2">
+<h2 class="position-sticky z-index-1 top-0 bottom-m text-center bg-color-primary border-primary-m py-2 mb-0">
   <a href="#" class="d-block p-1" @click.prevent="$goToPosition('rapidTest')">
     <span class="h2">家用快篩剩餘數量查詢</span>
   </a>
 </h2>
-<header class="py-4 px-2 text-center" id="rapidTest">
+<header class="border-bottom text-center py-3 px-2 mb-3" id="rapidTest">
   <h4 class="bg-gary mb-4 p-2">可購買的身份證尾數：<span class="text-danger fs-3 fw-bold">{{canBuyRapidTestId}}</span></h4>
   <label for="countySelector" class="h3">選擇縣市：</label>
-  <select name="" id="countySelector" class="bg-color-primary mb-4" @change="searchAreaPharmacy('county',$event)" ref="countySelector">
+  <select name="" id="countySelector" class="bg-color-primary mb-4" @change="getRapidTestData('county',$event)" ref="countySelector">
     <option value="請選擇縣市" disabled selected>請選擇縣市</option>
     <option :value="county" v-for="(area, county) in countyPharmacyNameData" :key="county">{{ county }}</option>
   </select>
   <br />
   <label for="areaSelector" class="h3">選擇地區：</label>
-  <select name="" id="areaSelector" class="areaSelect bg-color-primary mb-4" @change="searchAreaPharmacy('area',$event)" ref="areaSelector">
+  <select name="" id="areaSelector" class="areaSelect bg-color-primary mb-4" @change="getRapidTestData('area',$event)" ref="areaSelector">
     <option value="請選擇地區" disabled selected>請選擇地區</option>
     <option :value="areaName" v-for="(areaName,index) in areaName" :key="index">{{ areaName }}</option>
   </select>
   <br />
-  <input type="search" class="bg-color-primary" id="search" placeholder="輸入片段關鍵字" v-model.trim="searchText">
-  <button type="button" class="bg-color-primary-m text-color-primary" @click="searchAreaPharmacy('search',$event)" v-if="searchText">查詢</button>
+  <input type="search" class="bg-color-primary mb-3" id="search" placeholder="輸入片段關鍵字" v-model.trim="searchText">
+  <button type="button" class="bg-color-primary-m text-color-primary" @click="getRapidTestData('search',$event)" v-if="searchText">查詢</button>
+  <small class="d-block mb-2">更新頻率: 每1~2分鐘更新一次</small>
+  <i class="d-block text-danger mb-2">注意！請查看更新時間是否為最新！</i>
 </header>
-
 <div class="mb-10 container-lg">
   <h2 class="text-center text-danger fw-bold" v-if="countyName && rapidTestData.length === 0">查無資料或已全部售完</h2>
   <section class="card mb-3 border shadowStyle" v-for="(pharmacyInfo, index) in rapidTestData" :key="pharmacyInfo" :class="{'bg-gary': index%2 ===0}">
-    <div class="card-body">
+    <div class="card-body hover-color">
       <h5 class="card-title d-flex">{{ pharmacyInfo[1] }} <span class="text-danger fw-bold ms-3">[ 剩餘: {{ pharmacyInfo[7] }} ]</span></h5>
       <p class="text-muted ms-auto">更新時間：<time class="text-muted">{{ pharmacyInfo[8] }}</time></p>
       <address class="card-subtitle text-muted d-flex mb-2">
@@ -41,7 +42,6 @@
       <p class="card-text">備註：{{ pharmacyInfo[9] }}</p>
     </div>
   </section>
-  <small class="d-block text-center">更新頻率: 每1~2分鐘更新一次</small>
 </div>
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
@@ -774,9 +774,6 @@ export default {
     }
   },
 
-  watch: {
-  },
-
   methods: {
     getPharmacyName () {
       let countyName = []
@@ -821,22 +818,22 @@ export default {
       })
       this.isLoading = false
     },
-    getRapidTestData () {
+    getRapidTestData (active, e) { //* 每次搜尋都戳 API ，確保是最新資訊
       this.isLoading = true
-      if (this.rapidTestData.length === 0) { //* 只有第一次會戳 API 而已
-        this.$http.get(this.apiPath)
-          .then(res => {
-            this.isLoading = false
-            const data = res.data.split('\r\n')
-            data.forEach(item => {
-              this.rapidTestTempData.push(item.split(','))
-            })
-            this.getPharmacyName()
+      this.$http.get(this.apiPath)
+        .then(res => {
+          this.isLoading = false
+          this.rapidTestTempData = [] //* 初始化 不然 push 會一直疊加
+          const data = res.data.split('\r\n')
+          data.forEach(item => {
+            this.rapidTestTempData.push(item.split(','))
           })
-          .catch(() => {
-            this.isLoading = false
-          })
-      }
+          this.getPharmacyName()
+          this.searchAreaPharmacy(active, e)
+        })
+        .catch(() => {
+          this.isLoading = false
+        })
     },
     getToday () {
       const date = new Date()
