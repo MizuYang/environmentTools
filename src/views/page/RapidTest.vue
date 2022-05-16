@@ -826,6 +826,13 @@ export default {
         searchArea = `${this.countyName}${target}`
         this.searchText = ''
       } else if (active === 'search') {
+        //* 如果使用者輸入"台"，例：台北、台中、台南 就轉成"臺"
+        if (this.searchText.indexOf('台') >= 0) {
+          const changeTextIndex = this.searchText.indexOf('台')
+          const text = [...this.searchText.split('')]
+          text.splice(changeTextIndex, 1, '臺')
+          this.searchText = text.join('')
+        }
         searchArea = this.searchText
         this.$refs.countySelector.value = '請選擇縣市'
         this.$refs.areaSelector.value = '請選擇地區'
