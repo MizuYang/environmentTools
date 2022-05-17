@@ -841,7 +841,7 @@ export default {
         this.areaName = []
       }
       this.rapidTestTempData.forEach(item => {
-        if (item[2]?.includes(searchArea)) {
+        if (item[2]?.includes(searchArea) || item[1]?.includes(searchArea)) {
           this.rapidTestData.push(item)
         }
       })
