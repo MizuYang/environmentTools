@@ -23,7 +23,7 @@
     <option :value="areaName" v-for="(areaName,index) in areaName" :key="index">{{ areaName }}</option>
   </select>
   <br />
-  <label for="search" class="h3">請輸入片段地址</label>
+  <label for="search" class="h4">輸入片段地址或藥局名稱</label>
   <br>
   <input type="search" class="bg-color-primary mb-3" id="search" placeholder="例：台北、板橋、五股" v-model.trim="searchText">
   <button type="button" class="bg-color-primary-m text-color-primary" @click="getRapidTestData('search',$event)" v-if="searchText">查詢</button>
@@ -51,7 +51,6 @@
           <input type="checkbox" class="collectAreaCheckbox" :id="`collectCheckBox${index}`" v-model="collectCheckboxData[pharmacyInfo[2]]" @click="toggleCollectPharmacy(pharmacyInfo[2])">
         </div>
       </div>
-
       <address>
         <p class="card-text">{{ pharmacyInfo[2] }}</p>
       </address>
