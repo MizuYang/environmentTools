@@ -201,7 +201,7 @@ export default {
           } else {
             this.collectTipShow = false
           }
-        })
+        }, 500)
         const collectPharmacy = []
         this.localStoragePharmacyData.forEach(pharmacyAddress => {
           this.rapidTestTempData.forEach(allPharmacyItem => {
