@@ -27,6 +27,12 @@
   <br>
   <input type="search" class="bg-color-primary mb-3" id="search" placeholder="例：台北、板橋、五股" v-model.trim="searchText">
   <button type="button" class="bg-color-primary-m text-color-primary" @click="getRapidTestData('search',$event)" v-if="searchText">查詢</button>
+  <div class="mb-2">
+    <a type="button" class="btn btn-color-primary-s" @click.prevent="renderCollectPharmacy">
+      <img src="@/assets/image/icons/rapidTest-icons/搜尋藥局.png" alt="搜尋藥局" height="35">
+      查詢已收藏藥局
+    </a>
+  </div>
   <small class="d-block mb-2">更新頻率: 每1~2分鐘更新一次</small>
   <i class="d-block text-danger mb-2">注意！請查看更新時間是否為最新！</i>
 </header>
@@ -36,9 +42,16 @@
     <div class="card-body hover-color">
       <h5 class="card-title d-flex">{{ pharmacyInfo[1] }} <span class="text-danger fw-bold ms-3">[ 剩餘: {{ pharmacyInfo[7] }} ]</span></h5>
       <p class="text-muted ms-auto">更新時間：<time class="text-muted">{{ pharmacyInfo[8] }}</time></p>
-      <address class="card-subtitle text-muted d-flex mb-2">
-        <a :href="`tel:+${pharmacyInfo[5]}`">{{ pharmacyInfo[5] }}</a>
-      </address>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <address class="card-subtitle text-muted">
+          <a :href="`tel:+${pharmacyInfo[5]}`">{{ pharmacyInfo[5] }}</a>
+        </address>
+        <div class="d-flex align-items-center">
+          <label :for="`collectCheckBox${index}`" class="fs-5 me-2">加入收藏</label>
+          <input type="checkbox" class="collectAreaCheckbox" :id="`collectCheckBox${index}`" v-model="collectCheckboxData[pharmacyInfo[2]]" @click="toggleCollectPharmacy(pharmacyInfo[2])">
+        </div>
+      </div>
+
       <address>
         <p class="card-text">{{ pharmacyInfo[2] }}</p>
       </address>
@@ -53,6 +66,7 @@
 <a href="#" class="position-sticky z-index-2 left-1 bottom-1" @click.prevent="$goToPosition('rapidTest')" :class="{'d-none': topScrollBtnHide}">
   <img src="@/assets/image/icons/rapidTest-icons/向上.png" alt="箭頭向上的圖片" height="50">
 </a>
+
 <TipModal />
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
@@ -80,12 +94,15 @@ export default {
       apiPath: '',
       rapidTestData: [],
       rapidTestTempData: [],
+      localStoragePharmacyData: JSON.parse(localStorage.getItem('pharmacyName')) || [],
+      collectCheckboxData: {},
       countyName: '',
       areaName: [],
       canBuyRapidTestId: '',
       searchText: '',
       topScrollBtnHide: true,
       isLoading: false,
+      collectTipShow: false,
       countyPharmacyNameData: {},
       countyPharmacyNameNoSortData: [
         { 臺北市: '士林區' },
@@ -857,7 +874,7 @@ export default {
           data.forEach(item => {
             this.rapidTestTempData.push(item.split(','))
           })
-          if (this.areaName.length === 0) this.getPharmacyName()
+          if (this.areaName.length === 0) this.getPharmacyName() //* 只有第一次會處理地區名稱的資料
           this.searchAreaPharmacy(active, e)
         })
         .catch(() => {
@@ -874,6 +891,44 @@ export default {
       if (date.getDay() === 7) {
         this.canBuyRapidTestId = '單數、雙數'
       }
+    },
+    renderCollectPharmacy () {
+      if (this.localStoragePharmacyData.length === 0) {
+        this.collectTipShow = true
+      } else {
+        this.collectTipShow = false
+      }
+      const collectPharmacy = []
+      this.localStoragePharmacyData.forEach(pharmacyAddress => {
+        this.rapidTestTempData.forEach(allPharmacyItem => {
+          if (pharmacyAddress === allPharmacyItem[2]) {
+            collectPharmacy.push(allPharmacyItem)
+          }
+        })
+      })
+      this.rapidTestData = collectPharmacy
+    },
+    toggleCollectPharmacy (pharmacyAddress) {
+      //* 收藏 data 如果地址的值是 false(取消勾選)就刪除，true就增加
+      setTimeout(() => {
+        if (!this.collectCheckboxData[pharmacyAddress]) {
+          const deleteIndex = this.localStoragePharmacyData.findIndex(pharmacyAddr => {
+            return pharmacyAddress === pharmacyAddr
+          })
+          if (deleteIndex !== -1) {
+            this.localStoragePharmacyData.splice(deleteIndex, 1)
+          }
+        }
+        if (this.collectCheckboxData[pharmacyAddress]) {
+          this.localStoragePharmacyData.push(pharmacyAddress)
+        }
+        localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
+      }, 0)
+    },
+    getLocalStorage () {
+      this.localStoragePharmacyData.forEach(pharmacyName => {
+        this.collectCheckboxData[pharmacyName] = true
+      })
     }
   },
 
@@ -881,6 +936,7 @@ export default {
     this.apiPath = process.env.VUE_APP_RAPIDTEST_API
     this.getToday()
     this.getRapidTestData()
+    this.getLocalStorage()
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY
