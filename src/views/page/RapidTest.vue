@@ -52,7 +52,7 @@
         </div>
       </div>
       <address>
-        <p class="card-text">{{ pharmacyInfo[2] }}</p>
+        <a class="card-text" :href="`https://www.google.com.tw/maps/search/${pharmacyInfo[1]}`" target="_blank">{{ pharmacyInfo[2] }}</a>
       </address>
       <p class="card-text">{{ pharmacyInfo[6] }}
         <br />
