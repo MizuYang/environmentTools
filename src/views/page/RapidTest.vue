@@ -28,7 +28,7 @@
   <input type="search" class="bg-color-primary mb-3" id="search" placeholder="例：台北、板橋、五股" v-model.trim="searchText">
   <button type="button" class="bg-color-primary-m text-color-primary" @click="getRapidTestData('search',$event)" v-if="searchText">查詢</button>
   <div class="mb-2">
-    <a type="button" class="btn btn-color-primary-s" @click.prevent="renderCollectPharmacy">
+    <a type="button" class="btn btn-color-primary border" @click.prevent="getRapidTestData('collect')">
       <img src="@/assets/image/icons/rapidTest-icons/搜尋藥局.png" alt="搜尋藥局" height="35">
       查詢已收藏藥局
     </a>
@@ -38,8 +38,8 @@
 </header>
 <div class="mb-10 container-lg">
   <h2 class="text-center text-danger fw-bold" v-if="countyName && rapidTestData.length === 0">查無資料或已全部售完</h2>
-  <section class="card mb-3 border shadowStyle" v-for="(pharmacyInfo, index) in rapidTestData" :key="pharmacyInfo" :class="{'bg-gary': index%2 ===0}">
-    <div class="card-body hover-color">
+  <section class="card mb-3 border shadowStyle" v-for="(pharmacyInfo, index) in rapidTestData" :key="pharmacyInfo" :class="{'bg-color-primary': index%2 ===0}">
+    <div class="card-body">
       <h5 class="card-title d-flex">{{ pharmacyInfo[1] }} <span class="text-danger fw-bold ms-3">[ 剩餘: {{ pharmacyInfo[7] }} ]</span></h5>
       <p class="text-muted ms-auto">更新時間：<time class="text-muted">{{ pharmacyInfo[8] }}</time></p>
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -861,7 +861,7 @@ export default {
         this.$refs.areaSelector.value = '請選擇地區'
         this.areaName = []
       }
-      this.rapidTestTempData.forEach(item => {
+      this.rapidTestTempData.forEach(item => { //* 如果關鍵字搜尋 藥局名稱和地址都可以
         if (item[2]?.includes(searchArea) || item[1]?.includes(searchArea)) {
           this.rapidTestData.push(item)
         }
@@ -878,7 +878,8 @@ export default {
           data.forEach(item => {
             this.rapidTestTempData.push(item.split(','))
           })
-          if (this.areaName.length === 0) this.getPharmacyName() //* 只有第一次會處理地區名稱的資料
+          if (this.areaName.length === 0) { this.getPharmacyName() } //* 只有第一次會處理地區名稱的資料
+          if (active === 'collect') { this.renderCollectPharmacy() }
           this.searchAreaPharmacy(active, e)
         })
         .catch(() => {
@@ -902,15 +903,19 @@ export default {
       } else {
         this.collectTipShow = false
       }
-      const collectPharmacy = []
-      this.localStoragePharmacyData.forEach(pharmacyAddress => {
-        this.rapidTestTempData.forEach(allPharmacyItem => {
-          if (pharmacyAddress === allPharmacyItem[2]) {
-            collectPharmacy.push(allPharmacyItem)
-          }
+      this.$nextTick(() => {
+        const collectPharmacy = []
+        this.localStoragePharmacyData.forEach(pharmacyAddress => {
+          this.rapidTestTempData.forEach(allPharmacyItem => {
+            if (pharmacyAddress === allPharmacyItem[2]) {
+              collectPharmacy.push(allPharmacyItem)
+            }
+          })
         })
+        this.rapidTestData = collectPharmacy
+        this.$refs.countySelector.value = '請選擇縣市'
+        this.$refs.areaSelector.value = '請選擇地區'
       })
-      this.rapidTestData = collectPharmacy
     },
     toggleCollectPharmacy (pharmacyAddress) {
       //* 收藏 data 如果地址的值是 false(取消勾選)就刪除，true就增加

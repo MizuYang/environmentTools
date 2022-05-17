@@ -26,7 +26,7 @@ export default {
       this.$http
         .get(this.apiPath)
         .then((res) => {
-          this.weatherWarningText = res.data.records.record[0].contents.content.contentText
+          this.weatherWarningText = res.data.records.record[0]?.contents.content.contentText
         })
         .catch((err) => {
           console.log(err)
