@@ -195,11 +195,13 @@ export default {
     },
     renderCollectPharmacy () {
       this.$nextTick(() => {
-        if (this.localStoragePharmacyData.length === 0) {
-          this.collectTipShow = true
-        } else {
-          this.collectTipShow = false
-        }
+        setTimeout(() => {
+          if (this.localStoragePharmacyData.length === 0) {
+            this.collectTipShow = true
+          } else {
+            this.collectTipShow = false
+          }
+        })
         const collectPharmacy = []
         this.localStoragePharmacyData.forEach(pharmacyAddress => {
           this.rapidTestTempData.forEach(allPharmacyItem => {
