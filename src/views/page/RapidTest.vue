@@ -62,6 +62,10 @@
       <p class="card-text">備註：{{ pharmacyInfo[9] }}</p>
     </div>
   </section>
+  <div class="text-center" v-if="collectTipShow">
+    <h3 class="mb-3">您目前沒有收藏的藥局！</h3>
+    <button type="button" class="btn btn-color-primary-m" @click="$openTipModal('rapidTest')">收藏藥局教學</button>
+  </div>
 </div>
 <a href="#" class="position-sticky z-index-2 left-1 bottom-1" @click.prevent="$goToPosition('rapidTest')" :class="{'d-none': topScrollBtnHide}">
   <img src="@/assets/image/icons/rapidTest-icons/向上.png" alt="箭頭向上的圖片" height="50">

@@ -110,6 +110,23 @@
               <img src="@/assets/image/tip/rapidTest/回到最上方.gif" alt="回到最上方教學影片" style="width:100%">
             </details>
           </li>
+          <li class="ps-2 pt-2 mb-3">
+            <details>
+              <summary class="h4 mb-2">收藏藥局功能</summary>
+              <ul>
+                <li class="fw-bold">加入收藏</li>
+                <li  class="mb-2">搜尋地區後按下右邊的加入收藏</li>
+                <li class="fw-bold">移除收藏</li>
+                <li  class="mb-2">將加入收藏勾選取消即可</li>
+                <li class="fw-bold">查詢收藏藥局</li>
+                <li  class="mb-2">如果您有已收藏藥局，按下查詢已收藏藥局按鈕即可</li>
+                <li class="fw-bold">額外補充</li>
+                <li  class="mb-2">1. 即使是不同的地區也可以收藏</li>
+                <li  class="mb-2">2. 只要您是使用相同的裝置，下一次重開，收藏的藥局依然會存在。</li>
+              </ul>
+              <img src="@/assets/image/tip/rapidTest/收藏藥局.gif" alt="收藏藥局教學影片" style="width:100%">
+            </details>
+          </li>
         </ul>
 
       </div>
@@ -117,7 +134,7 @@
         <button type="button" class="btn btn-primary mx-auto w-75" data-bs-dismiss="modal" @click="$emit('tipOpen')"
           v-if="pages === 'weather'">開啟選擇地區</button>
         <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal" v-if="pages === 'weather'">關閉</button>
-        <button type="button" class="btn btn-secondary mx-auto w-100" data-bs-dismiss="modal" v-if="pages === 'covid'">關閉</button>
+        <button type="button" class="btn btn-secondary mx-auto w-100" data-bs-dismiss="modal" v-if="pages === 'covid' || pages === 'rapidTest'">關閉</button>
       </div>
     </div>
   </div>
