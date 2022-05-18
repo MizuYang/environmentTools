@@ -190,18 +190,16 @@ export default {
         this.canBuyRapidTestId = '單數'
       }
       if (date.getDay() === 7) {
-        this.canBuyRapidTestId = '單數、雙數'
+        this.canBuyRapidTestId = '單、雙數'
       }
     },
     renderCollectPharmacy () {
       this.$nextTick(() => {
-        setTimeout(() => {
-          if (this.localStoragePharmacyData.length === 0) {
-            this.collectTipShow = true
-          } else {
-            this.collectTipShow = false
-          }
-        }, 500)
+        if (this.localStoragePharmacyData.length === 0) {
+          this.collectTipShow = true
+        } else {
+          this.collectTipShow = false
+        }
         const collectPharmacy = []
         this.localStoragePharmacyData.forEach(pharmacyAddress => {
           this.rapidTestTempData.forEach(allPharmacyItem => {
