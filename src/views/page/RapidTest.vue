@@ -195,22 +195,25 @@ export default {
     },
     renderCollectPharmacy () {
       this.$nextTick(() => {
-        if (this.localStoragePharmacyData.length === 0) {
-          this.collectTipShow = true
-        } else {
-          this.collectTipShow = false
-        }
-        const collectPharmacy = []
-        this.localStoragePharmacyData.forEach(pharmacyAddress => {
-          this.rapidTestTempData.forEach(allPharmacyItem => {
-            if (pharmacyAddress === allPharmacyItem[2]) {
-              collectPharmacy.push(allPharmacyItem)
-            }
-          })
-        })
-        this.rapidTestData = collectPharmacy
         this.$refs.countySelector.value = '請選擇縣市'
         this.$refs.areaSelector.value = '請選擇地區'
+        setTimeout(() => {
+          const collectPharmacy = []
+          if (this.localStoragePharmacyData.length === 0) { //* 沒資料的話，後面的迴圈就不跑了
+            this.collectTipShow = true
+            return
+          } else {
+            this.collectTipShow = false
+          }
+          this.localStoragePharmacyData.forEach(pharmacyAddress => {
+            this.rapidTestTempData.forEach(allPharmacyItem => {
+              if (pharmacyAddress === allPharmacyItem[2]) {
+                collectPharmacy.push(allPharmacyItem)
+              }
+            })
+          })
+          this.rapidTestData = collectPharmacy
+        })
       })
     },
     toggleCollectPharmacy (pharmacyAddress) {
