@@ -189,7 +189,7 @@ export default {
       } else {
         this.canBuyRapidTestId = '單數'
       }
-      if (date.getDay() === 7) {
+      if (date.getDay() === 0) {
         this.canBuyRapidTestId = '單、雙數'
       }
     },
