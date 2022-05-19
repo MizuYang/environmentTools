@@ -35,7 +35,7 @@
   position: fixed;
   background-color: #b7d2fa;
   transform: translateX(-5.5rem);
-  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
+  //! 用電腦看手機版畫面正常，但部署要開啟下面這段transform，手機觀看才不會跑版 (12 pro)
   transform: translateX(-7.1rem);
   transition: transform 0.5s;
   top: 10.5rem;
@@ -70,8 +70,8 @@
   transition: transform 0.5s;
   height: 40vh;
   overflow-y: scroll;
-  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
+    //! 用電腦看手機版畫面正常，但部署要開啟下面這段transform，手機觀看才不會跑版 (12 pro)
     transform: translate(6.5rem, -2.5rem);
   }
 }
@@ -89,8 +89,8 @@
   width: 9rem;
   height: 40vh;
   overflow-y: scroll;
-  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
+    //! 用電腦看手機版畫面正常，但部署要開啟下面這段transform，手機觀看才不會跑版 (12 pro)
     transform: translate(11rem, -2.5rem);
     width: 9rem;
   }
@@ -109,8 +109,8 @@
   width: 10rem;
   height: 40vh;
   overflow-y: scroll;
-  //! 用電腦看手機版畫面正常，但部署要開啟下面這段，手機觀看才不會跑版 (12 pro)
   @media (max-width: 576px) {
+    //! 用電腦看手機版畫面正常，但部署要開啟下面這段transform，手機觀看才不會跑版 (12 pro)
     transform: translate(7.7rem, -5.6rem);
     width: 13rem;
   }
