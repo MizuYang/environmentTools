@@ -52,7 +52,10 @@
         </div>
       </div>
       <address>
-        <a class="card-text" :href="`https://www.google.com.tw/maps/search/${pharmacyInfo[1]}`" target="_blank">{{ pharmacyInfo[2] }}</a>
+        <a class="card-text" :href="`https://www.google.com.tw/maps/search/${pharmacyInfo[1]}`" target="_blank">
+          {{ pharmacyInfo[2] }}
+          <img src="@/assets/image/icons/rapidTest-icons/地圖.png" alt="小地圖的圖片" height="35">
+        </a>
       </address>
       <p class="card-text">{{ pharmacyInfo[6] }}
         <br />
