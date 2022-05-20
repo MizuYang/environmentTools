@@ -1,6 +1,6 @@
 <template>
 <TyphoonView />
-<hr class="mb-5">
+<hr class="my-4">
 <EarthquakeView />
 </template>
 
@@ -12,24 +12,7 @@ export default {
   components: {
     TyphoonView,
     EarthquakeView
-  },
-
-  data () {
-    return {
-    }
-  },
-
-  watch: {
-  },
-
-  methods: {
-
-  },
-
-  mounted () {
   }
 
 }
 </script>
-
-<style lang='scss' scope></style>

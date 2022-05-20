@@ -5,7 +5,7 @@
     <img src="@/assets/image/icons/naturalDisaster-icons/颱風.png" class="shadowStyle ms-2" alt="颱風圖片" height="35">
   </a>
 </header>
-<div class="container mb-8" id="typhoon">
+<div class="container" id="typhoon">
   <small class="text-center w-100 d-inline-block py-2 px-2">
     西北太平洋地區及南海
     <br class="d-lg-none">
@@ -111,5 +111,3 @@ export default {
 
 }
 </script>
-
-<style lang='scss' scope></style>
