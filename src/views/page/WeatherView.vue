@@ -31,7 +31,6 @@
         <span class="h2">{{ isClickCountyName }}空氣汙染檢測</span>
       </a>
     </h2>
-
     <section class="mb-10">
       <WeatherAir :isClickCountyName="isClickCountyName" />
     </section>
@@ -48,7 +47,7 @@
               class="mouseClickImg" data-menu="menu" :class="{'menu-item-show': clickIconShow}">
           </a>
           <ul class="menu-county px-0" :class="{'menu-item-show': menuCountyShow}" data-menu="selectArea">
-            <li class="border-bottom-m" data-menu="selectArea">縣市</li>
+            <li class="position-sticky top-0 bg-color-primary-s border-bottom-m" data-menu="selectArea">縣市</li>
             <li class="border-bottom-m bg-color-primary p-1" v-for="(county, keys) in countyAPINumData" :key="keys" data-menu="selectArea">
               <a href="#" class="d-block text-dark fs-5 py-1" data-menu="selectArea" :data-api-num="county"
                 :class="{'btnActive': keys === isClickCountyName}"
@@ -56,7 +55,7 @@
             </li>
           </ul>
           <ul class="menu-area px-0" :class="{'menu-area-show': menuAreaShow}" data-menu="selectArea">
-            <li class="border-bottom-m" data-menu="selectArea">地區</li>
+            <li class="position-sticky top-0 bg-color-primary-s border-bottom-m" data-menu="selectArea">地區</li>
             <li class="border-bottom-m d-flex justify-content-between align-items-center p-1 bg-color-primary"
                 v-for="(area, areaIndex) in allAreaName" :key="area" data-menu="selectArea">
               <label :for="`area${area}${areaIndex}`" class="d-block mx-auto text-dark fs-5 py-1" data-menu="selectArea"
@@ -71,17 +70,13 @@
             </li>
           </ul>
         </button>
-        <!-- 開啟選單的箭頭 -->
-        <a href="#" class="openMenuArrow d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
-          <div data-menu="menu" class="openMenuArrowImg"></div>
-        </a>
       </li>
       <!-- 收藏地區 -->
       <li class="border-bottom-m pb-3 mb-3" data-menu="menu">
         <button type="button" class="menu-link menu-link-hover py-1" data-menu="collectArea" :class="{'btnActive': menuCollectAreaShow}"
           @click="menuCollectAreaShow =!menuCollectAreaShow">收藏地區</button>
         <ul class="menu-collectArea text-center ps-0" :class="{'menu-collectArea-show': menuCollectAreaShow}" data-menu="collectArea">
-          <li class="border-bottom-m" data-menu="collectArea">已收藏地區</li>
+          <li class="position-sticky top-0 bg-color-primary-s border-bottom-m" data-menu="collectArea">已收藏地區</li>
           <li class="border-bottom-m bg-color-primary" v-for="(countyName, areaName) in renderCollectData" :key="areaName" data-menu="collectArea">
             <button type="button" class="d-flex justify-content-between align-items-center border-primary-m btn-style text-dark w-100 py-2"
                   @click="getSelectCountyWeather($event,countyName,areaName)">
@@ -108,6 +103,10 @@
       <li class="border-bottom-m mb-2 d-bigScreen-none"><button type="button" class="menu-link bg-secondary w-100">X</button></li>
     </ul>
   </aside>
+  <!-- 開啟選單的箭頭 -->
+  <a href="#" class="openMenuArrow d-block d-bigScreen-none" data-menu="menu" v-if="!menuShow" @click.prevent="menuShow = !menuShow">
+    <div data-menu="menu" class="openMenuArrowImg"></div>
+  </a>
   <TipModal @tipOpen="tipOpen" />
   <IsLoading v-model:active="isLoading">
     <div class="cssload-battery">
