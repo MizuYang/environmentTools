@@ -52,7 +52,10 @@
         </div>
       </div>
       <address>
-        <a class="card-text" :href="`https://www.google.com.tw/maps/search/${pharmacyInfo[1]}`" target="_blank">{{ pharmacyInfo[2] }}</a>
+        <a class="card-text" :href="`https://www.google.com.tw/maps/search/${pharmacyInfo[1]}`" target="_blank">
+          {{ pharmacyInfo[2] }}
+          <img src="@/assets/image/icons/rapidTest-icons/地圖.png" alt="小地圖的圖片" height="35">
+        </a>
       </address>
       <p class="card-text">{{ pharmacyInfo[6] }}
         <br />
@@ -61,7 +64,7 @@
       <p class="card-text">備註：{{ pharmacyInfo[9] }}</p>
     </div>
   </section>
-  <div class="text-center" v-if="collectTipShow">
+  <div class="text-center" :class="{'d-none': collectTipHide}">
     <h3 class="mb-3">您目前沒有收藏的藥局！</h3>
     <button type="button" class="btn btn-color-primary-m" @click="$openTipModal('rapidTest')">收藏藥局教學</button>
   </div>
@@ -108,7 +111,7 @@ export default {
       searchText: '',
       topScrollBtnHide: true,
       isLoading: false,
-      collectTipShow: false,
+      collectTipHide: true,
       countyPharmacyNameData: {}
     }
   },
@@ -200,10 +203,10 @@ export default {
         setTimeout(() => {
           const collectPharmacy = []
           if (this.localStoragePharmacyData.length === 0) { //* 沒資料的話，後面的迴圈就不跑了
-            this.collectTipShow = true
+            this.collectTipHide = false
             return
           } else {
-            this.collectTipShow = false
+            this.collectTipHide = true
           }
           this.localStoragePharmacyData.forEach(pharmacyAddress => {
             this.rapidTestTempData.forEach(allPharmacyItem => {
