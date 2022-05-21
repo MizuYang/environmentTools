@@ -236,7 +236,7 @@ export default {
         localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
       }, 0)
     },
-    getLocalStorage () {
+    getCollectPharmacyCheckbox () {
       this.localStoragePharmacyData.forEach(pharmacyName => {
         this.collectCheckboxData[pharmacyName] = true
       })
@@ -244,7 +244,7 @@ export default {
     deleteCollect () {
       this.localStoragePharmacyData = []
       localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
-      this.getLocalStorage()
+      this.getCollectPharmacyCheckbox()
       this.renderCollectPharmacy()
     }
   },
@@ -253,7 +253,7 @@ export default {
     this.apiPath = process.env.VUE_APP_RAPIDTEST_API
     this.getToday()
     this.getRapidTestData()
-    this.getLocalStorage()
+    this.getCollectPharmacyCheckbox()
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY
