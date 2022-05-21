@@ -111,9 +111,9 @@
             </details>
           </li>
           <li class="ps-2 pt-2 mb-3">
-            <details>
+            <details class="mb-2">
               <summary class="h4 mb-2">收藏藥局功能
-                <button type="button" class="bg-primary text-light ms-3" v-if="localStoragePharmacyData.length > 0" @click="$emit('deleteCollect')">清空收藏</button>
+                <button type="button" class="bg-primary text-light d-block ms-auto" v-if="localStoragePharmacyData.length > 0" @click="$emit('deleteCollect')">清空收藏</button>
               </summary>
               <ul>
                 <li class="fw-bold">加入收藏</li>
@@ -128,6 +128,7 @@
               </ul>
               <img src="@/assets/image/tip/rapidTest/收藏藥局.gif" alt="收藏藥局教學影片" style="width:100%">
             </details>
+
           </li>
         </ul>
 
@@ -165,6 +166,9 @@ export default {
     this.emitter.on('openTipModal', (pages) => {
       this.pages = pages
       this.tipModal.show()
+    })
+    this.emitter.on('closeTipModal', () => {
+      this.tipModal.hide()
     })
   },
 
