@@ -196,28 +196,21 @@ export default {
         this.canBuyRapidTestId = '單、雙數'
       }
     },
-    renderCollectPharmacy () {
-      this.$nextTick(() => {
-        this.$refs.countySelector.value = '請選擇縣市'
-        this.$refs.areaSelector.value = '請選擇地區'
-        setTimeout(() => {
-          const collectPharmacy = []
-          if (this.localStoragePharmacyData.length === 0) { //* 沒資料的話，後面的迴圈就不跑了
-            this.collectTipHide = false
-            return
-          } else {
-            this.collectTipHide = true
-          }
-          this.localStoragePharmacyData.forEach(pharmacyAddress => {
-            this.rapidTestTempData.forEach(allPharmacyItem => {
-              if (pharmacyAddress === allPharmacyItem[2]) {
-                collectPharmacy.push(allPharmacyItem)
-              }
-            })
+    renderCollectPharmacy (status) {
+      this.$refs.countySelector.value = '請選擇縣市'
+      this.$refs.areaSelector.value = '請選擇地區'
+      const collectPharmacy = []
+      //* 有收藏資料才跑資料處理 或 點收藏清空，已渲染收藏藥局也會重新清空
+      if (this.localStoragePharmacyData.length > 0 || status === '收藏清空重新渲染') {
+        this.localStoragePharmacyData.forEach(pharmacyAddress => {
+          this.rapidTestTempData.forEach(allPharmacyItem => {
+            if (pharmacyAddress === allPharmacyItem[2]) {
+              collectPharmacy.push(allPharmacyItem)
+            }
           })
-          this.rapidTestData = collectPharmacy
         })
-      })
+        this.rapidTestData = collectPharmacy
+      }
     },
     toggleCollectPharmacy (pharmacyAddress) {
       //* 收藏 data 如果地址的值是 false(取消勾選)就刪除，true就增加
@@ -245,7 +238,7 @@ export default {
       this.localStoragePharmacyData = []
       localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
       this.getCollectPharmacyCheckbox()
-      this.renderCollectPharmacy()
+      this.renderCollectPharmacy('收藏清空重新渲染')
     }
   },
 
