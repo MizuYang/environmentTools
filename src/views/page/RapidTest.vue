@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import TipModal from '@/components/weather/modal/TipModal.vue'
+import TipModal from '@/components/modal/TipModal.vue'
 import RapidTestMixins from '@/components/rapidTest/mixins/RapidTestMixins.vue'
 import emitter from '@/methods/emitter.js'
 export default {

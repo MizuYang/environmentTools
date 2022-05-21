@@ -119,7 +119,7 @@
 import WeatherCounty from '@/components/weather/WeatherCounty.vue'
 import WeatherArea from '@/components/weather/WeatherArea.vue'
 import WeatherAir from '@/components/weather/WeatherAir.vue'
-import TipModal from '@/components/weather/modal/TipModal.vue'
+import TipModal from '@/components/modal/TipModal.vue'
 import WeatherWarning from '@/components/weatherWarning/WeatherWarning.vue'
 import emitter from '@/methods/emitter.js'
 export default {
