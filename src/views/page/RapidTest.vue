@@ -234,15 +234,18 @@ export default {
         localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
       }, 0)
     },
-    getCollectPharmacyCheckbox () {
+    getCollectPharmacyCheckbox (status) {
       this.localStoragePharmacyData.forEach(pharmacyName => {
         this.collectCheckboxData[pharmacyName] = true
       })
+      if (status === '收藏清空重新渲染') {
+        this.collectCheckboxData = {} //* 如果點收藏清空，checkbox 全部都會取消
+      }
     },
     deleteCollect () {
       this.localStoragePharmacyData = []
       localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
-      this.getCollectPharmacyCheckbox()
+      this.getCollectPharmacyCheckbox('收藏清空重新渲染')
       this.renderCollectPharmacy('收藏清空重新渲染')
       emitter.emit('closeTipModal')
     }
