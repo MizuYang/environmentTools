@@ -73,7 +73,7 @@
   <img src="@/assets/image/icons/rapidTest-icons/向上.png" alt="箭頭向上的圖片" height="50">
 </a>
 
-<TipModal />
+<TipModal :localStoragePharmacyData="localStoragePharmacyData" @deleteCollect="deleteCollect" />
 <IsLoading v-model:active="isLoading">
   <div class="cssload-battery">
     <div class="cssload-liquid"></div>
@@ -240,6 +240,12 @@ export default {
       this.localStoragePharmacyData.forEach(pharmacyName => {
         this.collectCheckboxData[pharmacyName] = true
       })
+    },
+    deleteCollect () {
+      this.localStoragePharmacyData = []
+      localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
+      this.getLocalStorage()
+      this.renderCollectPharmacy()
     }
   },
 

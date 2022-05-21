@@ -112,7 +112,9 @@
           </li>
           <li class="ps-2 pt-2 mb-3">
             <details>
-              <summary class="h4 mb-2">收藏藥局功能</summary>
+              <summary class="h4 mb-2">收藏藥局功能
+                <button type="button" class="bg-primary text-light ms-3" v-if="localStoragePharmacyData.length > 0" @click="$emit('deleteCollect')">清空收藏</button>
+              </summary>
               <ul>
                 <li class="fw-bold">加入收藏</li>
                 <li  class="mb-2">搜尋地區後按下右邊的加入收藏</li>
@@ -144,12 +146,12 @@
 <script>
 import Modal from 'bootstrap/js/dist/modal.js'
 export default {
-  components: {
-  },
+
+  props: ['localStoragePharmacyData'],
 
   inject: ['emitter'],
 
-  emits: ['tipOpen'],
+  emits: ['tipOpen', 'deleteCollect'],
 
   data () {
     return {
