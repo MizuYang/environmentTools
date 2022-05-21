@@ -167,6 +167,9 @@ export default {
       this.pages = pages
       this.tipModal.show()
     })
+    this.emitter.on('closeTipModal', () => {
+      this.tipModal.hide()
+    })
   },
 
   unmounted () {

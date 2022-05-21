@@ -244,6 +244,7 @@ export default {
       localStorage.setItem('pharmacyName', JSON.stringify(this.localStoragePharmacyData))
       this.getCollectPharmacyCheckbox()
       this.renderCollectPharmacy('收藏清空重新渲染')
+      emitter.emit('closeTipModal')
     }
   },
 
