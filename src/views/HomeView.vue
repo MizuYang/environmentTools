@@ -13,6 +13,20 @@ export default {
   components: {
     NavbarLayout,
     MenuView
+  },
+
+  methods: {
+    getVisitsCount () {
+      this.$http.get(this.apiPath)
+        .then(res => {
+          const visitsCount = res.data.value
+          localStorage.setItem('visitsCount', visitsCount) //* AboutMe 取出
+        })
+    }
+  },
+  mounted () {
+    this.apiPath = process.env.VUE_APP_VISITS_COUNT_API
+    this.getVisitsCount()
   }
 }
 </script>
