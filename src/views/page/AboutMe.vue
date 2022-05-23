@@ -2,6 +2,7 @@
   <div class="about mt-3 mb-4 text-center">
     <div class="container w-low">
       <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/cat.jpg?raw=true" class="mb-3" alt="貓咪害羞圖" height="180">
+      <h2 class="h3">您是第 <strong class="h2 text-danger">{{ visitsCount }}</strong> 位訪客</h2>
       <a href="https://equatorial-alloy-23b.notion.site/f6226e0c3e42458898d5cbdda240f6b6" target="_blank" class="btn btn-outline-primary d-block mb-3">觀看開發紀錄</a>
       <a href="https://equatorial-alloy-23b.notion.site/Mizu_-dc646b31574641de856dd54ac3f6cc1b" target="_blank" class="btn btn-outline-primary d-block mb-3">技術部落格</a>
       <a href="mailto:psdk55052004@gmail.com" class="btn btn-outline-primary d-block mb-3"><i class="bi bi-envelope"></i> 聯絡我</a>
@@ -29,11 +30,17 @@ export default {
 
   data () {
     return {
-      ulDangerLvData: [1, 3, 6, 8, 11]
+      ulDangerLvData: [1, 3, 6, 8, 11],
+      apiPath: '',
+      visitsCount: ''
     }
   },
 
-  mixins: [WeatherMixins]
+  mixins: [WeatherMixins],
+
+  mounted () {
+    this.visitsCount = JSON.parse(localStorage.getItem('visitsCount')) //* HomeView
+  }
 
 }
 </script>
