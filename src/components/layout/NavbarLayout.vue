@@ -33,9 +33,11 @@
           ><i class="bi bi-envelope icon"></i>
         </a>
       </li>
-      <time class="ms-md-4">
-        {{ getToday() }}
-      </time>
+      <li>
+        <time class="ms-md-4">
+          {{ getToday() }}
+        </time>
+      </li>
     </ul>
   </figure>
 </template>
