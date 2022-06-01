@@ -57,7 +57,7 @@
     <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/README/%E5%BF%AB%E7%AF%A9%E9%A0%81%E9%9D%A2.png?raw=true" alt="快篩頁面" height="500" width="250">
     <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/README/%E5%BF%AB%E7%AF%A9%E8%97%A5%E5%B1%80%E9%A1%AF%E7%A4%BA.png?raw=true" alt="快篩藥局顯示" height="500" width="250">
     <ul>
-      <li>功能提示教學</li>
+      <li>功能提示教學 (Bootstrap Modal)</li>
       <li>下拉選單查詢縣市、地區藥局快篩剩餘數量</li>
       <li>關鍵字查詢藥局快篩剩餘數量</li>
       <li>可輸入藥局名稱或地址查詢</li>
@@ -69,7 +69,7 @@
     <h3>疫情頁面</h3>
     <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/README/%E7%96%AB%E6%83%85%E9%A0%81%E9%9D%A2.png?raw=true" alt="疫情頁面顯示" height="500" width="250">
       <ul>
-        <li>功能提示教學</li>
+        <li>功能提示教學 (Bootstrap Modal)</li>
         <li>查詢今天、昨天、前天疫情狀況</li>
         <li>可使用下拉選單查詢其他國家的疫情</li>
         <li>可使用關鍵字查詢各個國家疫情 (英文)</li>
@@ -82,7 +82,7 @@
       <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/README/%E6%B0%A3%E8%B1%A1%E7%9B%B8%E9%97%9Cicons.png?raw=true" alt="天氣頁面 icons顯示" height="250" width="250">
       <img src="https://github.com/MizuYang/environmentTools/blob/main/src/assets/image/README/%E7%B4%AB%E5%A4%96%E7%B7%9A.png?raw=true" alt="紫外線指數圖片顯示" height="250" width="250">
       <ul>
-        <li>功能提示教學</li>
+        <li>功能提示教學 (Bootstrap Modal)</li>
         <li>跑馬燈顯示天氣警報</li>
         <li>查看縣市、地區的天氣、溫度、紫外線、 降雨率、空氣品質...等，<br />
         並依照天氣狀況來改變天氣 icon 圖示 (用物件包裝天氣與對應 icon 寫判斷)。</li>
