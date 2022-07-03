@@ -95,31 +95,27 @@ export default {
       this.$http.get(this.apiPath)
         .then(res => {
           this.isLoading = false
-          this.typhoonData = res.data.records.tropicalCyclones.tropicalCyclone
-          this.typhoonDataLength = res.data.records.tropicalCyclones.tropicalCyclone[0].analysisData.fix.length
-          this.typhoonAnalyzeData = res.data.records.tropicalCyclones.tropicalCyclone[0].analysisData.fix
-          this.typhoonAnalyzeLen = res.data.records.tropicalCyclones.tropicalCyclone[0].analysisData.fix.length
-          this.typhoonForecastData = res.data.records.tropicalCyclones.tropicalCyclone[0].forecastData.fix
-          this.typhoonForecastLen = res.data.records.tropicalCyclones.tropicalCyclone[0].forecastData.fix.length
+          const typhoonData = res.data.records.tropicalCyclones.tropicalCyclone
+          this.typhoonData = typhoonData
+          this.typhoonDataLength = typhoonData[0].analysisData.fix.length
+          this.typhoonAnalyzeData = typhoonData[0].analysisData.fix
+          this.typhoonAnalyzeLen = typhoonData[0].analysisData.fix.length
+          this.typhoonForecastData = typhoonData[0].forecastData.fix
+          this.typhoonForecastLen = typhoonData[0].forecastData.fix.length
         })
         .catch(err => {
           this.isLoading = false
-          console.log(err)
         })
     },
     //* 處理日期
     getDate (date) {
-      const newDate = date.split('')
-      const deleteIndex = date.split('').indexOf('T')
-      newDate.splice(deleteIndex, date.length)
-      return newDate.join('')
+      const newDate = date.split('T')[0]
+      return newDate
     },
     //* 東西南北方向英翻中
     directionEnToZh (dir) {
       const dirArr = []
-      dir.split('').forEach(item => {
-        dirArr.unshift(this.directionEnToZhData[item])
-      })
+      dir.split('').forEach(item => dirArr.unshift(this.directionEnToZhData[item]))
       return dirArr.join('')
     }
   },
