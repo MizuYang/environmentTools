@@ -95,16 +95,17 @@ export default {
       this.$http.get(this.apiPath)
         .then(res => {
           this.isLoading = false
-          const typhoonData = res.data.records.tropicalCyclones.tropicalCyclone
-          this.typhoonData = typhoonData
-          this.typhoonDataLength = typhoonData[0].analysisData.fix.length
-          this.typhoonAnalyzeData = typhoonData[0].analysisData.fix
-          this.typhoonAnalyzeLen = typhoonData[0].analysisData.fix.length
-          this.typhoonForecastData = typhoonData[0].forecastData.fix
-          this.typhoonForecastLen = typhoonData[0].forecastData.fix.length
+          const typhoon = res.data.records.tropicalCyclones.tropicalCyclone
+          this.typhoonData = typhoon
+          this.typhoonDataLength = typhoon[0].analysisData.fix.length
+          this.typhoonAnalyzeData = typhoon[0].analysisData.fix
+          this.typhoonAnalyzeLen = typhoon[0].analysisData.fix.length
+          this.typhoonForecastData = typhoon[0].forecastData.fix
+          this.typhoonForecastLen = typhoon[0].forecastData.fix.length
         })
         .catch(err => {
           this.isLoading = false
+          console.log(err)
         })
     },
     //* 處理日期
@@ -115,7 +116,9 @@ export default {
     //* 東西南北方向英翻中
     directionEnToZh (dir) {
       const dirArr = []
-      dir.split('').forEach(item => dirArr.unshift(this.directionEnToZhData[item]))
+      dir.split('').forEach(item => {
+        dirArr.unshift(this.directionEnToZhData[item])
+      })
       return dirArr.join('')
     }
   },
