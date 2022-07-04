@@ -38,19 +38,6 @@
                 <li class="mb-2 border-bottom"><span class="fw-bold">最大陣風速度：</span>{{ typhoonAnalyzeData[typhoonAnalyzeLen -1].maxGustSpeed }}</li>
                 <li><span class="fw-bold">移動預測：</span>{{ typhoonAnalyzeData[typhoonAnalyzeLen -1].movingPrediction[0].value }}</li>
               </ul>
-              <hr />
-              <!--//* 預測數據  -->
-              <h5 class="card-title d-flex justify-content-between">
-                <time>{{ getDate(typhoonForecastData[typhoonForecastLen -1].initTime) }}</time>
-                <i class="card-subtitle mb-2 my-auto text-muted">預測數據</i></h5>
-              <ul class="px-0">
-                <li class="mb-2 border-bottom"><span class="fw-bold">座標：</span>{{ typhoonForecastData[typhoonForecastLen -1].coordinate }}</li>
-                <li class="mb-2 border-bottom"><span class="fw-bold">移動方向：</span>{{ directionEnToZh(typhoonForecastData[typhoonForecastLen -1].movingDirection) }}</li>
-                <li class="mb-2 border-bottom"><span class="fw-bold">移動速度：</span>{{ typhoonForecastData[typhoonForecastLen -1].movingSpeed }}</li>
-                <li class="mb-2 border-bottom"><span class="fw-bold">最大風速：</span>{{ typhoonForecastData[typhoonForecastLen -1].maxWindSpeed }}</li>
-                <li class="mb-2 border-bottom"><span class="fw-bold">最大陣風速度：</span>{{ typhoonForecastData[typhoonForecastLen -1].maxGustSpeed }}</li>
-                <li class="mb-2 border-bottom"><span class="fw-bold">狀態：</span>{{ typhoonForecastData[typhoonForecastLen -1].stateTransfers[0].value }}</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -76,8 +63,6 @@ export default {
       typhoonDataLength: '',
       typhoonAnalyzeData: [], //* 分析數據
       typhoonAnalyzeLen: '',
-      typhoonForecastData: [], //* 預測數據
-      typhoonForecastLen: '',
       isLoading: false,
       directionEnToZhData: {
         E: '東',
@@ -100,8 +85,6 @@ export default {
           this.typhoonDataLength = typhoon[0].analysisData.fix.length
           this.typhoonAnalyzeData = typhoon[0].analysisData.fix
           this.typhoonAnalyzeLen = typhoon[0].analysisData.fix.length
-          this.typhoonForecastData = typhoon[0].forecastData.fix
-          this.typhoonForecastLen = typhoon[0].forecastData.fix.length
         })
         .catch(err => {
           this.isLoading = false
